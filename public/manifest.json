@@ -1,14 +1,14 @@
 {
-  "short_name": "ANOTHAPP",
-  "name": "ANOTHAPP",
+  "short_name": "Anothapp",
+  "name": "Anothapp",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "img/logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo.png",
+      "src": "img/logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
