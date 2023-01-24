@@ -30,7 +30,7 @@ export default function Home() {
                 <Row xs={2} md={4} className="mt-4">
                     {shows.map(s => (
                         <Col key={s.showId} >
-                            <PreviewCard showId={s.showId} title={s.title} poster={s.poster} />
+                            <PreviewCard preview={s} />
                         </Col>
                     ))}
                 </Row>
