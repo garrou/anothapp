@@ -1,4 +1,4 @@
-import { ShowImage } from "./Image";
+import { ShowImage } from "./ShowImage";
 
 interface Details {
 

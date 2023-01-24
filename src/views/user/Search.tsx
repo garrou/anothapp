@@ -1,4 +1,3 @@
-import { cp } from "fs/promises";
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
@@ -15,7 +14,7 @@ export default function Search() {
                 credentials: 'include'
             });
 
-            if (resp.status == 200) {
+            if (resp.status === 200) {
                 const data: Array<Preview> = await resp.json();
                 setShows(data);
             }
@@ -23,14 +22,12 @@ export default function Search() {
     }, [title]);
 
     const onClick = async () => {
-        console.log(title);
         const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
             credentials: 'include'
         });
 
-        if (resp.status == 200) {
+        if (resp.status === 200) {
             const data: Array<Preview> = await resp.json();
-            console.log(data);
             setShows(data);
         }
     }
