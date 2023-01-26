@@ -1,6 +1,6 @@
 interface Preview {
 
-    showId: number;
+    id: number;
 
     title: string;
 

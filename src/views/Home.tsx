@@ -13,8 +13,11 @@ export default function Home() {
             const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/intro/images`, {
                 credentials: 'include'
             });
-            const data: Array<Preview> = await resp.json();
-            setShows(data);
+
+            if (resp.status === 200) {
+                const data: Array<Preview> = await resp.json();
+                setShows(data);
+            }
         })();
     }, []);
 
@@ -29,7 +32,7 @@ export default function Home() {
 
                 <Row xs={2} md={4} className="mt-4">
                     {shows.map(s => (
-                        <Col key={s.showId} >
+                        <Col key={s.id} >
                             <PreviewCard preview={s} />
                         </Col>
                     ))}

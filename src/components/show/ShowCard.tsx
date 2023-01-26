@@ -11,7 +11,7 @@ export default function ShowCard({preview}: Props) {
             <Card.Img variant="top" src={preview.poster} />
             <Card.Body>
                 <Card.Title>{preview.title}</Card.Title>
-                <Button href={`/search/shows/${preview.showId}`} variant="outline-dark">Détails</Button>
+                <Button href={`/search/shows/${preview.id}`} variant="outline-dark">Détails</Button>
             </Card.Body>
         </Card>
     );

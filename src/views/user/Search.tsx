@@ -19,7 +19,7 @@ export default function Search() {
                 setShows(data);
             }
         })();
-    }, [title]);
+    }, []);
 
     const onClick = async () => {
         const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
@@ -46,7 +46,7 @@ export default function Search() {
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (
-                    <Col key={s.showId} >
+                    <Col key={s.id} >
                         <ShowCard preview={s} />
                     </Col>
                 ))}
