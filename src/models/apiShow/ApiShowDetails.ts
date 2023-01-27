@@ -1,6 +1,6 @@
-import { ShowImage } from "./ShowImage";
+import { ApiShowImage } from "./ApiShowImage";
 
-interface Details {
+interface ApiShowDetails {
 
     id: number;
 
@@ -18,11 +18,11 @@ interface Details {
 
     note: number;
 
-    images: ShowImage;
+    images: ApiShowImage;
 
     status: string;
 
     creation: string;
 };
 
-export type { Details };
+export type { ApiShowDetails };

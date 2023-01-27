@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
-import ShowCard from "../../components/show/ShowCard";
-import { Preview } from "../../models/show/Preview";
+import ShowCard from "../../components/userShow/ShowCard";
+import { ShowPreview } from "../../models/userShow/ShowPreview";
 
 export default function Series() {
-    const [shows, setShows] = useState<Preview[]>([]);
+    const [shows, setShows] = useState<ShowPreview[]>([]);
     
     useEffect(() => {
         (async () => {
@@ -14,7 +14,7 @@ export default function Series() {
             });
 
             if (resp.status === 200) {
-                const data: Array<Preview> = await resp.json();
+                const data: Array<ShowPreview> = await resp.json();
                 setShows(data);
             }
         })();
@@ -23,8 +23,6 @@ export default function Series() {
     return (
         <Container>
             <Navigation />
-
-            <Button href="/search/shows" variant="outline-dark" className="mt-2">Ajouter une série</Button>
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

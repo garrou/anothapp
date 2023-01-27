@@ -1,4 +1,4 @@
-interface Preview {
+interface ShowPreview {
 
     id: number;
 
@@ -7,4 +7,4 @@ interface Preview {
     poster: string;
 };
 
-export type { Preview };
+export type { ShowPreview };

@@ -1,4 +1,4 @@
-interface ShowImage {
+interface ApiShowImage {
 
     poster: string|undefined;
 
@@ -9,4 +9,4 @@ interface ShowImage {
     box: string|undefined;
 };
 
-export type { ShowImage }
+export type { ApiShowImage }

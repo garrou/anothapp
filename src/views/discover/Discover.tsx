@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import ApiShowCard from "../../components/apiShow/ApiShowCard";
 import Navigation from "../../components/Navigation";
-import ShowCard from "../../components/show/ShowCard";
-import { Preview } from "../../models/show/Preview";
+import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
 
-export default function Search() {
-    const [shows, setShows] = useState<Preview[]>([]);
+export default function Discover() {
+    const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [title, setTitle] = useState<string>('');
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function Search() {
             });
 
             if (resp.status === 200) {
-                const data: Array<Preview> = await resp.json();
+                const data: Array<ApiShowPreview> = await resp.json();
                 setShows(data);
             }
         })();
@@ -27,7 +27,7 @@ export default function Search() {
         });
 
         if (resp.status === 200) {
-            const data: Array<Preview> = await resp.json();
+            const data: Array<ApiShowPreview> = await resp.json();
             setShows(data);
         }
     }
@@ -47,7 +47,7 @@ export default function Search() {
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (
                     <Col key={s.id} >
-                        <ShowCard preview={s} />
+                        <ApiShowCard preview={s} />
                     </Col>
                 ))}
             </Row>

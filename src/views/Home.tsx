@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import GoogleButton from '../components/GoogleButton';
 import Redirect from '../components/Redirect';
-import PreviewCard from '../components/show/PreviewCard';
-import type { Preview } from '../models/show/Preview';
+import PreviewCard from '../components/apiShow/ApiShowCard';
+import type { ApiShowPreview } from '../models/apiShow/ApiShowPreview';
 
 export default function Home() {
-    const [shows, setShows] = useState<Preview[]>([]);
+    const [shows, setShows] = useState<ApiShowPreview[]>([]);
 
     useEffect(() => {
         (async () => {
@@ -15,7 +15,7 @@ export default function Home() {
             });
 
             if (resp.status === 200) {
-                const data: Array<Preview> = await resp.json();
+                const data: Array<ApiShowPreview> = await resp.json();
                 setShows(data);
             }
         })();
