@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import UserCard from "../../components/UserCard";
 import { User } from "../../models/User";

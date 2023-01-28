@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
-import { addShow } from "../../services/showService";
+import showService from "../../services/showService";
 
 interface Props {
     preview: ApiShowPreview
@@ -13,7 +13,7 @@ export default function ApiShowCard({ preview }: Props) {
     const [success, setSuccess] = useState<any>(undefined);
 
     const onClick = async () => {
-        const resp = await addShow(preview);
+        const resp = await showService.addShow(preview);
 
         if (resp.status === 201) {
             setSuccess(await resp.json());

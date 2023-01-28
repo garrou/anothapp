@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
-import { addShow } from "../../services/showService";
+import showService from "../../services/showService";
 import TextCard from "./TextCard";
 
 interface Props {
@@ -13,7 +13,7 @@ export default function ApiShowPage({ details }: Props) {
     const [success, setSuccess] = useState<any>(undefined);
 
     const onClick = async () => {
-        const resp = await addShow(details);
+        const resp = await showService.addShow(details);
 
         if (resp.status === 201) {
             setSuccess(await resp.json());

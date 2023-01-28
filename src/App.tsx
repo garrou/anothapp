@@ -7,6 +7,7 @@ import Discover from "./views/discover/Discover";
 import WatchList from "./views/user/WatchList";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
+import SeriesDetails from "./views/user/SerieDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/series" element={<Series />} />
+          <Route path="/series/:id" element={<SeriesDetails />} />
           <Route path="/discover/series" element={<Discover />} />
           <Route path="/discover/series/:id" element={<ShowDetails />} />
           <Route path="/watchlist" element={<WatchList />} />

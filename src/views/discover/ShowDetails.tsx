@@ -3,16 +3,15 @@ import { useParams } from "react-router-dom";
 import Guard from "../../components/Guard";
 import DetailsPage from "../../components/apiShow/ApiShowPage";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
+import searchService from "../../services/searchService";
 
 export default function ShowDetails() {
-    const { id } = useParams();
+    const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
 
     useEffect(() => {
         (async () => {
-            const resp = await fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}`, {
-                credentials: 'include'
-            });
+            const resp = await searchService.getShowById(id!);
 
             if (resp.status === 200) {
                 const data: ApiShowDetails = await resp.json();
@@ -20,6 +19,7 @@ export default function ShowDetails() {
             }
         })();
     }, []);
+    
     return (
         <>   
             <Guard />

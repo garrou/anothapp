@@ -16,4 +16,4 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
     });
 }
 
-export { addShow };
+export default { addShow };

@@ -3,6 +3,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import ApiShowCard from "../../components/apiShow/ApiShowCard";
 import Navigation from "../../components/Navigation";
 import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
+import searchService from "../../services/searchService";
 
 export default function Discover() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
@@ -10,9 +11,7 @@ export default function Discover() {
 
     useEffect(() => {
         (async () => {
-            const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/search/shows/discover`, {
-                credentials: 'include'
-            });
+            const resp: Response = await searchService.discoverShows();
 
             if (resp.status === 200) {
                 const data: Array<ApiShowPreview> = await resp.json();
@@ -22,9 +21,7 @@ export default function Discover() {
     }, []);
 
     const onClick = async () => {
-        const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
-            credentials: 'include'
-        });
+        const resp: Response = await searchService.searchShowByTitle(title);
 
         if (resp.status === 200) {
             const data: Array<ApiShowPreview> = await resp.json();
