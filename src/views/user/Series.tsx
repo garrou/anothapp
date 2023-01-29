@@ -4,15 +4,14 @@ import Guard from "../../components/Guard";
 import Navigation from "../../components/Navigation";
 import ShowCard from "../../components/userShow/ShowCard";
 import { ShowPreview } from "../../models/userShow/ShowPreview";
+import showService from "../../services/showService";
 
 export default function Series() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
     
     useEffect(() => {
         (async () => {
-            const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/shows`, {
-                credentials: 'include'
-            });
+            const resp = await showService.getShows();
 
             if (resp.status === 200) {
                 const data: Array<ShowPreview> = await resp.json();
@@ -23,7 +22,6 @@ export default function Series() {
 
     return (
         <Container>
-            <Guard />
             <Navigation />
 
             <Row xs={2} md={4} className="mt-4">

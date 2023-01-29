@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
 import showService from "../../services/showService";
 
@@ -10,13 +10,13 @@ interface Props {
 
 export default function ApiShowCard({ preview }: Props) {
     const [error, setError] = useState<any>(undefined);
-    const [success, setSuccess] = useState<any>(undefined);
+    const navigate = useNavigate();
 
     const onClick = async () => {
         const resp = await showService.addShow(preview);
 
         if (resp.status === 201) {
-            setSuccess(await resp.json());
+            navigate(`/series/${preview.id}`);
         } else {
             setError(await resp.json());
         }
@@ -31,12 +31,6 @@ export default function ApiShowCard({ preview }: Props) {
             <Card.Body>
                 <Card.Title>{preview.title}</Card.Title>
                 <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
-
-                {success && (
-                    <Alert variant="success" className="mt-2">
-                        {success.message}
-                    </Alert>
-                )}
 
                 {error && (
                     <Alert variant="danger" className="mt-2">

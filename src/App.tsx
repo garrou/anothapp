@@ -8,6 +8,9 @@ import WatchList from "./views/user/WatchList";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
 import SeriesDetails from "./views/user/SerieDetails";
+import ShowSeasons from "./views/user/ShowSeasons";
+import SeasonDetails from "./views/user/SeasonDetails";
+import NotFound from "./views/NotFound";
 
 function App() {
   return (
@@ -15,12 +18,19 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/series" element={<Series />} />
           <Route path="/series/:id" element={<SeriesDetails />} />
+          <Route path="/series/:id/seasons" element={<ShowSeasons />} />
+          <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
+
           <Route path="/discover/series" element={<Discover />} />
           <Route path="/discover/series/:id" element={<ShowDetails />} />
+
           <Route path="/watchlist" element={<WatchList />} />
           <Route path="/profile" element={<Profile />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

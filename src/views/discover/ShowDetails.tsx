@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Guard from "../../components/Guard";
-import DetailsPage from "../../components/apiShow/ApiShowPage";
+import { useNavigate, useParams } from "react-router-dom";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import searchService from "../../services/searchService";
+import showService from "../../services/showService";
+import Navigation from "../../components/Navigation";
+import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
+import TextCard from "../../components/apiShow/TextCard";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails|null>(null);
+    const [error, setError] = useState<any>(undefined);
+    const navigate = useNavigate();
+
+    const onClick = async () => {
+        const resp = await showService.addShow(show!);
+
+        if (resp.status === 201) {
+            navigate(`/series/${show!.id}`);
+        } else {
+            setError(await resp.json());
+        }
+    };
 
     useEffect(() => {
         (async () => {
@@ -19,11 +33,35 @@ export default function ShowDetails() {
             }
         })();
     }, []);
-    
+
     return (
-        <>   
-            <Guard />
-            {show && <DetailsPage details={show} isDiscover={true} />}
-        </>
+        <Container>
+            <Navigation />
+
+            {error && (
+                <Alert variant="danger">
+                    {error.message}
+                </Alert>
+            )}
+
+            {show && <>
+                <Image src={show.images.show} alt="Poster" fluid={true} />
+
+                <Stack direction="horizontal" gap={3}>
+                    <h1 className="header">{show.title}</h1>
+                    <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>             
+                </Stack>
+
+                <p className="font-weight-bold">{show.seasons} saisons • {show.network}</p>
+
+                <Alert variant={show.status === "Ended" ? "success" : "warning"}>
+                    {show.status === "Ended" ? "Terminée" : "En cours"}
+                </Alert>
+
+                <TextCard title="Création" text={show.creation} />
+                <TextCard title="Note" text={`${show.note.toFixed(2)} / 5`} />
+                <TextCard title="Synopsis" text={show.description} />
+            </>}
+        </Container>
     );
 };

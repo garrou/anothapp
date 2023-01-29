@@ -3,12 +3,12 @@
   "name": "Anothapp",
   "icons": [
     {
-      "src": "img/logo.png",
+      "src": "images/logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "img/logo.png",
+      "src": "images/logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
