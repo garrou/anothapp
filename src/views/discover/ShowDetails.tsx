@@ -7,7 +7,7 @@ import searchService from "../../services/searchService";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
-    const [show, setShow] = useState<ApiShowDetails | null>(null);
+    const [show, setShow] = useState<ApiShowDetails|null>(null);
 
     useEffect(() => {
         (async () => {
@@ -23,7 +23,7 @@ export default function ShowDetails() {
     return (
         <>   
             <Guard />
-            {show && <DetailsPage details={show} />}
+            {show && <DetailsPage details={show} isDiscover={true} />}
         </>
     );
 };

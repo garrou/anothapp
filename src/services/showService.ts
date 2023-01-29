@@ -16,4 +16,10 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
     });
 }
 
-export default { addShow };
+const getShowById = async (id: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
+        credentials: 'include'
+    });
+}
+
+export default { addShow, getShowById };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import ApiShowCard from "../../components/apiShow/ApiShowCard";
+import Guard from "../../components/Guard";
 import Navigation from "../../components/Navigation";
 import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
 import searchService from "../../services/searchService";
@@ -31,6 +32,7 @@ export default function Discover() {
 
     return (
         <Container>
+            <Guard />
             <Navigation />
 
             <Form className="mt-3">

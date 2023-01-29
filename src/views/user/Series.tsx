@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import Guard from "../../components/Guard";
 import Navigation from "../../components/Navigation";
 import ShowCard from "../../components/userShow/ShowCard";
 import { ShowPreview } from "../../models/userShow/ShowPreview";
@@ -22,6 +23,7 @@ export default function Series() {
 
     return (
         <Container>
+            <Guard />
             <Navigation />
 
             <Row xs={2} md={4} className="mt-4">

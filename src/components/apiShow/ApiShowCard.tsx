@@ -24,7 +24,7 @@ export default function ApiShowCard({ preview }: Props) {
 
     return (
         <Card className="mt-2">
-            <Link to={`/search/shows/${preview.id}`}>
+            <Link to={`/discover/series/${preview.id}`}>
                 <Card.Img variant="top" src={preview.images.poster} />
             </Link>
 

@@ -1,11 +1,8 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import Guard from "./Guard";
 
 export default function Navigation() {
     return (
         <>
-            <Guard />
-
             <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand href="/series">Anothapp</Navbar.Brand>

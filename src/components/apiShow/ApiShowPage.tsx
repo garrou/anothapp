@@ -5,10 +5,11 @@ import showService from "../../services/showService";
 import TextCard from "./TextCard";
 
 interface Props {
-    details: ApiShowDetails
+    details: ApiShowDetails,
+    isDiscover: boolean
 };
 
-export default function ApiShowPage({ details }: Props) {
+export default function ApiShowPage({ details, isDiscover }: Props) {
     const [error, setError] = useState<any>(undefined);
     const [success, setSuccess] = useState<any>(undefined);
 
@@ -37,16 +38,24 @@ export default function ApiShowPage({ details }: Props) {
             )}
 
             <Image src={details.images.show} alt="Poster" fluid={true} />
+            
             <Stack direction="horizontal" gap={3}>
                 <h1 className="header">{details.title}</h1>
-                <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
+                {isDiscover && 
+                    <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
+                }
             </Stack>
+
             <p className="font-weight-bold">{details.seasons} saisons • {details.network}</p>
+
             <Alert variant={details.status === "Ended" ? "success" : "warning"}>
                 {details.status === "Ended" ? "Terminée" : "En cours"}
             </Alert>
-            <TextCard title="Création" text={details.creation} />
-            <TextCard title="Note" text={`${details.note.toFixed(2)} / 5`} />
+
+            {isDiscover && <>
+                <TextCard title="Création" text={details.creation} />
+                <TextCard title="Note" text={`${details.note.toFixed(2)} / 5`} />
+            </>}
             <TextCard title="Synopsis" text={details.description} />
         </Container>
     );
