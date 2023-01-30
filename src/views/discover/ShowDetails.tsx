@@ -5,7 +5,7 @@ import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
 import TextCard from "../../components/apiShow/TextCard";
-import Guard from "../../components/Guard";
+import Navigation from "../../components/Navigation";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
@@ -36,7 +36,7 @@ export default function ShowDetails() {
 
     return (
         <Container>
-            <Guard />
+            <Navigation />
 
             {error && (
                 <Alert variant="danger">
