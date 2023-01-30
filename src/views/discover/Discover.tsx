@@ -32,7 +32,6 @@ export default function Discover() {
 
     return (
         <Container>
-            <Guard />
             <Navigation />
 
             <Form className="mt-3">
