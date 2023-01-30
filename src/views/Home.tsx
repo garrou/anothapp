@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import GoogleButton from '../components/GoogleButton';
 import Redirect from '../components/Redirect';
-import PreviewCard from '../components/apiShow/ApiShowCard';
+import ApiMiniShowCard from '../components/apiShow/ApiMiniShowCard';
 import type { ApiShowPreview } from '../models/apiShow/ApiShowPreview';
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
                 <Row xs={2} md={4} className="mt-4">
                     {shows.map(s => (
                         <Col key={s.id} >
-                            <PreviewCard preview={s} />
+                            <ApiMiniShowCard preview={s} />
                         </Col>
                     ))}
                 </Row>

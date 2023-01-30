@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Image, Row, Stack } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Guard from "../../components/Guard";
+import Navigation from "../../components/Navigation";
 import SeasonCard from "../../components/userShow/SeasonCard";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import { SeasonPreview } from "../../models/userShow/SeasonPreview";
@@ -52,7 +52,7 @@ export default function SeriesDetails() {
 
     return (
         <Container>
-            <Guard />
+            <Navigation />
 
             {error && (
                 <Alert variant="danger" className="mt-2">

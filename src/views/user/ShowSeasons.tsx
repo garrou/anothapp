@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ApiSeasonCard from "../../components/apiShow/ApiSeasonCard";
-import Guard from "../../components/Guard";
+import Navigation from "../../components/Navigation";
 import { SeasonPreview } from "../../models/userShow/SeasonPreview";
 import searchService from "../../services/searchService";
 
@@ -23,7 +23,7 @@ export default function ShowSeasons() {
 
     return (
         <Container>
-            <Guard />
+            <Navigation />
 
             <Row xs={2} md={4} className="mt-4">
                 {seasons.map(s => (
