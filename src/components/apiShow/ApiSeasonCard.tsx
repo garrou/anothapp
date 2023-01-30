@@ -15,8 +15,7 @@ export default function ApiSeasonCard({ preview, showId }: Props) {
         const resp = await showService.addSeason(showId, preview);
 
         if (resp.status === 201) {
-            const data: SeasonPreview = await resp.json();
-            navigate(`/series/${showId}/seasons/${data.number}`);
+            navigate(`/series/${showId}`);
         }
     }
 

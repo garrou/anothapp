@@ -42,4 +42,10 @@ const deleteShow = async (id: string) => {
     });
 }
 
-export default { addSeason, addShow, deleteShow, getShows, getShowById };
+const getSeasonsByShow = async (id: string) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
+        credentials: 'include',
+    });
+}
+
+export default { addSeason, addShow, deleteShow, getSeasonsByShow, getShows, getShowById };
