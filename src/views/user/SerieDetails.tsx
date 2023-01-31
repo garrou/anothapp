@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Image, Row, Stack } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import SeasonCard from "../../components/userShow/SeasonCard";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
@@ -59,6 +60,8 @@ export default function SeriesDetails() {
                     {error.message}
                 </Alert>
             )}
+
+            {!show && <Loading />}
 
             {show && <>
                 <Image src={show.images.show} alt="Poster" fluid={true} />

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import ApiShowCard from "../../components/apiShow/ApiShowCard";
 import Guard from "../../components/Guard";
+import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
 import searchService from "../../services/searchService";
@@ -41,6 +42,8 @@ export default function Discover() {
                 </Form.Group>
                 <Button variant="outline-dark" onClick={onClick}>Rechercher</Button>
             </Form>
+
+            {!shows && <Loading />}
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

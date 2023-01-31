@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import UserCard from "../../components/UserCard";
 import { User } from "../../models/User";
@@ -20,6 +21,8 @@ export default function Profile() {
     return (
         <Container>
             <Navigation />
+
+            {!user && <Loading />}
 
             {user && <UserCard name={user.name} email={user.email} />}
         </Container>

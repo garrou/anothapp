@@ -54,4 +54,11 @@ const getSeasonInfo = async (id: string, num: string): Promise<Response> => {
     });
 }
 
-export default { addSeason, addShow, deleteShow, getSeasonInfo, getSeasonsByShow, getShows, getShowById };
+const deleteSeason = async (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/seasons/${id}`, {
+        credentials: 'include',
+        method: 'DELETE'
+    });
+}
+
+export default { addSeason, addShow, deleteSeason, deleteShow, getSeasonInfo, getSeasonsByShow, getShows, getShowById };

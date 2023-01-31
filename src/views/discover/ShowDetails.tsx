@@ -6,6 +6,7 @@ import showService from "../../services/showService";
 import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
 import TextCard from "../../components/apiShow/TextCard";
 import Navigation from "../../components/Navigation";
+import Loading from "../../components/Loading";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
@@ -43,6 +44,8 @@ export default function ShowDetails() {
                     {error.message}
                 </Alert>
             )}
+
+            {!show && <Loading />}
 
             {show && <>
                 <Image src={show.images.show} alt="Poster" fluid={true} />
