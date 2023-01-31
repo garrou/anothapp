@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import GoogleButton from '../components/GoogleButton';
 import Redirect from '../components/Redirect';
-import ApiMiniShowCard from '../components/apiShow/ApiMiniShowCard';
+import ApiMiniShowCard from '../components/api/ApiMiniShowCard';
 import type { ApiShowPreview } from '../models/apiShow/ApiShowPreview';
 
 export default function Home() {

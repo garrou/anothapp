@@ -18,13 +18,13 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
     });
 }
 
-const getShowById = async (id: string): Promise<Response> => {
+const getShowById = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
         credentials: 'include'
     });
 }
 
-const addSeason = async (id: string, season: SeasonPreview): Promise<Response> => {
+const addSeason = async (id: number, season: SeasonPreview): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
         credentials: 'include',
         method: 'POST',
@@ -35,20 +35,20 @@ const addSeason = async (id: string, season: SeasonPreview): Promise<Response> =
     });
 }
 
-const deleteShow = async (id: string): Promise<Response> => {
+const deleteShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
         credentials: 'include',
         method: 'DELETE',
     });
 }
 
-const getSeasonsByShow = async (id: string): Promise<Response> => {
+const getSeasonsByShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
         credentials: 'include',
     });
 }
 
-const getSeasonInfo = async (id: string, num: string): Promise<Response> => {
+const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}`, {
         credentials: 'include',
     });
@@ -61,4 +61,27 @@ const deleteSeason = async (id: number): Promise<Response> => {
     });
 }
 
-export default { addSeason, addShow, deleteSeason, deleteShow, getSeasonInfo, getSeasonsByShow, getShows, getShowById };
+const getViewedTimeByShowId = async (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/time`, {
+        credentials: 'include',
+    });
+}
+
+const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}/time`, {
+        credentials: 'include',
+    });
+}
+
+export default { 
+    addSeason, 
+    addShow, 
+    deleteShow, 
+    deleteSeason, 
+    getSeasonInfo, 
+    getSeasonsByShow, 
+    getShows, 
+    getShowById,
+    getViewedTimeByShowId,
+    getViewedTimeByShowIdBySeason
+};

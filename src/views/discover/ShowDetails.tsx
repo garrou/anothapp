@@ -4,7 +4,7 @@ import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
-import TextCard from "../../components/apiShow/TextCard";
+import TextCard from "../../components/api/TextCard";
 import Navigation from "../../components/Navigation";
 import Loading from "../../components/Loading";
 

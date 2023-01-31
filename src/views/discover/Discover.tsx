@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import ApiShowCard from "../../components/apiShow/ApiShowCard";
+import ApiShowCard from "../../components/api/ApiShowCard";
 import Guard from "../../components/Guard";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -23,6 +23,7 @@ export default function Discover() {
     }, []);
 
     const onClick = async () => {
+        setShows([]);
         const resp: Response = await searchService.searchShowByTitle(title);
 
         if (resp.status === 200) {
@@ -43,7 +44,7 @@ export default function Discover() {
                 <Button variant="outline-dark" onClick={onClick}>Rechercher</Button>
             </Form>
 
-            {!shows && <Loading />}
+            {shows.length === 0 && <Loading />}
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

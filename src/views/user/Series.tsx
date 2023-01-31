@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import ShowCard from "../../components/userShow/ShowCard";
+import ShowCard from "../../components/user/ShowCard";
 import { ShowPreview } from "../../models/userShow/ShowPreview";
 import showService from "../../services/showService";
 
@@ -24,7 +24,7 @@ export default function Series() {
         <Container>
             <Navigation />
 
-            {!shows && <Loading />}
+            {shows.length === 0 && <Loading />}
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

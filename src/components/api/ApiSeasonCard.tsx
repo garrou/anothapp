@@ -12,7 +12,7 @@ export default function ApiSeasonCard({ preview, showId }: Props) {
     const navigate = useNavigate();
 
     const onClick = async () => {
-        const resp = await showService.addSeason(showId, preview);
+        const resp = await showService.addSeason(Number(showId), preview);
 
         if (resp.status === 201) {
             navigate(`/series/${showId}`);
