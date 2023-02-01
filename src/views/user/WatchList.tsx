@@ -3,7 +3,7 @@ import Navigation from "../../components/Navigation";
 
 export default function WatchList() {
     return (
-        <Container>
+        <Container className="mb-3">
             <Navigation />
 
         </Container>

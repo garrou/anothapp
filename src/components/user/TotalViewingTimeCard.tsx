@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
-import showService from "../../services/showService";
+import statService from "../../services/statService";
 
-interface Props {
-    showId: number
-}
-
-export default function ViewingTimeShowCard({ showId }: Props) {
+export default function TotalViewingTimeCard() {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
-        getViewingTime();
+        getTotalTime();
     }, []);
 
-    const getViewingTime = async () => {
-        const resp = await showService.getViewedTimeByShowId(showId);
+    const getTotalTime = async () => {
+        const resp = await statService.getTotalTime();
 
         if (resp.status === 200) {
             setTime(await resp.json());
@@ -25,7 +21,7 @@ export default function ViewingTimeShowCard({ showId }: Props) {
     return (
         <Card className="mt-2">
             <Card.Body>
-                <Card.Title>Temps de visionnage</Card.Title>
+                <Card.Title>Temps total de visionnage</Card.Title>
                 <Card.Text>
                     {minsToStringHours(time)} • {minsToStringDays(time)}
                 </Card.Text>

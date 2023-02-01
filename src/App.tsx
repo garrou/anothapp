@@ -8,7 +8,7 @@ import WatchList from "./views/user/WatchList";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
 import SeriesDetails from "./views/user/SerieDetails";
-import ShowSeasons from "./views/user/ShowSeasons";
+import ShowSeasons from "./components/api/ApiSeasonsShow";
 import SeasonDetails from "./views/user/SeasonDetails";
 import NotFound from "./views/NotFound";
 
@@ -21,7 +21,6 @@ function App() {
 
           <Route path="/series" element={<Series />} />
           <Route path="/series/:id" element={<SeriesDetails />} />
-          <Route path="/series/:id/seasons" element={<ShowSeasons />} />
           <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
 
           <Route path="/discover/series" element={<Discover />} />

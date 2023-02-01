@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
+import { Alert, Button, Container, Image, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -8,6 +8,7 @@ import ViewingTimeShowCard from "../../components/user/ViewingTimeShowCard";
 import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
+import ApiSeasonsShow from "../../components/api/ApiSeasonsShow";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -41,7 +42,7 @@ export default function SeriesDetails() {
     }
 
     return (
-        <Container>
+        <Container className="mb-3">
             <Navigation />
 
             {error && (
@@ -72,9 +73,21 @@ export default function SeriesDetails() {
 
                 <hr />
 
-                <Button variant="outline-dark" href={`/series/${show.id}/seasons`}>Ajouter une saison</Button>
+                <Tabs
+                    defaultActiveKey="seasons"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                >
+                    <Tab eventKey="seasons" title="Mes saisons">
+                        <RowSeasonsCards showId={show.id} />
+                    </Tab>
+                    <Tab eventKey="add" title="Ajouter une saison">
+                        <ApiSeasonsShow show={show} />
+                    </Tab>
+                    <Tab eventKey="characters" title="Acteurs">
 
-                <RowSeasonsCards showId={show.id} />
+                    </Tab>
+                </Tabs>
             </>}
         </Container>
     );

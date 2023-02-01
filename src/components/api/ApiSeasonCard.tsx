@@ -1,21 +1,19 @@
 import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import { SeasonPreview } from "../../models/userShow/SeasonPreview";
 import showService from "../../services/showService";
 
 interface Props {
     preview: SeasonPreview
-    showId: string
+    show: ApiShowDetails
 };
 
-export default function ApiSeasonCard({ preview, showId }: Props) {
-    const navigate = useNavigate();
-
+export default function ApiSeasonCard({ preview, show }: Props) {
     const onClick = async () => {
-        const resp = await showService.addSeason(Number(showId), preview);
+        const resp = await showService.addSeason(show, preview);
 
         if (resp.status === 201) {
-            navigate(`/series/${showId}`);
+            window.location.reload();
         }
     }
 

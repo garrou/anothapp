@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import ApiSeasonCard from "../../components/api/ApiSeasonCard";
-import Loading from "../../components/Loading";
-import Navigation from "../../components/Navigation";
+import { Col, Row } from "react-bootstrap";
+import ApiSeasonCard from "./ApiSeasonCard";
+import Loading from "../Loading";
 import { SeasonPreview } from "../../models/userShow/SeasonPreview";
 import searchService from "../../services/searchService";
+import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 
-export default function ShowSeasons() {
-    const { id } = useParams();
+interface Props {
+    show: ApiShowDetails
+}
+
+export default function ApiSeasonsShow({ show }: Props) {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
 
     useEffect(() => {
         (async () => {
-            const resp = await searchService.getSeasonsByShowId(id!);
+            const resp = await searchService.getSeasonsByShowId(show.id);
 
             if (resp.status === 200) {
                 const data: Array<SeasonPreview> = await resp.json();
@@ -23,18 +25,16 @@ export default function ShowSeasons() {
     }, []);
 
     return (
-        <Container>
-            <Navigation />
-
+        <>
             {seasons.length === 0 && <Loading />}
 
             <Row xs={2} md={4} className="mt-4">
                 {seasons.map(s => (
                     <Col key={s.number}>
-                        <ApiSeasonCard preview={s} showId={id!} />
+                        <ApiSeasonCard preview={s} show={show} />
                     </Col>
                 ))}
             </Row>
-        </Container>
+        </>
     );
 }

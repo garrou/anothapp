@@ -8,23 +8,27 @@ import showService from "../../services/showService";
 
 export default function Series() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
-    
-    useEffect(() => {
-        (async () => {
-            const resp = await showService.getShows();
+    const [isLoad, setIsLoad] = useState<boolean>(false);
 
-            if (resp.status === 200) {
-                const data: Array<ShowPreview> = await resp.json();
-                setShows(data);
-            }
-        })();
+    useEffect(() => {
+        getShows();
     }, []);
 
+    const getShows = async () => {
+        const resp = await showService.getShows();
+
+        if (resp.status === 200) {
+            const data: Array<ShowPreview> = await resp.json();
+            setIsLoad(false);
+            setShows(data);
+        }
+    }
+
     return (
-        <Container>
+        <Container className="mb-3">
             <Navigation />
 
-            {shows.length === 0 && <Loading />}
+            {isLoad && <Loading />}
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

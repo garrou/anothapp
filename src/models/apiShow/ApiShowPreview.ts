@@ -7,8 +7,6 @@ interface ApiShowPreview {
     title: string;
 
     images: ApiShowImage;
-
-    duration: number;
 };
 
 export type { ApiShowPreview };

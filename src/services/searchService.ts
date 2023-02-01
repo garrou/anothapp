@@ -16,7 +16,7 @@ const getShowById = (id: string): Promise<Response> => {
     });
 }
 
-const getSeasonsByShowId = (id: string): Promise<Response> => {
+const getSeasonsByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons`, {
         credentials: 'include'
     });

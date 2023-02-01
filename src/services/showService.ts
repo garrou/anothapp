@@ -1,5 +1,6 @@
 import { SeasonPreview } from "../models/userShow/SeasonPreview";
 import { ApiShowPreview } from "../models/apiShow/ApiShowPreview";
+import { ApiShowDetails } from "../models/apiShow/ApiShowDetails";
 
 const getShows = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
@@ -24,14 +25,19 @@ const getShowById = async (id: number): Promise<Response> => {
     });
 }
 
-const addSeason = async (id: number, season: SeasonPreview): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
+const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${show.id}/seasons`, {
         credentials: 'include',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(season)
+        body: JSON.stringify({
+            "number": season.number,
+            "episode": season.episode,
+            "image": season.image,
+            "duration": show.duration
+        })
     });
 }
 

@@ -8,7 +8,7 @@ export default function SeasonDetails() {
     const { id, num } = useParams<string>();
 
     return (
-        <Container>
+        <Container className="mb-3">
             <Navigation />
 
             {id && num && (
