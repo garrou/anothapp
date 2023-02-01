@@ -9,6 +9,7 @@ import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import ApiSeasonsShow from "../../components/api/ApiSeasonsShow";
+import ApiCharactersRow from "../../components/api/ApiCharactersRow";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -85,7 +86,7 @@ export default function SeriesDetails() {
                         <ApiSeasonsShow show={show} />
                     </Tab>
                     <Tab eventKey="characters" title="Acteurs">
-
+                        <ApiCharactersRow showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}

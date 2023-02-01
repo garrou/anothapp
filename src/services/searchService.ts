@@ -22,4 +22,16 @@ const getSeasonsByShowId = (id: number): Promise<Response> => {
     });
 }
 
-export default { discoverShows, getSeasonsByShowId, getShowById, searchShowByTitle };
+const getCharactersByShowId = (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/characters`, {
+        credentials: 'include'
+    });
+}
+
+export default { 
+    discoverShows, 
+    getCharactersByShowId,
+    getSeasonsByShowId, 
+    getShowById, 
+    searchShowByTitle 
+};
