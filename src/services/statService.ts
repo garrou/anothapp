@@ -10,7 +10,14 @@ const getNbSeasonsByYears = async (): Promise<Response> => {
     });
 }
 
+const getTimeByYears = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/years/time`, {
+        credentials: 'include',
+    });
+}
+
 export default {
     getNbSeasonsByYears,
+    getTimeByYears,
     getTotalTime
 };

@@ -3,6 +3,7 @@ import Navigation from "../../components/Navigation";
 import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
 import UserCard from "../../components/internal/UserCard";
 import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
+import TimeYearsChart from "../../components/charts/TimeYearsChart";
 
 export default function Profile() {
     
@@ -15,6 +16,8 @@ export default function Profile() {
             <TotalViewingTimeCard />
 
             <SeasonsYearsChart />
+
+            <TimeYearsChart />
         </Container>
     );
 };

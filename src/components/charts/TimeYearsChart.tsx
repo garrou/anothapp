@@ -5,35 +5,35 @@ import { Stat } from "../../models/stat/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
 
-export default function SeasonsYearsChart() {
-    const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
+export default function TimeYearsChart() {
+    const [timeByYears, setTimeByYears] = useState<Stat[]>([]);
 
     useEffect(() => {
-        getNbSeasonsByYears();
+        getTimeByYears();
     }, []);
 
-    const getNbSeasonsByYears = async () => {
-        const resp = await statService.getNbSeasonsByYears();
+    const getTimeByYears = async () => {
+        const resp = await statService.getTimeByYears();
 
         if (resp.status === 200) {
             const data: Array<Stat> = await resp.json();
-            setSeasonsByYears(data);
+            setTimeByYears(data);
         }
     }
 
     return (
         <>
-            {!seasonsByYears && <Loading />}
+            {!timeByYears && <Loading />}
 
-            {seasonsByYears && <Card className="mt-2">
+            {timeByYears && <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Saisons vues par année</Card.Title>
+                    <Card.Title>Temps de visionnage par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                             className="mt-3"
                             width={250}
                             height={250}
-                            data={seasonsByYears}
+                            data={timeByYears}
                             margin={{
                                 top: 5,
                                 right: 30,
@@ -45,7 +45,7 @@ export default function SeasonsYearsChart() {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="value" fill="#f5962a" />
+                            <Bar dataKey="value" fill="#09ba85" />
                         </BarChart>
                     </ResponsiveContainer>
                 </Card.Body>
