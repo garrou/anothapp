@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import AlertError from "../../components/AlertError";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -10,6 +11,7 @@ export default function Discover() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [title, setTitle] = useState<string>('');
     const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [error, setError] = useState<any>(null);
 
     useEffect(() => {
         getShowsToDiscover();
@@ -22,6 +24,8 @@ export default function Discover() {
             const data: Array<ApiShowPreview> = await resp.json();
             setIsLoad(false);
             setShows(data);
+        } else {
+            setError(await resp.json());
         }
     }
 
@@ -34,6 +38,8 @@ export default function Discover() {
             const data: Array<ApiShowPreview> = await resp.json();
             setIsLoad(false);
             setShows(data);
+        } else {
+            setError(await resp.json());
         }
     }
 
@@ -49,7 +55,9 @@ export default function Discover() {
                 <Button variant="outline-dark" onClick={onClick}>Rechercher</Button>
             </Form>
 
-            {isLoad && <Loading />}
+            {isLoad && !error && <Loading />}
+
+            {error && <AlertError message={error.message} />}
 
             <Row xs={2} md={4} className="mt-4">
                 {shows.map(s => (

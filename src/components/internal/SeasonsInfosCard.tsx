@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Card, Table } from "react-bootstrap";
+import {  Button, Card, Table } from "react-bootstrap";
 import { formatDate } from "../../helpers/format";
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
+import AlertError from "../AlertError";
 import Loading from "../Loading";
 
 interface Props {
@@ -42,11 +43,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
 
     return (
         <>
-            {error && (
-                <Alert variant="danger" className="mt-2">
-                    {error.message}
-                </Alert>
-            )}
+            {error && <AlertError message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

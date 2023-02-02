@@ -10,6 +10,7 @@ import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
 import ApiCharactersRow from "../../components/external/ApiCharactersRow";
+import AlertError from "../../components/AlertError";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -27,6 +28,8 @@ export default function SeriesDetails() {
         if (resp.status === 200) {
             const data: ApiShowDetails = await resp.json();
             setShow(data);
+        } else {
+            setError(await resp.json());
         }
     }
 
@@ -46,13 +49,9 @@ export default function SeriesDetails() {
         <Container className="mb-3">
             <Navigation url={'/series'} />
 
-            {error && (
-                <Alert variant="danger" className="mt-2">
-                    {error.message}
-                </Alert>
-            )}
+            {!show && !error && <Loading />}
 
-            {!show && <Loading />}
+            {error && <AlertError message={error.message} />}
 
             {show && <>
                 <Image src={show.images.show} alt="Poster" fluid={true} />

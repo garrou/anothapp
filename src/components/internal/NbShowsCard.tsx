@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { minsToStringDays, minsToStringHours } from "../../helpers/format";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 
-export default function TotalViewingTimeCard() {
-    const [time, setTime] = useState<number>(0);
+export default function NbShowsCard() {
+    const [num, setNum] = useState<number>(0);
     const [error, setError] = useState<any>(null);
-
+    
     useEffect(() => {
-        getTotalTime();
+        getNbShows();
     }, []);
 
-    const getTotalTime = async () => {
-        const resp = await statService.getTotalTime();
+    const getNbShows = async () => {
+        const resp = await statService.getNbShows();
 
         if (resp.status === 200) {
-            setTime(await resp.json());
+            setNum(await resp.json());
         } else {
             setError(await resp.json());
         }
@@ -28,10 +27,7 @@ export default function TotalViewingTimeCard() {
 
             <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Temps total de visionnage</Card.Title>
-                    <Card.Text>
-                        {minsToStringHours(time)} • {minsToStringDays(time)}
-                    </Card.Text>
+                    <Card.Title>Séries vues : {num}</Card.Title>
                 </Card.Body>
             </Card>
         </>

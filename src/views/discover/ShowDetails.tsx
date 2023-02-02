@@ -7,6 +7,7 @@ import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
 import TextCard from "../../components/external/TextCard";
 import Navigation from "../../components/Navigation";
 import Loading from "../../components/Loading";
+import AlertError from "../../components/AlertError";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
@@ -41,13 +42,9 @@ export default function ShowDetails() {
         <Container>
             <Navigation url={'/discover/series'} />
 
-            {error && (
-                <Alert variant="danger">
-                    {error.message}
-                </Alert>
-            )}
+            {!show && !error && <Loading />}
 
-            {!show && <Loading />}
+            {error && <AlertError message={error.message} />}
 
             {show && <>
                 <Image src={show.images.show} alt="Poster" fluid={true} />
