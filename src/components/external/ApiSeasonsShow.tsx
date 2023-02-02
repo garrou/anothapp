@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import ApiSeasonCard from "./ApiSeasonCard";
 import Loading from "../Loading";
-import { SeasonPreview } from "../../models/userShow/SeasonPreview";
+import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import searchService from "../../services/searchService";
-import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
 interface Props {
     show: ApiShowDetails

@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
-import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
-import { SeasonPreview } from "../../models/userShow/SeasonPreview";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
 
 interface Props {

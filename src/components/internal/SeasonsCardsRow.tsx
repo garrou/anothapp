@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row, useAccordionButton } from "react-bootstrap";
-import { SeasonPreview } from "../../models/userShow/SeasonPreview";
+import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
 import Loading from "../Loading";
 import SeasonCard from "./SeasonCard";

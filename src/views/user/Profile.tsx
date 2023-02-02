@@ -1,17 +1,20 @@
 import { Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
-import TotalViewingTimeCard from "../../components/user/TotalViewingTimeCard";
-import UserCard from "../../components/user/UserCard";
+import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
+import UserCard from "../../components/internal/UserCard";
+import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
 
 export default function Profile() {
     
     return (
         <Container className="mb-3">
-            <Navigation />
+            <Navigation url={'/profile'} />
 
             <UserCard />
 
             <TotalViewingTimeCard />
+
+            <SeasonsYearsChart />
         </Container>
     );
 };

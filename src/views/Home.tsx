@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import GoogleButton from '../components/GoogleButton';
 import Redirect from '../components/Redirect';
-import ApiMiniShowCard from '../components/api/ApiMiniShowCard';
-import type { ApiShowPreview } from '../models/apiShow/ApiShowPreview';
+import ApiMiniShowCard from '../components/external/ApiMiniShowCard';
+import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);

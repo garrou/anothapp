@@ -3,13 +3,13 @@ import { Alert, Button, Container, Image, Stack, Tab, Tabs } from "react-bootstr
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import RowSeasonsCards from "../../components/user/SeasonsCardsRow";
-import ViewingTimeShowCard from "../../components/user/ViewingTimeShowCard";
-import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
+import RowSeasonsCards from "../../components/internal/SeasonsCardsRow";
+import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
-import ApiSeasonsShow from "../../components/api/ApiSeasonsShow";
-import ApiCharactersRow from "../../components/api/ApiCharactersRow";
+import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
+import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -44,7 +44,7 @@ export default function SeriesDetails() {
 
     return (
         <Container className="mb-3">
-            <Navigation />
+            <Navigation url={'/series'} />
 
             {error && (
                 <Alert variant="danger" className="mt-2">
@@ -65,10 +65,6 @@ export default function SeriesDetails() {
                 </Stack>
 
                 <p className="font-weight-bold">{show.seasons} saisons • {show.network}</p>
-
-                <Alert variant={show.status === "Ended" ? "success" : "warning"}>
-                    {show.status === "Ended" ? "Terminée" : "En cours"}
-                </Alert>
 
                 <ViewingTimeShowCard showId={show.id} />
 

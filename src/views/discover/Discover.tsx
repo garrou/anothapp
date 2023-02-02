@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import ApiShowCard from "../../components/api/ApiShowCard";
+import ApiShowCard from "../../components/external/ApiShowCard";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
+import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import searchService from "../../services/searchService";
 
 export default function Discover() {
@@ -39,7 +39,7 @@ export default function Discover() {
 
     return (
         <Container className="mb-3">
-            <Navigation />
+            <Navigation url={'/discover/series'} />
 
             <Form className="mt-3">
                 <Form.Group className="mb-3" controlId="titleSearch">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { ApiCharacterPreview } from "../../models/apiShow/ApiCharacterPreview";
+import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
 import ApiCharacterCard from "./ApiCharacterCard";

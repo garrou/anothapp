@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ShowPreview } from "../../models/userShow/ShowPreview";
+import { ShowPreview } from "../../models/internal/ShowPreview";
 
 interface Props {
     preview: ShowPreview

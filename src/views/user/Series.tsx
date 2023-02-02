@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import ShowCard from "../../components/user/ShowCard";
-import { ShowPreview } from "../../models/userShow/ShowPreview";
+import ShowCard from "../../components/internal/ShowCard";
+import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
 
 export default function Series() {
@@ -26,7 +26,7 @@ export default function Series() {
 
     return (
         <Container className="mb-3">
-            <Navigation />
+            <Navigation url={'/series'} />
 
             {isLoad && <Loading />}
 

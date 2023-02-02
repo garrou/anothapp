@@ -1,7 +1,12 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Guard from "./Guard";
 
-export default function Navigation() {
+interface Props {
+    url: string
+}
+
+export default function Navigation({ url }: Props) {
+
     return (
         <>
             <Guard />
@@ -11,7 +16,7 @@ export default function Navigation() {
                     <Navbar.Brand href="/series">Anothapp</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                        <Nav defaultActiveKey={url} className="me-auto">
                             <Nav.Link href="/series">Mes séries</Nav.Link>
                             <Nav.Link href="/discover/series">Découvrir</Nav.Link>
                             <Nav.Link href="/watchlist">En cours</Nav.Link>

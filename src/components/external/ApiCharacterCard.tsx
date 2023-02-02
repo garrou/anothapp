@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { ApiCharacterPreview } from "../../models/apiShow/ApiCharacterPreview";
+import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
 
 interface Props {
     character: ApiCharacterPreview

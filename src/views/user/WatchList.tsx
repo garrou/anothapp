@@ -4,7 +4,7 @@ import Navigation from "../../components/Navigation";
 export default function WatchList() {
     return (
         <Container className="mb-3">
-            <Navigation />
+            <Navigation url={'/watchlist'} />
 
         </Container>
     );

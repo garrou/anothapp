@@ -1,6 +1,6 @@
-import { SeasonPreview } from "../models/userShow/SeasonPreview";
-import { ApiShowPreview } from "../models/apiShow/ApiShowPreview";
-import { ApiShowDetails } from "../models/apiShow/ApiShowDetails";
+import { SeasonPreview } from "../models/internal/SeasonPreview";
+import { ApiShowPreview } from "../models/external/ApiShowPreview";
+import { ApiShowDetails } from "../models/external/ApiShowDetails";
 
 const getShows = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {

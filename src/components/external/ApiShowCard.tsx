@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
+import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import showService from "../../services/showService";
 
 interface Props {

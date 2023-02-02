@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { ApiShowPreview } from "../../models/apiShow/ApiShowPreview";
+import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 
 interface Props {
     preview: ApiShowPreview

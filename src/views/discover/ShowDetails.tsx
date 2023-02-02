@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ApiShowDetails } from "../../models/apiShow/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import { Alert, Button, Container, Image, Stack } from "react-bootstrap";
-import TextCard from "../../components/api/TextCard";
+import TextCard from "../../components/external/TextCard";
 import Navigation from "../../components/Navigation";
 import Loading from "../../components/Loading";
 
@@ -39,7 +39,7 @@ export default function ShowDetails() {
 
     return (
         <Container>
-            <Navigation />
+            <Navigation url={'/discover/series'} />
 
             {error && (
                 <Alert variant="danger">

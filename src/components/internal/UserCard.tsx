@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { User } from "../../models/User";
+import { User } from "../../models/internal/User";
 import Loading from "../Loading";
 
 export default function UserCard() {

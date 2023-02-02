@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Card, Table } from "react-bootstrap";
 import { formatDate } from "../../helpers/format";
-import { SeasonInfo } from "../../models/userShow/SeasonInfo";
+import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
 import Loading from "../Loading";
 

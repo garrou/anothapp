@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { SeasonPreview } from "../../models/userShow/SeasonPreview";
+import { SeasonPreview } from "../../models/internal/SeasonPreview";
 
 interface Props {
     preview: SeasonPreview
