@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Stat } from "../../models/stat/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
@@ -46,7 +46,7 @@ export default function SeasonsYearsChart() {
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#f5962a" name="Saisons" />
-                        </BarChart>
+                        </BarChart>                       
                     </ResponsiveContainer>
                 </Card.Body>
             </Card>}

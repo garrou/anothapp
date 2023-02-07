@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Stat } from "../../models/stat/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
@@ -35,18 +35,13 @@ export default function TimeYearsChart() {
                 <Card.Body>
                     <Card.Title>Temps de visionnage par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart
-                            className="mt-3"
-                            width={250}
-                            height={250}
-                            data={timeByYears}
-                        >
+                        <AreaChart width={250} height={250} data={timeByYears}>
                             <XAxis dataKey="year" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="value" fill="#09ba85" name="Temps" />
-                        </BarChart>
+                            <Area dataKey="value" stroke="#00aeff" fill="#00aeff" name="Temps en minutes" />
+                        </AreaChart>
                     </ResponsiveContainer>
                 </Card.Body>
             </Card>}

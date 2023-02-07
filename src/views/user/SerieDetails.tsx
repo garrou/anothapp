@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Container, Image, Stack, Tab, Tabs } from "react-bootstrap";
+import { Button, Container, Image, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -9,7 +9,6 @@ import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
-import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 import AlertError from "../../components/AlertError";
 
 export default function SeriesDetails() {
@@ -79,9 +78,6 @@ export default function SeriesDetails() {
                     </Tab>
                     <Tab eventKey="add" title="Ajouter une saison">
                         <ApiSeasonsShow show={show} />
-                    </Tab>
-                    <Tab eventKey="characters" title="Acteurs">
-                        <ApiCharactersRow showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}
