@@ -41,11 +41,11 @@ export default function SeasonsYearsChart() {
                             height={250}
                             data={seasonsByYears}
                         >
-                            <XAxis dataKey="year" />
+                            <XAxis dataKey="label" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="value" fill="#f5962a" name="Saisons" />
+                            <Bar dataKey="value" fill="#f5962a" stroke="#f5962a" name="Saisons" />
                         </BarChart>                       
                     </ResponsiveContainer>
                 </Card.Body>

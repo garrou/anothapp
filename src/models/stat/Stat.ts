@@ -1,6 +1,6 @@
 interface Stat {
 
-    year: number;
+    label: number;
 
     value: number;
 }

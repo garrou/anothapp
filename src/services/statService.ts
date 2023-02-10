@@ -28,8 +28,15 @@ const getTimeCurrentMonth = async (): Promise<Response> => {
     });
 }
 
+const getNbSeasonsByMonth = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/seasons/months`, {
+        credentials: 'include',
+    });
+}
+
 export default {
     getNbShows,
+    getNbSeasonsByMonth,
     getNbSeasonsByYears,
     getTimeByYears,
     getTimeCurrentMonth,
