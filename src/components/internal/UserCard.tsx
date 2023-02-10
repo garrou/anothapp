@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { User } from "../../models/internal/User";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
 
 export default function UserCard() {
-    const [user, setUser] = useState<User | null>(null);
-    const [error, setError] = useState<any>(null);
+    const [user, setUser] = useState<User|null>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getUser();

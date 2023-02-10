@@ -9,11 +9,12 @@ import AlertError from "../../components/AlertError";
 import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
     
     const getShow = async () => {

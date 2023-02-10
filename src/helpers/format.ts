@@ -10,7 +10,7 @@ const minsToHours = (mins: number) => mins / minsInHour;
 
 const minsToStringDays = (mins: number) => `${(mins / minsInDay).toFixed(2)} jours`;
 
-const minsToStringHours = (mins: number) => `${(mins / minsInHour).toFixed(0)} h ${mins % minsInHour} mins`;
+const minsToStringHours = (mins: number) => `${(mins / minsInHour).toFixed(0)} h ${mins % minsInHour} minutes`;
 
 export { 
     formatDate,

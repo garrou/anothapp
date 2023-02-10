@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
 import AlertError from "../AlertError";
 
@@ -10,7 +11,7 @@ interface Props {
 };
 
 export default function ApiShowCard({ preview }: Props) {
-    const [error, setError] = useState<any>(undefined);
+    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
 
     const onClick = async () => {

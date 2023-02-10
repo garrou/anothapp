@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
 import AlertError from "../AlertError";
@@ -11,7 +12,7 @@ interface Props {
 };
 
 export default function ApiSeasonCard({ preview, show }: Props) {
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     const onClick = async () => {
         const resp = await showService.addSeason(show, preview);

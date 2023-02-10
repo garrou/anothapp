@@ -6,11 +6,12 @@ import ShowCard from "../../components/internal/ShowCard";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
 import AlertError from "../../components/AlertError";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 
 export default function Series() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(false);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getShows();

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {  Button, Card, Table } from "react-bootstrap";
 import { formatDate } from "../../helpers/format";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
 import AlertError from "../AlertError";
@@ -13,7 +14,7 @@ interface Props {
 
 export default function SeasonsInfosCard({ showId, num }: Props) {
     const [infos, setInfos] = useState<SeasonInfo[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getSeasonInfos();

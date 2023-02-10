@@ -21,15 +21,10 @@ export default function Profile() {
             >
                 <Tab eventKey="stats" title="Statistiques">
                     <ViewingTimeMonthCard />
-
                     <NbShowsCard />
-
                     <TotalViewingTimeCard />
-                    
                     <TimeYearsChart />
-
                     <SeasonsYearsChart />
-
                     <SeasonsMonthChart />
                 </Tab>
                 <Tab eventKey="add" title="Mon profil">

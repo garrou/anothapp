@@ -6,10 +6,11 @@ import ApiMiniShowCard from '../components/external/ApiMiniShowCard';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
 import AlertError from '../components/AlertError';
+import { ErrorMessage } from '../models/internal/ErrorMessage';
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         (async () => {

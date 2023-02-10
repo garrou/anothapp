@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { Area, AreaChart, Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Stat } from "../../models/stat/Stat";
+import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getNbSeasonsByYears();
@@ -27,7 +28,7 @@ export default function SeasonsYearsChart() {
 
     return (
         <>
-            {!seasonsByYears && <Loading />}
+            {!seasonsByYears && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
 

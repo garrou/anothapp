@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 
 export default function NbShowsCard() {
     const [num, setNum] = useState<number>(0);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
     
     useEffect(() => {
         getNbShows();

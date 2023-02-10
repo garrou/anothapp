@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 
 export default function ViewingTimeMonthCard() {
     const [time, setTime] = useState<number>(0);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getViewingTimeCurrentMonth();
@@ -30,7 +31,7 @@ export default function ViewingTimeMonthCard() {
                 <Card.Body>
                     <Card.Title>Temps de visionnage pour ce mois</Card.Title>
                     <Card.Text>
-                        {minsToStringHours(time)} • {minsToStringDays(time)}
+                        {minsToStringDays(time)} • {minsToStringHours(time)} • {time} minutes
                     </Card.Text>
                 </Card.Body>
             </Card>

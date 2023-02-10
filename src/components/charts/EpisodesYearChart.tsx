@@ -1,52 +1,48 @@
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Card, Tooltip } from "react-bootstrap";
+import { Area, AreaChart, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
 
-export default function SeasonsMonthChart() {
-    const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
+export default function EpisodesYearChart() {
+    const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);
     const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
-        getNbSeasonsByYears();
+        getTimeByYears();
     }, []);
 
-    const getNbSeasonsByYears = async () => {
-        const resp = await statService.getNbSeasonsByMonth();
+    const getTimeByYears = async () => {
+        const resp = await statService.getNbEpisodesByYear();
 
         if (resp.status === 200) {
             const data: Array<Stat> = await resp.json();
-            setSeasonsByMonths(data);
+            setEpisodesByYears(data);
         } else {
             setError(await resp.json());
         }
     }
+
     return (
         <>
-            {!seasonsByMonths && !error && <Loading />}
+            {!episodesByYear && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
 
-            {seasonsByMonths && <Card className="mt-2">
+            {episodesByYear && <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Saisons vues par mois</Card.Title>
+                    <Card.Title>Episodes par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart
-                            className="mt-3"
-                            width={250}
-                            height={250}
-                            data={seasonsByMonths}
-                        >
+                        <AreaChart width={250} height={250} data={episodesByYear}>
                             <XAxis dataKey="label" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="value" fill="#ae34eb" stroke="#ae34eb" name="Saisons" />
-                        </BarChart>                       
+                            <Area dataKey="value" stroke="#32a850" fill="#32a850" name="Episodes" />
+                        </AreaChart>
                     </ResponsiveContainer>
                 </Card.Body>
             </Card>}

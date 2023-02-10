@@ -5,13 +5,14 @@ import ApiShowCard from "../../components/external/ApiShowCard";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
 
 export default function Discover() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [title, setTitle] = useState<string>('');
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getShowsToDiscover();

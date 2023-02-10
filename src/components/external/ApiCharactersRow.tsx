@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
@@ -12,7 +13,7 @@ interface Props {
 
 export default function ApiCharactersRow({ showId }: Props) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getCharacters();

@@ -6,6 +6,7 @@ import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import searchService from "../../services/searchService";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import AlertError from "../AlertError";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 
 interface Props {
     show: ApiShowDetails
@@ -13,7 +14,7 @@ interface Props {
 
 export default function ApiSeasonsShow({ show }: Props) {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         (async () => {

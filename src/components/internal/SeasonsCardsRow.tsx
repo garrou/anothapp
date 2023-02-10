@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
 import AlertError from "../AlertError";
@@ -13,7 +14,7 @@ interface Props {
 export default function SeasonsCardsRow({ showId }: Props) {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getSeasons();

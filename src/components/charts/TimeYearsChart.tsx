@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Area, AreaChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Stat } from "../../models/stat/Stat";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
 
 export default function TimeYearsChart() {
     const [timeByYears, setTimeByYears] = useState<Stat[]>([]);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getTimeByYears();
@@ -40,7 +41,7 @@ export default function TimeYearsChart() {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Area dataKey="value" stroke="#32a850" fill="#32a850" name="Temps en minutes" />
+                            <Area dataKey="value" stroke="#32a850" fill="#32a850" name="Temps en heures" />
                         </AreaChart>
                     </ResponsiveContainer>
                 </Card.Body>

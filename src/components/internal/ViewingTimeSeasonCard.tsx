@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
 import AlertError from "../AlertError";
 
@@ -11,7 +12,7 @@ interface Props {
 
 export default function ViewingTimeSeasonCard({ showId, num }: Props) {
     const [time, setTime] = useState<number>(0);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getViewingTimeBySeasonNumber();

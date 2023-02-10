@@ -10,11 +10,12 @@ import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
 import AlertError from "../../components/AlertError";
+import { ErrorMessage } from "../../models/internal/ErrorMessage";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
-    const [error, setError] = useState<any>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
