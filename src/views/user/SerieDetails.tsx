@@ -72,8 +72,7 @@ export default function SeriesDetails() {
 
                 <Tabs
                     defaultActiveKey="seasons"
-                    id="uncontrolled-tab-example"
-                    className="mb-3"
+                    className="my-3"
                 >
                     <Tab eventKey="seasons" title="Mes saisons">
                         <RowSeasonsCards showId={show.id} />

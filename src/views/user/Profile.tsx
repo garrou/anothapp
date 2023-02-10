@@ -16,7 +16,6 @@ export default function Profile() {
 
             <Tabs
                 defaultActiveKey="stats"
-                id="uncontrolled-tab-example"
                 className="my-3"
             >
                 <Tab eventKey="stats" title="Statistiques">

@@ -61,8 +61,7 @@ export default function ShowDetails() {
                 
                 <Tabs
                     defaultActiveKey="infos"
-                    id="uncontrolled-tab-example"
-                    className="mb-3"
+                    className="my-3"
                 >
                     <Tab eventKey="infos" title="Informations">
                         <ApiShowInfos show={show} />
