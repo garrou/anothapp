@@ -34,9 +34,16 @@ const getSimilarByShowId = (id: number): Promise<Response> => {
     });
 }
 
+const getEpisodesByShowIdBySeasonNum = (id: number, num: number) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons/${num}/episodes`, {
+        credentials: 'include'
+    });
+}
+
 export default { 
     discoverShows, 
     getCharactersByShowId,
+    getEpisodesByShowIdBySeasonNum,
     getSeasonsByShowId, 
     getShowById, 
     getShowByTitle,

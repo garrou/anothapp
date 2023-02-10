@@ -8,7 +8,7 @@ import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
-import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
+import ApiSeasonsShowRow from "../../components/external/ApiSeasonsShowRow";
 import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
@@ -79,7 +79,7 @@ export default function SeriesDetails() {
                         <RowSeasonsCards showId={show.id} />
                     </Tab>
                     <Tab eventKey="add" title="Ajouter une saison">
-                        <ApiSeasonsShow show={show} />
+                        <ApiSeasonsShowRow show={show} />
                     </Tab>
                     <Tab eventKey="similar" title="Séries similaires">
                         <ApiSimilarShowTable showId={show.id} />

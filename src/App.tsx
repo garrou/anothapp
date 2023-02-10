@@ -8,7 +8,7 @@ import WatchList from "./views/user/WatchList";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
 import SeriesDetails from "./views/user/SerieDetails";
-import ShowSeasons from "./components/external/ApiSeasonsShow";
+import ShowSeasons from "./components/external/ApiSeasonsShowRow";
 import SeasonDetails from "./views/user/SeasonDetails";
 import NotFound from "./views/NotFound";
 
