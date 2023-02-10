@@ -9,4 +9,4 @@ interface ApiShowImage {
     box: string|undefined;
 };
 
-export type { ApiShowImage }
+export type { ApiShowImage };

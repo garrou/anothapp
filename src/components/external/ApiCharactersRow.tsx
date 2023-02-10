@@ -28,6 +28,7 @@ export default function ApiCharactersRow({ showId }: Props) {
             setError(await resp.json());
         }
     }
+    
     return (
         <>
             {characters.length === 0 && <Loading />}

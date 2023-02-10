@@ -33,7 +33,7 @@ export default function Discover() {
     const onClick = async () => {
         setShows([]);
         setIsLoad(true);
-        const resp: Response = await searchService.searchShowByTitle(title);
+        const resp: Response = await searchService.getShowByTitle(title);
 
         if (resp.status === 200) {
             const data: Array<ApiShowPreview> = await resp.json();

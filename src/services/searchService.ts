@@ -4,7 +4,7 @@ const discoverShows = (): Promise<Response> => {
     });
 }
 
-const searchShowByTitle = (title: string): Promise<Response> => {
+const getShowByTitle = (title: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
         credentials: 'include'
     });
@@ -28,10 +28,17 @@ const getCharactersByShowId = (id: number): Promise<Response> => {
     });
 }
 
+const getSimilarByShowId = (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/similars`, {
+        credentials: 'include'
+    });
+}
+
 export default { 
     discoverShows, 
     getCharactersByShowId,
     getSeasonsByShowId, 
     getShowById, 
-    searchShowByTitle 
+    getShowByTitle,
+    getSimilarByShowId
 };

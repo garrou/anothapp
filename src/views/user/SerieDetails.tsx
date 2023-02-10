@@ -11,6 +11,7 @@ import showService from "../../services/showService";
 import ApiSeasonsShow from "../../components/external/ApiSeasonsShow";
 import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -79,6 +80,9 @@ export default function SeriesDetails() {
                     </Tab>
                     <Tab eventKey="add" title="Ajouter une saison">
                         <ApiSeasonsShow show={show} />
+                    </Tab>
+                    <Tab eventKey="similar" title="Séries similaires">
+                        <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}
