@@ -6,8 +6,9 @@ import { ApiSimpleShow } from "../../models/external/ApiSimpleShow";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
 import AlertError from "../AlertError";
+import Loading from "../Loading";
 
-export default function ApiKindsCheckBox() {
+export default function ApiDiscoverKindsSelect() {
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiSimpleShow[]>([]);
@@ -18,6 +19,7 @@ export default function ApiKindsCheckBox() {
     }, []);
 
     const handleChange = async (kind: string) => {
+        setShows([]);
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
@@ -47,6 +49,8 @@ export default function ApiKindsCheckBox() {
             </Form.Select>
 
             {error && <AlertError message={error.message} />}
+
+            {shows.length === 0 && !error && <Loading />}
 
             <Row xs={2} md={4} className="mt-3">
                 {shows.map(s => (
