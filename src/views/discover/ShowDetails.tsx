@@ -10,6 +10,7 @@ import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
@@ -68,6 +69,9 @@ export default function ShowDetails() {
                     </Tab>
                     <Tab eventKey="characters" title="Acteurs">
                         <ApiCharactersRow showId={show.id} />
+                    </Tab>
+                    <Tab eventKey="similar" title="Séries similaires">
+                        <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}

@@ -29,7 +29,7 @@ export default function ViewingTimeMonthCard() {
 
             <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Temps de visionnage pour ce mois</Card.Title>
+                    <Card.Title>Ce mois</Card.Title>
                     <Card.Text>
                         {minsToStringDays(time)} • {minsToStringHours(time)} • {time} minutes
                     </Card.Text>

@@ -7,6 +7,7 @@ import TimeYearsChart from "../../components/charts/TimeYearsChart";
 import ViewingTimeMonthCard from "../../components/internal/ViewingTimeMonthCard";
 import NbShowsCard from "../../components/internal/NbShowsCard";
 import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
+import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
 
 export default function Profile() {
 
@@ -24,6 +25,7 @@ export default function Profile() {
                     <TotalViewingTimeCard />
                     <TimeYearsChart />
                     <SeasonsYearsChart />
+                    {/*<EpisodesYearChart />*/}
                     <SeasonsMonthChart />
                 </Tab>
                 <Tab eventKey="add" title="Mon profil">

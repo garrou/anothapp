@@ -29,7 +29,7 @@ export default function TotalViewingTimeCard() {
 
             <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Temps total de visionnage</Card.Title>
+                    <Card.Title>Temps total</Card.Title>
                     <Card.Text>
                         {minsToStringDays(time)} • {minsToStringHours(time)} • {time} minutes
                     </Card.Text>
