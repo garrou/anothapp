@@ -29,9 +29,12 @@ export default function ApiDiscoverTitleRow() {
         }
     }
 
-    const onClick = async () => {
+    const onSubmit = async (e: any) => {
+        e.preventDefault();
+
         setShows([]);
         setIsLoad(true);
+        
         const resp: Response = await searchService.getShowByTitle(title);
 
         if (resp.status === 200) {
@@ -45,12 +48,12 @@ export default function ApiDiscoverTitleRow() {
     
     return (
         <>
-            <Form className="mt-3">
+            <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
                     <Form.Label>Titre de la série</Form.Label>
                     <Form.Control type="text" placeholder="Titre" onChange={(e => setTitle(e.target.value))} required />
                 </Form.Group>
-                <Button variant="outline-dark" onClick={onClick}>Rechercher</Button>
+                <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
 
             {isLoad && !error && <Loading />}
