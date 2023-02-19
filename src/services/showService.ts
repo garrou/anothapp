@@ -25,6 +25,12 @@ const getShowById = async (id: number): Promise<Response> => {
     });
 }
 
+const getShowsByTitle = async (title: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/titles/${title}`, {
+        credentials: 'include',
+    });
+}
+
 const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${show.id}/seasons`, {
         credentials: 'include',
@@ -88,6 +94,7 @@ export default {
     getSeasonsByShow, 
     getShows, 
     getShowById,
+    getShowsByTitle,
     getViewedTimeByShowId,
     getViewedTimeByShowIdBySeason
 };
