@@ -25,7 +25,7 @@ export default function SeasonsCardsRow({ showId }: Props) {
         const resp = await showService.getSeasonsByShow(showId);
 
         if (resp.status === 200) {
-            const data: Array<SeasonPreview> = await resp.json();
+            const data: SeasonPreview[] = await resp.json();
             setIsLoad(false);
             setSeasons(data);
         } else {

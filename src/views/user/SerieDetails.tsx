@@ -11,6 +11,7 @@ import showService from "../../services/showService";
 import ApiSeasonsShowRow from "../../components/external/ApiSeasonsShowRow";
 import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import ApiImagesRow from "../../components/external/ApiImagesRow";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -78,6 +79,9 @@ export default function SeriesDetails() {
                     </Tab>
                     <Tab eventKey="add" title="Ajouter une saison">
                         <ApiSeasonsShowRow show={show} />
+                    </Tab>
+                    <Tab eventKey="images" title="Images de la série">
+                        <ApiImagesRow showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}

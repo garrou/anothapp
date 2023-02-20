@@ -21,7 +21,7 @@ export default function ApiDiscoverTitleRow() {
         const resp: Response = await searchService.discoverShows();
 
         if (resp.status === 200) {
-            const data: Array<ApiShowPreview> = await resp.json();
+            const data: ApiShowPreview[] = await resp.json();
             setIsLoad(false);
             setShows(data);
         } else {
@@ -38,7 +38,7 @@ export default function ApiDiscoverTitleRow() {
         const resp: Response = await searchService.getShowByTitle(title);
 
         if (resp.status === 200) {
-            const data: Array<ApiShowPreview> = await resp.json();
+            const data: ApiShowPreview[] = await resp.json();
             setIsLoad(false);
             setShows(data);
         } else {

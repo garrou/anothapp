@@ -21,7 +21,7 @@ export default function ApiSimilarShowTable({ showId }: Props) {
         const resp = await searchService.getSimilarByShowId(showId);
 
         if (resp.status === 200) {
-            const data: Array<ApiSimilarShow> = await resp.json();
+            const data: ApiSimilarShow[] = await resp.json();
             setShows(data);
         } else {
             setError(await resp.json());

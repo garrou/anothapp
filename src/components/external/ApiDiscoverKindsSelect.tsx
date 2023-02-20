@@ -23,7 +23,7 @@ export default function ApiDiscoverKindsSelect() {
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
-            const data: Array<ApiSimpleShow> = await resp.json();
+            const data: ApiSimpleShow[] = await resp.json();
             setShows(data);
         } else {
             setError(await resp.json());
@@ -35,7 +35,7 @@ export default function ApiDiscoverKindsSelect() {
 
         if (resp.status === 200) {
             const data = await resp.json();
-            const transformed: Array<ApiShowKind> = Object.entries(data).map(e => new ApiShowKind(e[0], e[1] + ""));
+            const transformed: ApiShowKind[] = Object.entries(data).map(e => new ApiShowKind(e[0], e[1] + ""));
             setKinds(transformed);
         } else {
             setError(await resp.json());

@@ -19,7 +19,7 @@ export default function SeasonsYearsChart() {
         const resp = await statService.getNbSeasonsByYears();
 
         if (resp.status === 200) {
-            const data: Array<Stat> = await resp.json();
+            const data: Stat[] = await resp.json();
             setSeasonsByYears(data);
         } else {
             setError(await resp.json());

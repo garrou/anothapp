@@ -21,7 +21,7 @@ export default function ApiSeasonsShow({ show }: Props) {
             const resp = await searchService.getSeasonsByShowId(show.id);
 
             if (resp.status === 200) {
-                const data: Array<SeasonPreview> = await resp.json();
+                const data: SeasonPreview[] = await resp.json();
                 setSeasons(data);
             } else {
                 setError(await resp.json());

@@ -19,7 +19,7 @@ export default function Home() {
             });
 
             if (resp.status === 200) {
-                const data: Array<ApiShowPreview> = await resp.json();
+                const data: ApiShowPreview[] = await resp.json();
                 setShows(data);
             } else {
                 setError(await resp.json());

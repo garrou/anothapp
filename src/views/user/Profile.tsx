@@ -1,4 +1,4 @@
-import { Container, Tab, Tabs } from "react-bootstrap";
+import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
 import UserCard from "../../components/internal/UserCard";
@@ -7,7 +7,7 @@ import TimeYearsChart from "../../components/charts/TimeYearsChart";
 import ViewingTimeMonthCard from "../../components/internal/ViewingTimeMonthCard";
 import NbShowsCard from "../../components/internal/NbShowsCard";
 import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
-import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
+import ShowCard from "../../components/internal/ShowCard";
 
 export default function Profile() {
 
@@ -15,25 +15,21 @@ export default function Profile() {
         <Container className="mb-3">
             <Navigation url={'/profile'} />
 
-            <Tabs
-                defaultActiveKey="stats"
-                className="my-3"
-            >
-                <Tab eventKey="stats" title="Statistiques">
+            <Row xs={1} md={2} className="mt-4">
+                <Col>
+                    <UserCard />
+                </Col>
+                <Col>
                     <ViewingTimeMonthCard />
                     <NbShowsCard />
                     <TotalViewingTimeCard />
-                    <TimeYearsChart />
-                    <SeasonsYearsChart />
-                    {/*<EpisodesYearChart />*/}
-                    <SeasonsMonthChart />
-                </Tab>
-                <Tab eventKey="add" title="Mon profil">
-                    <UserCard />
-                </Tab>
-            </Tabs>
+                </Col>
+            </Row>
 
-
+            <TimeYearsChart />
+            <SeasonsYearsChart />
+            {/*<EpisodesYearChart />*/}
+            <SeasonsMonthChart />
         </Container>
     );
 };

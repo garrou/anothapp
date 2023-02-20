@@ -22,7 +22,7 @@ export default function Series() {
         const resp = await showService.getShows();
 
         if (resp.status === 200) {
-            const data: Array<ShowPreview> = await resp.json();
+            const data: ShowPreview[] = await resp.json();
             setIsLoad(false);
             setShows(data);
         } else {
@@ -39,7 +39,7 @@ export default function Series() {
         const resp = await showService.getShowsByTitle(title);
         
         if (resp.status === 200) {
-            const data: Array<ShowPreview> = await resp.json();
+            const data: ShowPreview[] = await resp.json();
             setIsLoad(false);
             setShows(data);
         } else {

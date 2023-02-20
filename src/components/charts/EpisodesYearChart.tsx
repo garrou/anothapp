@@ -19,7 +19,7 @@ export default function EpisodesYearChart() {
         const resp = await statService.getNbEpisodesByYear();
 
         if (resp.status === 200) {
-            const data: Array<Stat> = await resp.json();
+            const data: Stat[] = await resp.json();
             setEpisodesByYears(data);
         } else {
             setError(await resp.json());

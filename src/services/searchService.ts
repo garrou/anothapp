@@ -52,10 +52,17 @@ const getShowsByKind = (kind: string): Promise<Response> => {
     });
 } 
 
+const getImagesByShowId = (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/images`, {
+        credentials: 'include'
+    });
+}
+
 export default { 
     discoverShows, 
     getCharactersByShowId,
     getEpisodesByShowIdBySeasonNum,
+    getImagesByShowId,
     getKinds,
     getSeasonsByShowId, 
     getShowById, 
