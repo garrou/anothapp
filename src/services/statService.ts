@@ -40,7 +40,14 @@ const getNbEpisodesByYear = async (): Promise<Response> => {
     });
 }
 
+const getNbEpisodes = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/count/episodes`, {
+        credentials: 'include',
+    });
+}
+
 export default {
+    getNbEpisodes,
     getNbEpisodesByYear,
     getNbShows,
     getNbSeasonsByMonth,

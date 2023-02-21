@@ -1,4 +1,4 @@
-import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
 import UserCard from "../../components/internal/UserCard";
@@ -7,7 +7,8 @@ import TimeYearsChart from "../../components/charts/TimeYearsChart";
 import ViewingTimeMonthCard from "../../components/internal/ViewingTimeMonthCard";
 import NbShowsCard from "../../components/internal/NbShowsCard";
 import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
-import ShowCard from "../../components/internal/ShowCard";
+import NbEpisodesCard from "../../components/internal/NbEpisodesCard";
+import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
 
 export default function Profile() {
 
@@ -22,13 +23,14 @@ export default function Profile() {
                 <Col>
                     <ViewingTimeMonthCard />
                     <NbShowsCard />
-                    <TotalViewingTimeCard />
+                    <NbEpisodesCard />
+                    <TotalViewingTimeCard /> 
                 </Col>
             </Row>
 
             <TimeYearsChart />
             <SeasonsYearsChart />
-            {/*<EpisodesYearChart />*/}
+            <EpisodesYearChart />
             <SeasonsMonthChart />
         </Container>
     );

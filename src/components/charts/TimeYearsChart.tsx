@@ -34,9 +34,9 @@ export default function TimeYearsChart() {
 
             {timeByYears && <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Temps de visionnage par année</Card.Title>
+                    <Card.Title>Temps par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <AreaChart width={250} height={250} data={timeByYears}>
+                        <AreaChart width={250} height={250} data={timeByYears} className="mt-3">
                             <XAxis dataKey="label" />
                             <YAxis />
                             <Tooltip />

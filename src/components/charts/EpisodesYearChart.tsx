@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Tooltip } from "react-bootstrap";
-import { Area, AreaChart, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
@@ -9,7 +9,7 @@ import Loading from "../Loading";
 
 export default function EpisodesYearChart() {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
         getTimeByYears();
@@ -36,13 +36,18 @@ export default function EpisodesYearChart() {
                 <Card.Body>
                     <Card.Title>Episodes par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <AreaChart width={250} height={250} data={episodesByYear}>
+                        <BarChart
+                            className="mt-3"
+                            width={250}
+                            height={250}
+                            data={episodesByYear}
+                        >
                             <XAxis dataKey="label" />
                             <YAxis />
-                            <Tooltip />
+                            {/* <Tooltip /> */}
                             <Legend />
-                            <Area dataKey="value" stroke="#32a850" fill="#32a850" name="Episodes" />
-                        </AreaChart>
+                            <Bar dataKey="value" fill="#4287f5" stroke="#4287f5" name="Episodes" />
+                        </BarChart>
                     </ResponsiveContainer>
                 </Card.Body>
             </Card>}

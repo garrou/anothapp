@@ -33,12 +33,10 @@ export default function UserCard() {
 
             {user &&
                 <Card className="mt-2">
-                    <Card.Img src={user.picture} variant="top" alt="Photo de profil" />
+                    {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
                     <Card.Body>
                         <Card.Title>{user.name}</Card.Title>
-                        <Card.Text>
-                            {user.email}
-                        </Card.Text>
+                        <Card.Text>{user.email}</Card.Text>
                     </Card.Body>
                 </Card>}
         </>

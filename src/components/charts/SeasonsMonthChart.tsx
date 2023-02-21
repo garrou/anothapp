@@ -33,7 +33,7 @@ export default function SeasonsMonthChart() {
 
             {seasonsByMonths && <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Saisons vues par mois</Card.Title>
+                    <Card.Title>Saisons par mois</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                             className="mt-3"

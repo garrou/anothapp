@@ -34,7 +34,7 @@ export default function SeasonsYearsChart() {
 
             {seasonsByYears && <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>Saisons vues par année</Card.Title>
+                    <Card.Title>Saisons par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart
                             className="mt-3"

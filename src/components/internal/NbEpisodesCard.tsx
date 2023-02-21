@@ -4,16 +4,16 @@ import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 
-export default function NbShowsCard() {
+export default function NbEpisodesCard() {
     const [num, setNum] = useState<number>(0);
     const [error, setError] = useState<ErrorMessage|null>(null);
     
     useEffect(() => {
-        getNbShows();
+        getNbEpisodes();
     }, []);
 
-    const getNbShows = async () => {
-        const resp = await statService.getNbShows();
+    const getNbEpisodes = async () => {
+        const resp = await statService.getNbEpisodes();
 
         if (resp.status === 200) {
             setNum(await resp.json());
@@ -28,7 +28,7 @@ export default function NbShowsCard() {
 
             <Card className="mt-2">
                 <Card.Body>
-                    <Card.Title>{num} séries</Card.Title>
+                    <Card.Title>{num} épisodes</Card.Title>
                 </Card.Body>
             </Card>
         </>
