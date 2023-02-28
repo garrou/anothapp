@@ -1,60 +1,84 @@
+const getHomeImages = () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/intro/images`);
+}
+
 const discoverShows = (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/discover`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getShowByTitle = (title: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getShowById = (id: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getSeasonsByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getCharactersByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/characters`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getSimilarByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/similars`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getEpisodesByShowIdBySeasonNum = (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons/${num}/episodes`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getKinds = (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/kinds`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getShowsByKind = (kind: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/kinds/${kind}`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 } 
 
 const getImagesByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/images`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
@@ -62,6 +86,7 @@ export default {
     discoverShows, 
     getCharactersByShowId,
     getEpisodesByShowIdBySeasonNum,
+    getHomeImages,
     getImagesByShowId,
     getKinds,
     getSeasonsByShowId, 

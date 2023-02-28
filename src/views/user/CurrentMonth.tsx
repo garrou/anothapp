@@ -37,7 +37,7 @@ export default function CurrentMonth() {
             <Table striped hover className="mt-3">
                 <tbody>
                     {seasons.map((s: { id: number; image: string | undefined; title: string; num: number }) => (
-                        <tr key={s.id}>
+                        <tr key={s.id * s.num}>
                             <td>
                                 <Image src={s.image} alt="Poster" height={75} width={75} fluid={true} />
                             </td>

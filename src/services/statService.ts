@@ -1,48 +1,64 @@
 const getNbShows = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/count/shows`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getTotalTime = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/time`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getNbSeasonsByYears = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/seasons/years`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getTimeByYears = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/time/years`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getTimeCurrentMonth = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/time/month`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getNbSeasonsByMonth = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/seasons/months`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getNbEpisodesByYear = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/episodes/years`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getNbEpisodes = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/count/episodes`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 

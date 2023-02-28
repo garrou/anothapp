@@ -7,25 +7,34 @@ import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
 import AlertError from '../components/AlertError';
 import { ErrorMessage } from '../models/internal/ErrorMessage';
+import searchService from '../services/searchService';
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
+    const queryParams = new URLSearchParams(window.location.search);
 
     useEffect(() => {
-        (async () => {
-            const resp: Response = await fetch(`${process.env.REACT_APP_SERVER}/intro/images`, {
-                credentials: 'include'
-            });
-
-            if (resp.status === 200) {
-                const data: ApiShowPreview[] = await resp.json();
-                setShows(data);
-            } else {
-                setError(await resp.json());
-            }
-        })();
+        getImages();
+        getToken();
     }, []);
+
+    const getImages = async () => {
+        const resp = await searchService.getHomeImages();
+
+        if (resp.status === 200) {
+            const data: ApiShowPreview[] = await resp.json();
+            setShows(data);
+        } else {
+            setError(await resp.json());
+        }
+    }
+
+    const getToken = () => {
+        if (queryParams.get('token') !== null) {
+            localStorage.setItem('jwt', queryParams.get('token') ?? '');
+        }
+    }
 
     return (
         <>

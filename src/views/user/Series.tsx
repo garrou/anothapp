@@ -11,7 +11,7 @@ import { ErrorMessage } from "../../models/internal/ErrorMessage";
 export default function Series() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(false);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
     const [title, setTitle] = useState<string>('');
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function Series() {
         setIsLoad(true);
 
         const resp = await showService.getShowsByTitle(title);
-        
+
         if (resp.status === 200) {
             const data: ShowPreview[] = await resp.json();
             setIsLoad(false);

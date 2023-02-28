@@ -10,7 +10,7 @@ export default function Navigation({ url }: Props) {
     const navigate = useNavigate();
 
     const onClick = () => {
-        document.cookie = "";
+        localStorage.removeItem('jwt');
         navigate('/', { replace: true });
     }
 

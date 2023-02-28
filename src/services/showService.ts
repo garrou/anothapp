@@ -4,7 +4,9 @@ import { ApiShowDetails } from "../models/external/ApiShowDetails";
 
 const getShows = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
-        credentials: 'include'
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
@@ -13,7 +15,8 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
         credentials: 'include',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
         body: JSON.stringify(show)
     });
@@ -21,7 +24,9 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
 
 const getShowsByTitle = async (title: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/titles/${title}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
@@ -30,7 +35,8 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
         credentials: 'include',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
         body: JSON.stringify({
             "number": season.number,
@@ -43,51 +49,67 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
 
 const deleteShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        },
         method: 'DELETE',
     });
 }
 
 const getSeasonsByShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const deleteSeason = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/seasons/${id}`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        },
         method: 'DELETE'
     });
 }
 
 const getViewedTimeByShowId = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/time`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}/time`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getToContinue = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/watching`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
 const getViewedCurrentMonth = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed/month`, {
-        credentials: 'include',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
     });
 }
 
