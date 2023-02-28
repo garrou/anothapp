@@ -12,7 +12,6 @@ const getShows = async (): Promise<Response> => {
 
 const addShow = async (show: ApiShowPreview): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
-        credentials: 'include',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +31,6 @@ const getShowsByTitle = async (title: string): Promise<Response> => {
 
 const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${show.id}/seasons`, {
-        credentials: 'include',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
