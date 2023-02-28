@@ -19,12 +19,6 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
     });
 }
 
-const getShowById = async (id: number): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
-        credentials: 'include'
-    });
-}
-
 const getShowsByTitle = async (title: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/titles/${title}`, {
         credentials: 'include',
@@ -85,6 +79,18 @@ const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<R
     });
 }
 
+const getToContinue = async () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/watching`, {
+        credentials: 'include',
+    });
+}
+
+const getViewedCurrentMonth = async () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed/month`, {
+        credentials: 'include',
+    });
+}
+
 export default { 
     addSeason, 
     addShow, 
@@ -92,9 +98,10 @@ export default {
     deleteSeason, 
     getSeasonInfo, 
     getSeasonsByShow, 
-    getShows, 
-    getShowById,
+    getShows,
     getShowsByTitle,
+    getToContinue,
+    getViewedCurrentMonth,
     getViewedTimeByShowId,
     getViewedTimeByShowIdBySeason
 };

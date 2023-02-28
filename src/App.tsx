@@ -11,6 +11,7 @@ import SeriesDetails from "./views/user/SerieDetails";
 import ShowSeasons from "./components/external/ApiSeasonsShowRow";
 import SeasonDetails from "./views/user/SeasonDetails";
 import NotFound from "./views/NotFound";
+import CurrentMonth from "./views/user/CurrentMonth";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path="/discover/series" element={<Discover />} />
           <Route path="/discover/series/:id" element={<ShowDetails />} />
 
-          <Route path="/watchlist" element={<WatchList />} />
+          <Route path="/month" element={<CurrentMonth />} />
           <Route path="/profile" element={<Profile />} />
 
           <Route path="*" element={<NotFound />} />

@@ -19,7 +19,7 @@ export default function Navigation({ url }: Props) {
                         <Nav defaultActiveKey={url} className="me-auto">
                             <Nav.Link href="/series">Mes séries</Nav.Link>
                             <Nav.Link href="/discover/series">Découvrir</Nav.Link>
-                            <Nav.Link href="/watchlist">En cours</Nav.Link>
+                            <Nav.Link href="/month">Ce mois</Nav.Link>
                             <Nav.Link href="/profile">Profil</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
