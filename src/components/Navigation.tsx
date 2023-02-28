@@ -1,4 +1,5 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Guard from "./Guard";
 
 interface Props {
@@ -6,6 +7,12 @@ interface Props {
 }
 
 export default function Navigation({ url }: Props) {
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        document.cookie = "";
+        navigate('/', { replace: true });
+    }
 
     return (
         <>
@@ -21,6 +28,7 @@ export default function Navigation({ url }: Props) {
                             <Nav.Link href="/discover/series">Découvrir</Nav.Link>
                             <Nav.Link href="/month">Ce mois</Nav.Link>
                             <Nav.Link href="/profile">Profil</Nav.Link>
+                            <Button variant="outline-dark" onClick={onClick}>Se déconnecter</Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
