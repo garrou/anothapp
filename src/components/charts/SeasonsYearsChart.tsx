@@ -36,14 +36,9 @@ export default function SeasonsYearsChart() {
                 <Card.Body>
                     <Card.Title>Saisons par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart
-                            className="mt-3"
-                            width={250}
-                            height={250}
-                            data={seasonsByYears}
-                        >
+                        <BarChart className="mt-3" width={250} height={300} data={seasonsByYears}>
                             <XAxis dataKey="label" />
-                            <YAxis />
+                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 20)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#f5962a" stroke="#f5962a" name="Saisons" />

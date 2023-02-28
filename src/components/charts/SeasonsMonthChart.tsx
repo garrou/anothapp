@@ -9,7 +9,7 @@ import Loading from "../Loading";
 
 export default function SeasonsMonthChart() {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
         getNbSeasonsByYears();
@@ -35,18 +35,13 @@ export default function SeasonsMonthChart() {
                 <Card.Body>
                     <Card.Title>Saisons par mois</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart
-                            className="mt-3"
-                            width={250}
-                            height={250}
-                            data={seasonsByMonths}
-                        >
+                        <BarChart className="mt-3" width={250} height={300} data={seasonsByMonths}>
                             <XAxis dataKey="label" />
-                            <YAxis />
+                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 20)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#ae34eb" stroke="#ae34eb" name="Saisons" />
-                        </BarChart>                       
+                        </BarChart>
                     </ResponsiveContainer>
                 </Card.Body>
             </Card>}

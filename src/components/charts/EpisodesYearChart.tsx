@@ -36,14 +36,9 @@ export default function EpisodesYearChart() {
                 <Card.Body>
                     <Card.Title>Episodes par année</Card.Title>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart
-                            className="mt-3"
-                            width={250}
-                            height={250}
-                            data={episodesByYear}
-                        >
+                        <BarChart className="mt-3" width={250} height={300} data={episodesByYear}>
                             <XAxis dataKey="label" />
-                            <YAxis />
+                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 300)} />
                             {/* <Tooltip /> */}
                             <Legend />
                             <Bar dataKey="value" fill="#4287f5" stroke="#4287f5" name="Episodes" />
