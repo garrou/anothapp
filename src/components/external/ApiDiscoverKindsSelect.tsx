@@ -54,7 +54,7 @@ export default function ApiDiscoverKindsSelect() {
 
             <Row xs={2} md={4} className="mt-3">
                 {shows.map(s => (
-                    <Card className="mt-2">
+                    <Card key={s.id} className="mt-2">
                         <Link to={`/discover/series/${s.id}`}>
                             {s.poster && <Card.Img variant="top" src={s.poster} />}
                         </Link>
