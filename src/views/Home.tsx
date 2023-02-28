@@ -12,11 +12,9 @@ import searchService from '../services/searchService';
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
-    const queryParams = new URLSearchParams(window.location.search);
 
     useEffect(() => {
         getImages();
-        getToken();
     }, []);
 
     const getImages = async () => {
@@ -27,12 +25,6 @@ export default function Home() {
             setShows(data);
         } else {
             setError(await resp.json());
-        }
-    }
-
-    const getToken = () => {
-        if (queryParams.get('token') !== null) {
-            localStorage.setItem('jwt', queryParams.get('token') ?? '');
         }
     }
 

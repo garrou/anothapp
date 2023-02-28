@@ -15,8 +15,16 @@ export default function Series() {
     const [title, setTitle] = useState<string>('');
 
     useEffect(() => {
-        getShows();
+        getTokenAndShows();
     }, []);
+
+    const getTokenAndShows = () => {
+        const queryParams = new URLSearchParams(window.location.search);
+        if (queryParams.get('token') !== null) {
+            localStorage.setItem('jwt', queryParams.get('token') ?? '');
+        }
+        getShows();
+    }
 
     const getShows = async () => {
         const resp = await showService.getShows();
