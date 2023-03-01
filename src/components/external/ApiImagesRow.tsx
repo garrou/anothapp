@@ -44,7 +44,7 @@ export default function ApiImagesRow({ showId }: Props) {
         <>
             {error && <AlertError message={error.message} />}
 
-            {images && <Row xs={2} md={4} className="mt-4">
+            {images && <Row xs={2} md={3} lg={4} className="mt-4">
                 {images.map(image => (
                     <Col key={image} >
                         <Card className="mt-2">

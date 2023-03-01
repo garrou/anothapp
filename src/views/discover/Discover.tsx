@@ -1,6 +1,6 @@
 import { Container, Tab, Tabs } from "react-bootstrap";
 import ApiDiscoverTitleRow from "../../components/external/ApiDiscoverTitleRow";
-import ApiDiscoverKindsSelect from "../../components/external/ApiDiscoverKindsSelect";
+import ApiDiscoverKindsRow from "../../components/external/ApiDiscoverKindsRow";
 import Navigation from "../../components/Navigation";
 
 export default function Discover() {
@@ -17,7 +17,7 @@ export default function Discover() {
                     <ApiDiscoverTitleRow />
                 </Tab>
                 <Tab eventKey="kinds" title="Chercher par genres">
-                    <ApiDiscoverKindsSelect />
+                    <ApiDiscoverKindsRow />
                 </Tab>
             </Tabs>
         </Container>

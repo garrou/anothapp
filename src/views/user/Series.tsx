@@ -61,7 +61,7 @@ export default function Series() {
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
 
-            <Row xs={2} md={4} className="mt-4">
+            <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (
                     <Col key={s.id} >
                         <ShowCard preview={s} />

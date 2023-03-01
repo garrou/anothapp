@@ -35,7 +35,7 @@ export default function ApiCharactersRow({ showId }: Props) {
 
             {error && <AlertError message={error.message} />}
 
-            <Row xs={2} md={4} className="mt-4">
+            <Row xs={2} md={3} lg={4} className="mt-4">
                 {characters.map(c => (
                     <Col key={c.id} >
                         <ApiCharacterCard character={c} />

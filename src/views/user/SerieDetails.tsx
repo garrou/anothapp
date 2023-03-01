@@ -12,6 +12,7 @@ import ApiSeasonsShowRow from "../../components/external/ApiSeasonsShowRow";
 import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import ApiImagesRow from "../../components/external/ApiImagesRow";
+import { getImageUrl } from "../../models/external/ApiShowImage";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -55,7 +56,7 @@ export default function SeriesDetails() {
             {error && <AlertError message={error.message} />}
 
             {show && <>
-                <Image src={show.images.show} alt="Poster" fluid={true} />
+                {getImageUrl(show.images) && <Image src={getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
                     <Link to={`/discover/series/${show.id}`} className="text-dark">

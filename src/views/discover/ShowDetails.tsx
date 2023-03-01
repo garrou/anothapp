@@ -11,6 +11,7 @@ import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
+import { getImageUrl } from "../../models/external/ApiShowImage";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
@@ -53,7 +54,7 @@ export default function ShowDetails() {
 
             {show && <>
 
-                <Image src={show.images.show} alt="Poster" fluid={true} />
+                {getImageUrl(show.images) && <Image src={getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
                     <h1 className="header">{show.title}</h1>

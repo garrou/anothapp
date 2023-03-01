@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Redirect from '../components/Redirect';
-import ApiMiniShowCard from '../components/external/ApiMiniShowCard';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
 import AlertError from '../components/AlertError';
 import { ErrorMessage } from '../models/internal/ErrorMessage';
 import searchService from '../services/searchService';
+import { getImageUrl } from '../models/external/ApiShowImage';
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
@@ -39,12 +39,18 @@ export default function Home() {
 
                 {error && <AlertError message={error.message} />}
 
-                <Row xs={2} md={4} className="mt-4">
+                <Row xs={2} md={3} lg={4} className="mt-4">
                     {shows.length === 0 && !error && <Loading />}
 
                     {shows.map(s => (
                         <Col key={s.id} >
-                            <ApiMiniShowCard preview={s} />
+                            <Card className="mt-2">
+                                {getImageUrl(s.images) && <Card.Img variant="top" src={getImageUrl(s.images)!} />}
+
+                                <Card.Body>
+                                    <Card.Title>{s.title}</Card.Title>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     ))}
                 </Row>

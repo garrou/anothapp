@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { getImageUrl } from "../../models/external/ApiShowImage";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
@@ -11,8 +12,9 @@ interface Props {
 };
 
 export default function ApiShowCard({ preview }: Props) {
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
     const navigate = useNavigate();
+    const image = getImageUrl(preview.images);
 
     const onClick = async () => {
         const resp = await showService.addShow(preview);
@@ -25,17 +27,16 @@ export default function ApiShowCard({ preview }: Props) {
     };
 
     return (
-        <Card className="mt-2">
-            <Link to={`/discover/series/${preview.id}`}>
-                <Card.Img variant="top" src={preview.images.poster} />
-            </Link>
+        <Link to={`/discover/series/${preview.id}`} style={{textDecoration: 'none', color: 'black'}}>
+            <Card className="mt-2">
+                {image && <Card.Img variant="top" src={image} />}
+                <Card.Body>
+                    <Card.Title>{preview.title}</Card.Title>
+                    <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
 
-            <Card.Body>
-                <Card.Title>{preview.title}</Card.Title>
-                <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
-
-                {error && <AlertError message={error.message} />}
-            </Card.Body>
-        </Card>
+                    {error && <AlertError message={error.message} />}
+                </Card.Body>
+            </Card>
+        </Link>
     );
 };

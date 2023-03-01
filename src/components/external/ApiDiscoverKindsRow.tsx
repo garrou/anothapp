@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Card, Form, Row } from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
-import { ApiSimpleShow } from "../../models/external/ApiSimpleShow";
+import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
+import ApiShowCard from "./ApiShowCard";
 
-export default function ApiDiscoverKindsSelect() {
+export default function ApiDiscoverKindsRow() {
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
-    const [shows, setShows] = useState<ApiSimpleShow[]>([]);
+    const [shows, setShows] = useState<ApiShowPreview[]>([]);
 
     useEffect(() => {
         getKinds();
@@ -20,10 +21,11 @@ export default function ApiDiscoverKindsSelect() {
 
     const handleChange = async (kind: string) => {
         setShows([]);
+        
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
-            const data: ApiSimpleShow[] = await resp.json();
+            const data: ApiShowPreview[] = await resp.json();
             setShows(data);
         } else {
             setError(await resp.json());
@@ -52,17 +54,11 @@ export default function ApiDiscoverKindsSelect() {
 
             {shows.length === 0 && !error && <Loading />}
 
-            <Row xs={2} md={4} className="mt-3">
+            <Row xs={2} md={3} lg={4} className="mt-3">
                 {shows.map(s => (
-                    <Card key={s.id} className="mt-2">
-                        <Link to={`/discover/series/${s.id}`}>
-                            {s.poster && <Card.Img variant="top" src={s.poster} />}
-                        </Link>
-
-                        <Card.Body>
-                            <Card.Title>{s.title}</Card.Title>
-                        </Card.Body>
-                    </Card>
+                    <Col key={s.id} >
+                        <ApiShowCard preview={s} />
+                    </Col>
                 ))}
             </Row>
         </>
