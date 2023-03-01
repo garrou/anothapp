@@ -11,8 +11,16 @@ const setProfilePicture = async (image: string): Promise<Response> => {
     });
 }
 
-const getUser = async (): Promise<Response> => {
+const checkUser = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/auth/me`, { 
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
+const getProfile = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/auth/me/profile`, { 
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -47,7 +55,8 @@ const login = async (email: string, password: string) => {
 }
 
 export default { 
-    getUser,
+    checkUser,
+    getProfile,
     login,
     register,
     setProfilePicture,

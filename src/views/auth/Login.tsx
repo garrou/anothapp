@@ -7,14 +7,14 @@ import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import profileService from "../../services/profileService";
 
 export default function Login() {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<ErrorMessage | null>(null);
     const navigate = useNavigate();
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
-
+        
+        const email: string = e.target.loginEmail.value;
+        const password: string = e.target.loginPassword.value;
         const resp = await profileService.login(email, password);
 
         if (resp.status === 200) {
@@ -36,13 +36,13 @@ export default function Login() {
                 <Card.Body>
                     <Card.Title>Se connecter</Card.Title>
                     <Form className="my-3" onSubmit={onSubmit}>
-                        <Form.Group className="mb-3" controlId="login">
+                        <Form.Group className="mb-3" controlId="loginEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Email" onChange={(e => setEmail(e.target.value))} required />
+                            <Form.Control type="email" placeholder="Email" required />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="login">
+                        <Form.Group className="mb-3" controlId="loginPassword">
                             <Form.Label>Mot de passe</Form.Label>
-                            <Form.Control type="password" placeholder="Mot de passe" onChange={(e => setPassword(e.target.value))} required />
+                            <Form.Control type="password" placeholder="Mot de passe" required />
                         </Form.Group>
                         <Button variant="outline-dark" type="submit">Se connecter</Button>
                     </Form>

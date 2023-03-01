@@ -11,11 +11,11 @@ export default function UserCard() {
     const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
-        getUser();
+        getUserProfile();
     }, []);
 
-    const getUser = async () => {
-        const resp = await profileService.getUser();
+    const getUserProfile = async () => {
+        const resp = await profileService.getProfile();
 
         if (resp.status === 200) {
             const data: User = await resp.json();

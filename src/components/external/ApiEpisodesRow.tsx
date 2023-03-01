@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
 import { ApiEpisodePreview } from "../../models/external/ApiEpisodePreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";

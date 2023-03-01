@@ -2,8 +2,8 @@ import { SeasonPreview } from "../models/internal/SeasonPreview";
 import { ApiShowPreview } from "../models/external/ApiShowPreview";
 import { ApiShowDetails } from "../models/external/ApiShowDetails";
 
-const getShows = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
+const getShows = async (limit: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows?limit=${limit}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }

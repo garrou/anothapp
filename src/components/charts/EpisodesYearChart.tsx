@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Tooltip } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Bar, BarChart, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";

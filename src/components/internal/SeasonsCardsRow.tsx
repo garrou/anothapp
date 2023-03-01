@@ -20,7 +20,6 @@ export default function SeasonsCardsRow({ showId }: Props) {
         getSeasons();
     }, []);
 
-
     const getSeasons = async () => {
         const resp = await showService.getSeasonsByShow(showId);
 

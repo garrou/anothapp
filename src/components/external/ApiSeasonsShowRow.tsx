@@ -14,27 +14,29 @@ interface Props {
 
 export default function ApiSeasonsShow({ show }: Props) {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
-        (async () => {
-            const resp = await searchService.getSeasonsByShowId(show.id);
-
-            if (resp.status === 200) {
-                const data: SeasonPreview[] = await resp.json();
-                setSeasons(data);
-            } else {
-                setError(await resp.json());
-            }
-        })();
+        getSeasons();
     }, []);
+
+    const getSeasons = async () => {
+        const resp = await searchService.getSeasonsByShowId(show.id);
+
+        if (resp.status === 200) {
+            const data: SeasonPreview[] = await resp.json();
+            setSeasons(data);
+        } else {
+            setError(await resp.json());
+        }
+    }
 
     return (
         <>
             {seasons.length === 0 && <Loading />}
 
             {error && <AlertError message={error.message} />}
-            
+
             <Row xs={2} md={4} className="mt-4">
                 {seasons.map(s => (
                     <Col key={s.number}>

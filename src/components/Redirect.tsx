@@ -6,11 +6,11 @@ export default function Redirect() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getUser();
+        checkIfLogged();
     }, []);
 
-    const getUser = async () => {
-        const resp = await profileService.getUser();
+    const checkIfLogged = async () => {
+        const resp = await profileService.checkUser();
 
         if (resp.status === 200) {
             navigate('/series', { replace: true });

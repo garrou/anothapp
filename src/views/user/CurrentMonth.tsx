@@ -1,4 +1,4 @@
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Image, Table } from "react-bootstrap";
 import AlertError from "../../components/AlertError";
 import Loading from "../../components/Loading";

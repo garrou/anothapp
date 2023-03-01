@@ -10,16 +10,15 @@ import { ErrorMessage } from "../../models/internal/ErrorMessage";
 
 export default function Series() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(false);
+    const [isLoad, setIsLoad] = useState<boolean>(true);
     const [error, setError] = useState<ErrorMessage | null>(null);
-    const [title, setTitle] = useState<string>('');
 
     useEffect(() => {
         getShows();
     }, []);
 
     const getShows = async () => {
-        const resp = await showService.getShows();
+        const resp = await showService.getShows(10);
 
         if (resp.status === 200) {
             const data: ShowPreview[] = await resp.json();
@@ -34,13 +33,12 @@ export default function Series() {
         e.preventDefault();
 
         setShows([]);
-        setIsLoad(true);
 
+        const title: string = e.target.titleSearch.value;
         const resp = await showService.getShowsByTitle(title);
 
         if (resp.status === 200) {
             const data: ShowPreview[] = await resp.json();
-            setIsLoad(false);
             setShows(data);
         } else {
             setError(await resp.json());
@@ -58,7 +56,7 @@ export default function Series() {
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
                     <Form.Label>Titre de la série</Form.Label>
-                    <Form.Control type="text" placeholder="Titre" onChange={(e => setTitle(e.target.value))} required />
+                    <Form.Control type="text" placeholder="Titre" required />
                 </Form.Group>
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
@@ -70,6 +68,8 @@ export default function Series() {
                     </Col>
                 ))}
             </Row>
+
+            <Button className="my-3" variant="outline-dark">Plus de séries</Button>
         </Container>
     );
 };
