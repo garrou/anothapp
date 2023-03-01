@@ -14,11 +14,11 @@ export default function Series() {
     const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
-        getShows();
+        getShows(10);
     }, []);
 
-    const getShows = async () => {
-        const resp = await showService.getShows(10);
+    const getShows = async (limit: number) => {
+        const resp = await showService.getShows(limit);
 
         if (resp.status === 200) {
             const data: ShowPreview[] = await resp.json();
@@ -27,6 +27,12 @@ export default function Series() {
         } else {
             setError(await resp.json());
         }
+    }
+
+    const loadShows = (e: any) => {
+        e.preventDefault();
+
+        getShows(e.target.nbDisplay.value);
     }
 
     const onSubmit = async (e: any) => {
@@ -53,13 +59,26 @@ export default function Series() {
 
             {error && <AlertError message={error.message} />}
 
-            <Form className="mt-3" onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="titleSearch">
-                    <Form.Label>Titre de la série</Form.Label>
-                    <Form.Control type="text" placeholder="Titre" required />
-                </Form.Group>
-                <Button variant="outline-dark" type="submit">Rechercher</Button>
-            </Form>
+            <Row xs={1} md={2}>
+                <Col>
+                    <Form className="mt-3" onSubmit={onSubmit}>
+                        <Form.Group className="mb-3" controlId="titleSearch">
+                            <Form.Label>Titre de la série</Form.Label>
+                            <Form.Control type="text" placeholder="Titre" required />
+                        </Form.Group>
+                        <Button variant="outline-dark" type="submit">Rechercher</Button>
+                    </Form>
+                </Col>
+                <Col>
+                    <Form className="mt-3" onSubmit={loadShows}>
+                        <Form.Group className="mb-3" controlId="nbDisplay">
+                            <Form.Label>Nombre de séries à afficher</Form.Label>
+                            <Form.Control type="number" min={10} required />
+                        </Form.Group>
+                        <Button variant="outline-dark" type="submit">Afficher</Button>
+                    </Form>
+                </Col>
+            </Row>
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (
