@@ -19,7 +19,36 @@ const getUser = async (): Promise<Response> => {
     });
 }
 
+const register = async (email: string, password: string, confirm: string) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/auth/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            'email': email,
+            'password': password,
+            'confirm': confirm
+        })
+    });
+}
+
+const login = async (email: string, password: string) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/auth/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            'email': email,
+            'password': password
+        })
+    });
+}
+
 export default { 
     getUser,
-    setProfilePicture
+    login,
+    register,
+    setProfilePicture,
 };

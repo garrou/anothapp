@@ -35,8 +35,7 @@ export default function UserCard() {
                 <Card className="mt-2">
                     {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
                     <Card.Body>
-                        <Card.Title>{user.name}</Card.Title>
-                        <Card.Text>{user.email}</Card.Text>
+                        <Card.Title>{user.email}</Card.Title>
                     </Card.Body>
                 </Card>}
         </>

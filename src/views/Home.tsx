@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import GoogleButton from '../components/GoogleButton';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import Redirect from '../components/Redirect';
 import ApiMiniShowCard from '../components/external/ApiMiniShowCard';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
@@ -36,7 +35,7 @@ export default function Home() {
                 <h1 className='header'>Anothapp</h1>
                 <p>Une autre application pour gérer les séries, les saisons et les épisodes visionnés.</p>
 
-                <GoogleButton />
+                <Button href='/login' variant='outline-dark'>Se connecter</Button>
 
                 {error && <AlertError message={error.message} />}
 

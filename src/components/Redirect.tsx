@@ -14,9 +14,7 @@ export default function Redirect() {
 
         if (resp.status === 200) {
             navigate('/series', { replace: true });
-        } else {
-            navigate('/', { replace: true });
-        }
+        } 
     }
 
     return (
