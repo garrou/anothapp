@@ -87,8 +87,6 @@ export default function Series() {
                     </Col>
                 ))}
             </Row>
-
-            <Button className="my-3" variant="outline-dark">Plus de séries</Button>
         </Container>
     );
 };
