@@ -28,7 +28,7 @@ export default function Navigation({ url }: Props) {
                             <Nav.Link href="/discover/series">Découvrir</Nav.Link>
                             <Nav.Link href="/month">Ce mois</Nav.Link>
                             <Nav.Link href="/profile">Profil</Nav.Link>
-                            <Button variant="outline-dark" onClick={onClick}>Se déconnecter</Button>
+                            <Button variant="outline-dark" className="btn-sm" onClick={onClick}>Se déconnecter</Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

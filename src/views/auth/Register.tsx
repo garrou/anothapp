@@ -10,7 +10,7 @@ export default function Register() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirm, setConfirm] = useState<string>('');
-    const [error, setError] = useState<ErrorMessage | null>(null);
+    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
 
     const onSubmit = async (e: any) => {
