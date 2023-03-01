@@ -18,7 +18,7 @@ export default function Register() {
 
         const resp = await profileService.register(email, password, confirm);
 
-        if (resp.status === 200) {
+        if (resp.status === 201) {
             navigate('/login');
         } else {
             setError(await resp.json());
