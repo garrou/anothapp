@@ -54,7 +54,7 @@ export default function ShowDetails() {
 
             {show && <>
 
-                {getImageUrl(show.images) && <Image src={getImageUrl(show.images)!} alt="Poster" fluid={true} />}
+                {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
                     <h1 className="header">{show.title}</h1>

@@ -13,6 +13,7 @@ import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import ApiImagesRow from "../../components/external/ApiImagesRow";
 import { getImageUrl } from "../../models/external/ApiShowImage";
+import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -56,7 +57,7 @@ export default function SeriesDetails() {
             {error && <AlertError message={error.message} />}
 
             {show && <>
-                {getImageUrl(show.images) && <Image src={getImageUrl(show.images)!} alt="Poster" fluid={true} />}
+                {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
                     <Link to={`/discover/series/${show.id}`} className="text-dark">
@@ -81,8 +82,11 @@ export default function SeriesDetails() {
                     <Tab eventKey="add" title="Ajouter une saison">
                         <ApiSeasonsShowRow show={show} />
                     </Tab>
-                    <Tab eventKey="images" title="Images de la série">
+                    <Tab eventKey="images" title="Images">
                         <ApiImagesRow showId={show.id} />
+                    </Tab>
+                    <Tab eventKey="similar" title="Similaires">
+                        <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
             </>}
