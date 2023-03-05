@@ -52,7 +52,6 @@ export default function ShowsRow() {
 
     return (
         <>
-
             {isLoad && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
@@ -77,6 +76,10 @@ export default function ShowsRow() {
                     </Form>
                 </Col>
             </Row>
+
+            <hr />
+
+            {shows.length === 0 && <p>Aucune série</p>}
 
             <Row xs={2} md={3} lg={4}>
                 {shows.map(s => (
