@@ -111,11 +111,20 @@ const getViewedCurrentMonth = async () => {
     });
 }
 
+const getNotStartedShows = async () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/not-started`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
 export default { 
     addSeason, 
     addShow, 
     deleteShow, 
     deleteSeason, 
+    getNotStartedShows,
     getSeasonInfo, 
     getSeasonsByShow, 
     getShows,
