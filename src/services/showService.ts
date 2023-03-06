@@ -119,6 +119,14 @@ const getNotStartedShows = async () => {
     });
 }
 
+const getShowsToContinue = async () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/continue`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
 export default { 
     addSeason, 
     addShow, 
@@ -129,6 +137,7 @@ export default {
     getSeasonsByShow, 
     getShows,
     getShowsByTitle,
+    getShowsToContinue,
     getToContinue,
     getViewedCurrentMonth,
     getViewedTimeByShowId,
