@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {  Button, Card, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../helpers/format";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
@@ -15,6 +16,7 @@ interface Props {
 export default function SeasonsInfosCard({ showId, num }: Props) {
     const [infos, setInfos] = useState<SeasonInfo[]>([]);
     const [error, setError] = useState<ErrorMessage|null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getSeasonInfos();
@@ -35,7 +37,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
             const resp = await showService.deleteSeason(id);
 
             if (resp.status === 204) {
-                window.location.reload();
+                navigate(`/series/${showId}`, { replace: true })
             } else {
                 setError(await resp.json());
             }
