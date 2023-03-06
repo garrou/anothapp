@@ -6,7 +6,7 @@ import showService from "../../services/showService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
 
-export default function ShowsToContinue() {
+export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [error, setError] = useState<ErrorMessage|null>(null);
