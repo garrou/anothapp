@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import Redirect from '../components/Redirect';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
 import AlertError from '../components/AlertError';
@@ -28,33 +27,29 @@ export default function Home() {
     }
 
     return (
-        <>
-            <Redirect />
+        <Container className='p-3 text-center'>
+            <h1 className='header'>Anothapp</h1>
+            <p>Une autre application pour gérer les séries, les saisons et les épisodes visionnés.</p>
 
-            <Container className='p-3 text-center'>
-                <h1 className='header'>Anothapp</h1>
-                <p>Une autre application pour gérer les séries, les saisons et les épisodes visionnés.</p>
+            <Button href='/login' variant='outline-dark'>Se connecter</Button>
 
-                <Button href='/login' variant='outline-dark'>Se connecter</Button>
+            {error && <AlertError message={error.message} />}
 
-                {error && <AlertError message={error.message} />}
+            <Row xs={2} md={3} lg={4} className="mt-4">
+                {shows.length === 0 && !error && <Loading />}
 
-                <Row xs={2} md={3} lg={4} className="mt-4">
-                    {shows.length === 0 && !error && <Loading />}
+                {shows.map(s => (
+                    <Col key={s.id} >
+                        <Card className="mt-2">
+                            {getImageUrl(s.images) && <Card.Img variant="top" src={getImageUrl(s.images)!} />}
 
-                    {shows.map(s => (
-                        <Col key={s.id} >
-                            <Card className="mt-2">
-                                {getImageUrl(s.images) && <Card.Img variant="top" src={getImageUrl(s.images)!} />}
-
-                                <Card.Body>
-                                    <Card.Title>{s.title}</Card.Title>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </Container>
-        </>
+                            <Card.Body>
+                                <Card.Title>{s.title}</Card.Title>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
     );
 };
