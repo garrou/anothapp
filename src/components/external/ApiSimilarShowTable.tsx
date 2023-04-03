@@ -37,7 +37,7 @@ export default function ApiSimilarShowTable({ showId }: Props) {
                     {shows.map(s => (
                         <tr key={s.id}>
                             <td>
-                                <a href={`/discover/series/${s.id}`} className="text-dark">{s.title}</a>
+                                <a href={`/add/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
                         </tr>
                     ))}

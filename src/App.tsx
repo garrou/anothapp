@@ -4,11 +4,9 @@ import Home from "./views/Home";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Discover from "./views/discover/Discover";
-import WatchList from "./views/user/WatchList";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
 import SeriesDetails from "./views/user/SerieDetails";
-import ShowSeasons from "./components/external/ApiSeasonsShowRow";
 import SeasonDetails from "./views/user/SeasonDetails";
 import NotFound from "./views/NotFound";
 import CurrentMonth from "./views/user/CurrentMonth";
@@ -28,8 +26,8 @@ function App() {
           <Route path="/series/:id" element={<SeriesDetails />} />
           <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
 
-          <Route path="/discover/series" element={<Discover />} />
-          <Route path="/discover/series/:id" element={<ShowDetails />} />
+          <Route path="/add/series" element={<Discover />} />
+          <Route path="/add/series/:id" element={<ShowDetails />} />
 
           <Route path="/month" element={<CurrentMonth />} />
           <Route path="/profile" element={<Profile />} />

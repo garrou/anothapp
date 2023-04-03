@@ -36,6 +36,8 @@ export default function CurrentMonth() {
 
             {isLoad && !error && <Loading />}
 
+            {seasons.length == 0 && <p className="text-center mt-3">Aucun visionnage ce mois</p>}
+
             <Table className="mt-3">
                 <tbody>
                     {seasons.map(s => (

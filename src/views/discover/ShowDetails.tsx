@@ -46,7 +46,7 @@ export default function ShowDetails() {
 
     return (
         <Container>
-            <Navigation url={'/discover/series'} />
+            <Navigation url={'/add/series'} />
 
             {!show && !error && <Loading />}
 

@@ -13,11 +13,11 @@ export default function ShowsRow() {
     const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
-        getShows(10);
+        getShows();
     }, []);
 
-    const getShows = async (limit: number) => {
-        const resp = await showService.getShows(limit);
+    const getShows = async () => {
+        const resp = await showService.getShows();
 
         if (resp.status === 200) {
             const data: ShowPreview[] = await resp.json();
@@ -26,12 +26,6 @@ export default function ShowsRow() {
         } else {
             setError(await resp.json());
         }
-    }
-
-    const loadShows = (e: any) => {
-        e.preventDefault();
-
-        getShows(e.target.nbDisplay.value);
     }
 
     const onSubmit = async (e: any) => {
@@ -55,29 +49,14 @@ export default function ShowsRow() {
             {isLoad && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
-            
-            <Row xs={1} md={2}>
-                <Col>
-                    <Form className="mt-3" onSubmit={onSubmit}>
-                        <Form.Group className="mb-3" controlId="titleSearch">
-                            <Form.Label>Titre de la série</Form.Label>
-                            <Form.Control type="text" placeholder="Titre" required />
-                        </Form.Group>
-                        <Button variant="outline-dark" type="submit">Rechercher</Button>
-                    </Form>
-                </Col>
-                <Col>
-                    <Form className="mt-3" onSubmit={loadShows}>
-                        <Form.Group className="mb-3" controlId="nbDisplay">
-                            <Form.Label>Nombre de séries à afficher</Form.Label>
-                            <Form.Control type="number" min={10} required />
-                        </Form.Group>
-                        <Button variant="outline-dark" type="submit">Valider</Button>
-                    </Form>
-                </Col>
-            </Row>
 
-            <hr />
+            <Form className="mt-3" onSubmit={onSubmit}>
+                <Form.Group className="mb-3" controlId="titleSearch">
+                    <Form.Label>Titre de la série</Form.Label>
+                    <Form.Control type="text" placeholder="Titre" required />
+                </Form.Group>
+                <Button variant="outline-dark" type="submit">Rechercher</Button>
+            </Form>
 
             {shows.length === 0 && <p>Aucune série</p>}
 

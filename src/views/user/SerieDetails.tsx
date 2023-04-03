@@ -60,7 +60,7 @@ export default function SeriesDetails() {
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
-                    <Link to={`/discover/series/${show.id}`} className="text-dark">
+                    <Link to={`/add/series/${show.id}`} className="text-dark">
                         <h1 className="header">{show.title}</h1>
                     </Link>
                     <Button variant="outline-danger" onClick={onClick}>Supprimer</Button>
