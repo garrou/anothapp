@@ -48,7 +48,7 @@ export default function CurrentMonth() {
                             <td>
                                 <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
-                            <td>Saison : {s.number}</td>
+                            <td>Saison {s.number}</td>
                         </tr>
                     ))}
                 </tbody>
