@@ -95,14 +95,6 @@ const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<R
     });
 }
 
-const getToContinue = async () => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows/watching`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
 const getViewedCurrentMonth = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed/month`, {
         headers: {
@@ -127,6 +119,15 @@ const getShowsToContinue = async () => {
     });
 }
 
+const updateShowsToContinue = async (id: number) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/watching`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        },
+        method: 'PATCH'
+    });
+}
+
 export default { 
     addSeason, 
     addShow, 
@@ -138,8 +139,8 @@ export default {
     getShows,
     getShowsByTitle,
     getShowsToContinue,
-    getToContinue,
     getViewedCurrentMonth,
     getViewedTimeByShowId,
-    getViewedTimeByShowIdBySeason
+    getViewedTimeByShowIdBySeason,
+    updateShowsToContinue
 };

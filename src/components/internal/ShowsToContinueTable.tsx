@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, Table } from "react-bootstrap";
+import { Button, Image, Table } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowContinue } from "../../models/internal/ShowContinue";
 import showService from "../../services/showService";
@@ -27,6 +27,18 @@ export default function ShowsToContinueTable() {
         }
     }
 
+    const stopWatching = async (id: number) => {
+        if (window.confirm('Arrêter la série ?')) {
+            const resp = await showService.updateShowsToContinue(id);
+
+            if (resp.status === 200) {
+                window.alert("La série est arrêtée")
+            } else {
+                setError(await resp.json());
+            }
+        }
+    }
+
     return (
         <>
             {isLoad && !error && <Loading />}
@@ -44,6 +56,9 @@ export default function ShowsToContinueTable() {
                                 <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
                             <td>A voir : {s.nb} saison(s)</td>
+                            <td>
+                                <Button variant="outline-danger" className="btn-sm" onClick={() => stopWatching(s.id)}>Arrêter la série</Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
