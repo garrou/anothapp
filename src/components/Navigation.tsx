@@ -26,7 +26,7 @@ export default function Navigation({ url }: Props) {
                         <Nav defaultActiveKey={url} className="me-auto">
                             <Nav.Link href="/series">Mes séries</Nav.Link>
                             <Nav.Link href="/add/series">Ajouter</Nav.Link>
-                            <Nav.Link href="/month">Ce mois</Nav.Link>
+                            <Nav.Link href="/month">Visionnage</Nav.Link>
                             <Nav.Link href="/profile">Profil</Nav.Link>
                             <Button variant="outline-dark" className="btn-sm" onClick={onClick}>Se déconnecter</Button>
                         </Nav>

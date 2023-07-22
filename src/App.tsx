@@ -9,7 +9,7 @@ import ShowDetails from "./views/discover/ShowDetails";
 import SeriesDetails from "./views/user/SerieDetails";
 import SeasonDetails from "./views/user/SeasonDetails";
 import NotFound from "./views/NotFound";
-import CurrentMonth from "./views/user/CurrentMonth";
+import ViewingMonth from "./views/user/ViewingMonth";
 import Register from "./views/auth/Register";
 import Login from "./views/auth/Login";
 
@@ -29,7 +29,7 @@ function App() {
           <Route path="/add/series" element={<Discover />} />
           <Route path="/add/series/:id" element={<ShowDetails />} />
 
-          <Route path="/month" element={<CurrentMonth />} />
+          <Route path="/month" element={<ViewingMonth />} />
           <Route path="/profile" element={<Profile />} />
 
           <Route path="*" element={<NotFound />} />

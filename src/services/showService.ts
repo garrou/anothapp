@@ -95,8 +95,8 @@ const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<R
     });
 }
 
-const getViewedCurrentMonth = async () => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed/month`, {
+const getViewedMonthAgo = async (month: number) => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed?month=${month}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -148,7 +148,7 @@ export default {
     getShowsByTitle,
     getShowsToContinue,
     getShowsToResume,
-    getViewedCurrentMonth,
+    getViewedMonthAgo,
     getViewedTimeByShowId,
     getViewedTimeByShowIdBySeason,
     updateShowsToContinue
