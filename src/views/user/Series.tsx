@@ -3,6 +3,7 @@ import Navigation from "../../components/Navigation";
 import NotStartedShowsRow from "../../components/internal/NotStartedShowsRow";
 import ShowsRow from "../../components/internal/ShowsRow";
 import ShowsToContinueTable from "../../components/internal/ShowsToContinueTable";
+import ShowsToResumeTable from "../../components/internal/ShowsToResumeTable";
 
 export default function Series() {
     
@@ -19,6 +20,9 @@ export default function Series() {
                 </Tab>
                 <Tab eventKey="continue" title="Continuer">
                     <ShowsToContinueTable />
+                </Tab>
+                <Tab eventKey="resume" title="Reprendre">
+                    <ShowsToResumeTable />
                 </Tab>
                 <Tab eventKey="not-started" title="Commencer">
                     <NotStartedShowsRow />

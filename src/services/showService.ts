@@ -119,6 +119,14 @@ const getShowsToContinue = async () => {
     });
 }
 
+const getShowsToResume = async () => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows/resume`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
 const updateShowsToContinue = async (id: number) => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/watching`, {
         headers: {
@@ -139,6 +147,7 @@ export default {
     getShows,
     getShowsByTitle,
     getShowsToContinue,
+    getShowsToResume,
     getViewedCurrentMonth,
     getViewedTimeByShowId,
     getViewedTimeByShowIdBySeason,
