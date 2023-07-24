@@ -9,16 +9,15 @@ import ApiShowCard from "./ApiShowCard";
 
 export default function ApiDiscoverTitleRow() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [title, setTitle] = useState<string>('');
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
-        getShowsToDiscover();
+        getShowsToDiscover("");
     }, []);
 
-    const getShowsToDiscover = async () => {
-        const resp: Response = await searchService.discoverShows();
+    const getShowsToDiscover = async (title: string) => {
+        const resp: Response = await searchService.discoverShows(title);
 
         if (resp.status === 200) {
             const data: ApiShowPreview[] = await resp.json();
@@ -31,19 +30,9 @@ export default function ApiDiscoverTitleRow() {
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
-
         setShows([]);
         setIsLoad(true);
-        
-        const resp: Response = await searchService.getShowByTitle(title);
-
-        if (resp.status === 200) {
-            const data: ApiShowPreview[] = await resp.json();
-            setIsLoad(false);
-            setShows(data);
-        } else {
-            setError(await resp.json());
-        }
+        getShowsToDiscover(e.target.titleSearch.value);
     }
     
     return (
@@ -51,7 +40,7 @@ export default function ApiDiscoverTitleRow() {
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
                     <Form.Label>Titre de la série</Form.Label>
-                    <Form.Control type="text" placeholder="Titre" onChange={(e => setTitle(e.target.value))} required />
+                    <Form.Control type="text" placeholder="Titre" required />
                 </Form.Group>
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>

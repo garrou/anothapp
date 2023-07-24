@@ -2,16 +2,8 @@ const getHomeImages = () => {
     return fetch(`${process.env.REACT_APP_SERVER}/intro/images`);
 }
 
-const discoverShows = (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/discover`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getShowByTitle = (title: string): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/search/shows/titles/${title}`, {
+const discoverShows = (title: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows?title=${title}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -92,6 +84,5 @@ export default {
     getSeasonsByShowId, 
     getShowById, 
     getShowsByKind,
-    getShowByTitle,
     getSimilarByShowId
 };

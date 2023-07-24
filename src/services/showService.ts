@@ -2,8 +2,8 @@ import { SeasonPreview } from "../models/internal/SeasonPreview";
 import { ApiShowPreview } from "../models/external/ApiShowPreview";
 import { ApiShowDetails } from "../models/external/ApiShowDetails";
 
-const getShows = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
+const getShows = async (title: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/shows?title=${title}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -18,14 +18,6 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
         body: JSON.stringify(show)
-    });
-}
-
-const getShowsByTitle = async (title: string): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows/titles/${title}`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
     });
 }
 
@@ -145,7 +137,6 @@ export default {
     getSeasonInfo, 
     getSeasonsByShow, 
     getShows,
-    getShowsByTitle,
     getShowsToContinue,
     getShowsToResume,
     getViewedMonthAgo,
