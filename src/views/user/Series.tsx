@@ -15,15 +15,15 @@ export default function Series() {
                 defaultActiveKey="series"
                 className="my-3"
             >
-                <Tab eventKey="series" title="Séries">
+                <Tab eventKey="series" title="Series">
                     <ShowsRow />
                 </Tab>
                 <Tab eventKey="continue" title="Voir">
                     <ShowsToContinueTable />
                 </Tab>
-                <Tab eventKey="resume" title="Reprendre">
+                {/* <Tab eventKey="resume" title="Reprendre">
                     <ShowsToResumeTable />
-                </Tab>
+                </Tab> */}
                 <Tab eventKey="not-started" title="Commencer">
                     <NotStartedShowsRow />
                 </Tab>
