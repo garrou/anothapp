@@ -18,7 +18,7 @@ export default function Series() {
                 <Tab eventKey="series" title="Séries">
                     <ShowsRow />
                 </Tab>
-                <Tab eventKey="continue" title="Continuer">
+                <Tab eventKey="continue" title="Voir">
                     <ShowsToContinueTable />
                 </Tab>
                 <Tab eventKey="resume" title="Reprendre">
