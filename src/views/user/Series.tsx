@@ -15,7 +15,7 @@ export default function Series() {
                 defaultActiveKey="series"
                 className="my-3"
             >
-                <Tab eventKey="series" title="Mes séries">
+                <Tab eventKey="series" title="Séries">
                     <ShowsRow />
                 </Tab>
                 <Tab eventKey="continue" title="Continuer">

@@ -57,7 +57,7 @@ export default function ShowsToContinueTable() {
                             </td>
                             <td>A voir : {s.nb} saison(s)</td>
                             <td>
-                                <Button variant="outline-danger" className="btn-sm" onClick={() => stopWatching(s.id)}>Arrêter la série</Button>
+                                <Button variant="outline-danger" className="btn-sm" onClick={() => stopWatching(s.id)}>Arrêter</Button>
                             </td>
                         </tr>
                     ))}

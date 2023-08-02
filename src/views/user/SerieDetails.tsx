@@ -76,10 +76,10 @@ export default function SeriesDetails() {
                     defaultActiveKey="seasons"
                     className="my-3"
                 >
-                    <Tab eventKey="seasons" title="Mes saisons">
+                    <Tab eventKey="seasons" title="Saisons">
                         <RowSeasonsCards showId={show.id} />
                     </Tab>
-                    <Tab eventKey="add" title="Ajouter une saison">
+                    <Tab eventKey="add" title="Ajouter">
                         <ApiSeasonsShowRow show={show} />
                     </Tab>
                     <Tab eventKey="images" title="Images">

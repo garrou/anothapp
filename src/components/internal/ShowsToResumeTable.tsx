@@ -56,7 +56,7 @@ export default function ShowsToContinueTable() {
                                 <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
                             <td>
-                                <Button variant="outline-success" className="btn-sm" onClick={() => resumeWatching(s.id)}>Reprendre la série</Button>
+                                <Button variant="outline-success" className="btn-sm" onClick={() => resumeWatching(s.id)}>Reprendre</Button>
                             </td>
                         </tr>
                     ))}
