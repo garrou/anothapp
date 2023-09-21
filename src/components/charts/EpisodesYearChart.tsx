@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { Bar, BarChart, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
@@ -39,7 +39,7 @@ export default function EpisodesYearChart() {
                         <BarChart className="mt-3" width={250} height={300} data={episodesByYear}>
                             <XAxis dataKey="label" />
                             <YAxis ticks={Array.from({length: 11}, (_, i) => i * 300)} />
-                            {/* <Tooltip /> */}
+                            <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#4287f5" stroke="#4287f5" name="Episodes" />
                         </BarChart>

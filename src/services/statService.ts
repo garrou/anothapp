@@ -6,6 +6,14 @@ const getNbShows = async (): Promise<Response> => {
     });
 }
 
+const getNbEpisodes = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/count/episodes`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
 const getTotalTime = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/stats/time`, {
         headers: {
@@ -54,8 +62,8 @@ const getNbEpisodesByYear = async (): Promise<Response> => {
     });
 }
 
-const getNbEpisodes = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/count/episodes`, {
+const getRankingShowsTime = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/shows/ranking`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -68,6 +76,7 @@ export default {
     getNbShows,
     getNbSeasonsByMonth,
     getNbSeasonsByYears,
+    getRankingShowsTime,
     getTimeByYears,
     getTimeCurrentMonth,
     getTotalTime
