@@ -50,8 +50,7 @@ export default function ShowsRow() {
 
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
-                    <Form.Label>Titre de la série</Form.Label>
-                    <Form.Control type="text" placeholder="Titre" />
+                    <Form.Control type="text" placeholder="Titre de la série" />
                 </Form.Group>
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>

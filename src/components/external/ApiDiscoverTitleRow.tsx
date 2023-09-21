@@ -39,8 +39,7 @@ export default function ApiDiscoverTitleRow() {
         <>
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
-                    <Form.Label>Titre de la série</Form.Label>
-                    <Form.Control type="text" placeholder="Titre" required />
+                    <Form.Control type="text" placeholder="Titre de la série" required />
                 </Form.Group>
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
