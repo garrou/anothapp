@@ -1,4 +1,4 @@
-import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Guard from "./Guard";
 
@@ -32,7 +32,7 @@ export default function Navigation({ url }: Props) {
                         </NavDropdown>
                         <NavDropdown title="Profil" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/profile">Afficher</NavDropdown.Item>
-                            <NavDropdown.Item onClick={onClick}>Se déconnecter</NavDropdown.Item>
+                            <NavDropdown.Item onClick={onClick} className="text-danger">Se déconnecter</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Container>
