@@ -55,7 +55,7 @@ export default function ShowsRow() {
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
 
-            {shows.length === 0 && newShows.length === 0 && <p>Aucune série</p>}
+            {shows.length === 0 && newShows.length === 0 && <p className="text-center mt-3">Aucune série</p>}
 
             <Row xs={2} md={3} lg={4}>
                 {shows.length !== 0 && shows.map(s => (

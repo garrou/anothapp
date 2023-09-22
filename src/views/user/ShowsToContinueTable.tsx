@@ -6,11 +6,14 @@ import showService from "../../services/showService";
 import AlertError from "../../components/AlertError";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
+import ModalConfirm from "../../components/internal/ModalConfirm";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showToStop, setShowToStop] = useState<number>(-1);
 
     useEffect(() => {
         getShowsToContinue();
@@ -28,15 +31,18 @@ export default function ShowsToContinueTable() {
         }
     }
 
-    const stopWatching = async (id: number) => {
-        if (window.confirm('Arrêter la série ?')) {
-            const resp = await showService.updateShowsToContinue(id);
+    const callModal = (id: number) => {
+        setShowModal(true);
+        setShowToStop(id);
+    }
 
-            if (resp.status === 200) {
-                window.alert("La série est arrêtée")
-            } else {
-                setError(await resp.json());
-            }
+    const stopWatching = async () => {
+        const resp = await showService.updateShowsToContinue(showToStop);
+
+        if (resp.status === 200) {
+            setShowModal(false);
+        } else {
+            setError(await resp.json());
         }
     }
 
@@ -44,9 +50,19 @@ export default function ShowsToContinueTable() {
         <Container>
             <Navigation url={'/continue'} />
 
+            <ModalConfirm
+                show={showModal}
+                title="Arrêter la série"
+                body="Voulez-vous arrêter cette série ?"
+                handleClose={() => setShowModal(false)}
+                handleConfirm={stopWatching}
+            />
+
             {isLoad && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
+
+            {shows.length === 0 && <p className="text-center mt-3">Vous-êtes à jour</p>}
 
             <Table className="mt-3">
                 <tbody>
@@ -60,7 +76,7 @@ export default function ShowsToContinueTable() {
                             </td>
                             <td>A voir : {s.nb} saison(s)</td>
                             <td>
-                                <Button variant="outline-danger" className="btn-sm" onClick={() => stopWatching(s.id)}>Arrêter</Button>
+                                <Button variant="outline-danger" className="btn-sm" onClick={() => callModal(s.id)}>Arrêter</Button>
                             </td>
                         </tr>
                     ))}

@@ -6,11 +6,14 @@ import { ShowPreview } from "../../models/internal/ShowPreview";
 import Loading from "../../components/Loading";
 import AlertError from "../../components/AlertError";
 import Navigation from "../../components/Navigation";
+import ModalConfirm from "../../components/internal/ModalConfirm";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    const [error, setError] = useState<ErrorMessage | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showToResume, setShowToResume] = useState<number>(-1);
 
     useEffect(() => {
         getShowsToResume();
@@ -28,15 +31,18 @@ export default function ShowsToContinueTable() {
         }
     }
 
-    const resumeWatching = async (id: number) => {
-        if (window.confirm('Reprendre la série ?')) {
-            const resp = await showService.updateShowsToContinue(id);
+    const callModal = (id: number) => {
+        setShowModal(true);
+        setShowToResume(id);
+    }
 
-            if (resp.status === 200) {
-                window.alert("La série est reprise")
-            } else {
-                setError(await resp.json());
-            }
+    const resumeWatching = async () => {
+        const resp = await showService.updateShowsToContinue(showToResume);
+
+        if (resp.status === 200) {
+            window.alert("La série est reprise")
+        } else {
+            setError(await resp.json());
         }
     }
 
@@ -47,6 +53,15 @@ export default function ShowsToContinueTable() {
             {isLoad && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
+
+            <ModalConfirm
+                show={showModal}
+                color = "success"
+                title="Reprendre la série"
+                body="Voulez-vous reprendre cette série ?"
+                handleClose={() => setShowModal(false)}
+                handleConfirm={resumeWatching}
+            />
 
             <Table className="mt-3">
                 <tbody>
@@ -59,7 +74,7 @@ export default function ShowsToContinueTable() {
                                 <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
                             <td>
-                                <Button variant="outline-success" className="btn-sm" onClick={() => resumeWatching(s.id)}>Reprendre</Button>
+                                <Button variant="outline-success" className="btn-sm" onClick={() => callModal(s.id)}>Reprendre</Button>
                             </td>
                         </tr>
                     ))}

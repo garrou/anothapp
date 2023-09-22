@@ -37,6 +37,8 @@ export default function NotStartedShowsRow() {
 
             {error && <AlertError message={error.message} />}
 
+            {notStartedShows.length === 0 && <p className="text-center mt-3">Aucune série à voir</p>}
+
             <Row xs={2} md={3} lg={4}>
                 {notStartedShows.map(s => (
                     <Col key={s.id} >
