@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
-import AlertError from "../AlertError";
-import Loading from "../Loading";
-import ShowCard from "./ShowCard";
+import AlertError from "../../components/AlertError";
+import Loading from "../../components/Loading";
+import ShowCard from "../../components/internal/ShowCard";
+import Navigation from "../../components/Navigation";
 
 export default function NotStartedShowsRow() {
     const [notStartedShows, setNotStartedShows] = useState<ShowPreview[]>([]);
@@ -29,7 +30,8 @@ export default function NotStartedShowsRow() {
     }
 
     return (
-        <>
+        <Container>
+            <Navigation url={'/not-started'} />
 
             {isLoad && !error && <Loading />}
 
@@ -42,6 +44,6 @@ export default function NotStartedShowsRow() {
                     </Col>
                 ))}
             </Row>
-        </>
+        </Container>
     );
 }

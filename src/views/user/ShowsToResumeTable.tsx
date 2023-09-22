@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import { Button, Image, Table } from "react-bootstrap";
+import { Button, Container, Image, Table } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
-import { ShowContinue } from "../../models/internal/ShowContinue";
 import showService from "../../services/showService";
-import AlertError from "../AlertError";
-import Loading from "../Loading";
+import { ShowPreview } from "../../models/internal/ShowPreview";
+import Loading from "../../components/Loading";
+import AlertError from "../../components/AlertError";
+import Navigation from "../../components/Navigation";
 
 export default function ShowsToContinueTable() {
-    const [shows, setShows] = useState<ShowContinue[]>([]);
+    const [shows, setShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
-        getShowsToContinue();
+        getShowsToResume();
     }, []);
 
-    const getShowsToContinue = async () => {
-        const resp = await showService.getShowsToContinue();
+    const getShowsToResume = async () => {
+        const resp = await showService.getShowsToResume();
 
         if (resp.status === 200) {
-            const data: ShowContinue[] = await resp.json();
+            const data: ShowPreview[] = await resp.json();
             setShows(data);
             setIsLoad(false);
         } else {
@@ -27,12 +28,12 @@ export default function ShowsToContinueTable() {
         }
     }
 
-    const stopWatching = async (id: number) => {
-        if (window.confirm('Arrêter la série ?')) {
+    const resumeWatching = async (id: number) => {
+        if (window.confirm('Reprendre la série ?')) {
             const resp = await showService.updateShowsToContinue(id);
 
             if (resp.status === 200) {
-                window.alert("La série est arrêtée")
+                window.alert("La série est reprise")
             } else {
                 setError(await resp.json());
             }
@@ -40,7 +41,9 @@ export default function ShowsToContinueTable() {
     }
 
     return (
-        <>
+        <Container>
+            <Navigation url={'/resume'} />
+
             {isLoad && !error && <Loading />}
 
             {error && <AlertError message={error.message} />}
@@ -55,14 +58,13 @@ export default function ShowsToContinueTable() {
                             <td>
                                 <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
                             </td>
-                            <td>A voir : {s.nb} saison(s)</td>
                             <td>
-                                <Button variant="outline-danger" className="btn-sm" onClick={() => stopWatching(s.id)}>Arrêter</Button>
+                                <Button variant="outline-success" className="btn-sm" onClick={() => resumeWatching(s.id)}>Reprendre</Button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
-        </>
+        </Container>
     );
 }

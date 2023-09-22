@@ -12,6 +12,9 @@ import NotFound from "./views/NotFound";
 import ViewingMonth from "./views/user/ViewingMonth";
 import Register from "./views/auth/Register";
 import Login from "./views/auth/Login";
+import ShowsToContinueTable from "./views/user/ShowsToContinueTable";
+import NotStartedShowsRow from "./views/user/NotStartedShowsRow";
+import ShowsToResumeTable from "./views/user/ShowsToResumeTable";
 
 function App() {
   return (
@@ -26,8 +29,12 @@ function App() {
           <Route path="/series/:id" element={<SeriesDetails />} />
           <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
 
-          <Route path="/add/series" element={<Discover />} />
-          <Route path="/add/series/:id" element={<ShowDetails />} />
+          <Route path="/continue" element={<ShowsToContinueTable />} />
+          <Route path="/not-started" element={<NotStartedShowsRow />} />
+          <Route path="/resume" element={<ShowsToResumeTable />} />
+
+          <Route path="/add-series" element={<Discover />} />
+          <Route path="/add-series/:id" element={<ShowDetails />} />
 
           <Route path="/month" element={<ViewingMonth />} />
           <Route path="/profile" element={<Profile />} />

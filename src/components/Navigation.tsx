@@ -1,4 +1,4 @@
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Guard from "./Guard";
 
@@ -18,19 +18,23 @@ export default function Navigation({ url }: Props) {
         <>
             <Guard />
 
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light">
                 <Container>
                     <Navbar.Brand href="/series">Anothapp</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav defaultActiveKey={url} className="me-auto">
-                            <Nav.Link href="/series">Mes séries</Nav.Link>
-                            <Nav.Link href="/add/series">Ajouter</Nav.Link>
-                            <Nav.Link href="/month">Ces derniers mois</Nav.Link>
-                            <Nav.Link href="/profile">Profil</Nav.Link>
-                            <Button variant="outline-dark" className="btn-sm" onClick={onClick}>Se déconnecter</Button>
-                        </Nav>
-                    </Navbar.Collapse>
+                    <Nav defaultActiveKey={url} className="me-auto">
+                        <NavDropdown title="Séries" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/series">Mes séries</NavDropdown.Item>
+                            <NavDropdown.Item href="/continue">À suivre</NavDropdown.Item>
+                            <NavDropdown.Item href="/add-series">Ajouter</NavDropdown.Item>
+                            <NavDropdown.Item href="/month">Vues ces derniers mois</NavDropdown.Item>
+                            <NavDropdown.Item href="/not-started">À voir</NavDropdown.Item>
+                            <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Profil" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/profile">Afficher</NavDropdown.Item>
+                            <NavDropdown.Item onClick={onClick}>Se déconnecter</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
                 </Container>
             </Navbar>
         </>

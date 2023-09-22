@@ -7,7 +7,7 @@ export default function Discover() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={'/add/series'} />
+            <Navigation url={'/add-series'} />
 
             <Tabs
                 defaultActiveKey="title"
