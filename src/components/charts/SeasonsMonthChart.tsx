@@ -37,7 +37,7 @@ export default function SeasonsMonthChart() {
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart className="mt-3" width={250} height={300} data={seasonsByMonths}>
                             <XAxis dataKey="label" />
-                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 20)} />
+                            <YAxis ticks={Array.from(seasonsByMonths, (s) => Math.round(s.value / 20) * 20)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#ae34eb" stroke="#ae34eb" name="Saisons" />

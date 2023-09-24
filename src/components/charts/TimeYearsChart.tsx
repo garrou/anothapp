@@ -38,7 +38,7 @@ export default function TimeYearsChart() {
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart className="mt-3" width={250} height={300} data={timeByYears}>
                             <XAxis dataKey="label" />
-                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 150)} />
+                            <YAxis ticks={Array.from(timeByYears, (t) => Math.round(t.value / 100) * 100)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#32a850" stroke="#32a850" name="Temps en heures" />

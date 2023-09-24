@@ -44,7 +44,7 @@ export default function ShowsTimeRankingChart() {
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart className="mt-3" width={250} height={300} data={shows}>
                             <XAxis dataKey="title" />
-                            <YAxis ticks={Array.from({ length: 11 }, (_, i) => i * 100)} />
+                            <YAxis ticks={Array.from(shows, (s) => Math.round(s.time / 20) * 20)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="time" fill="#0bb5b8" stroke="#0bb5b8" name="Heures" />

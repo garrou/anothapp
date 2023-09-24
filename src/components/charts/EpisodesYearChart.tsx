@@ -38,7 +38,7 @@ export default function EpisodesYearChart() {
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart className="mt-3" width={250} height={300} data={episodesByYear}>
                             <XAxis dataKey="label" />
-                            <YAxis ticks={Array.from({length: 11}, (_, i) => i * 300)} />
+                            <YAxis ticks={Array.from(episodesByYear, (e) => Math.round(e.value / 500) * 500)} />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="value" fill="#4287f5" stroke="#4287f5" name="Episodes" />
