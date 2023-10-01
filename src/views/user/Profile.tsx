@@ -10,6 +10,7 @@ import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
 import NbEpisodesCard from "../../components/internal/NbEpisodesCard";
 import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
+import MonthRecordViewingTime from "../../components/internal/MonthRecordViewingTime";
 
 export default function Profile() {
 
@@ -26,6 +27,7 @@ export default function Profile() {
                     <NbShowsCard />
                     <NbEpisodesCard />
                     <TotalViewingTimeCard /> 
+                    <MonthRecordViewingTime />
                 </Col>
             </Row>
 

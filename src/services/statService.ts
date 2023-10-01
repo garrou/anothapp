@@ -70,7 +70,16 @@ const getRankingShowsTime = async (): Promise<Response> => {
     });
 }
 
+const getMonthRecord = async (): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/time/month-best`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    });
+}
+
 export default {
+    getMonthRecord,
     getNbEpisodes,
     getNbEpisodesByYear,
     getNbShows,
