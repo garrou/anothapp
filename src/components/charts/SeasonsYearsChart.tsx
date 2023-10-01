@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
+import CustomBarChart from "./CustomBarChart";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
@@ -32,20 +31,13 @@ export default function SeasonsYearsChart() {
 
             {error && <AlertError message={error.message} />}
 
-            {seasonsByYears && <Card className="mt-2">
-                <Card.Body>
-                    <Card.Title>Saisons par année</Card.Title>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart className="mt-3" width={250} height={300} data={seasonsByYears}>
-                            <XAxis dataKey="label" />
-                            <YAxis ticks={Array.from(seasonsByYears, (s) => Math.round(s.value / 20) * 20)} />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="value" fill="#f5962a" stroke="#f5962a" name="Saisons" />
-                        </BarChart>                       
-                    </ResponsiveContainer>
-                </Card.Body>
-            </Card>}
+            {seasonsByYears && <CustomBarChart 
+                color="#f5962a" 
+                title="Saisons par années" 
+                data={seasonsByYears} 
+                legend="Saisons"
+                ratio={20}
+            />}
         </>
     );
 }

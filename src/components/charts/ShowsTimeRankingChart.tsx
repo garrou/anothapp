@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from "recharts";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
 import AlertError from "../AlertError";
 import Loading from "../Loading";
+import CustomBarChart from "./CustomBarChart";
 
 interface RankedShow {
 
@@ -38,20 +37,13 @@ export default function ShowsTimeRankingChart() {
 
             {error && <AlertError message={error.message} />}
 
-            {shows && <Card className="mt-2">
-                <Card.Body>
-                    <Card.Title>10 séries les plus chronophages</Card.Title>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart className="mt-3" width={250} height={300} data={shows}>
-                            <XAxis dataKey="title" />
-                            <YAxis ticks={Array.from(shows, (s) => Math.round(s.time / 20) * 20)} />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="time" fill="#0bb5b8" stroke="#0bb5b8" name="Heures" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </Card.Body>
-            </Card>}
+            {shows && <CustomBarChart 
+                color="#0bb5b8" 
+                title="10 séries les plus chronophages" 
+                data={shows} 
+                legend="Heures"
+                ratio={20}
+            />}
         </>
     );
 }
