@@ -23,8 +23,6 @@ export default function MonthRecordViewingTime() {
     const getMonthRecord = async () => {
         const resp = await statService.getMonthRecord();
 
-        console.log(resp)
-
         if (resp.status === 200) {
             setRecord(await resp.json());
         } else {
