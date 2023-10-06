@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Container, Image, ProgressBar, Stack, Tab, Tabs } from "react-bootstrap";
+import { Button, Card, Col, Container, Image, ProgressBar, Row, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import RowSeasonsCards from "../../components/internal/SeasonsCardsRow";
 import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
-import ApiSeasonsShowRow from "../../components/external/ApiSeasonsShowRow";
 import AlertError from "../../components/AlertError";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import ApiImagesRow from "../../components/external/ApiImagesRow";
 import { getImageUrl } from "../../models/external/ApiShowImage";
-import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import ModalConfirm from "../../components/internal/ModalConfirm";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
+import SeasonCard from "../../components/internal/SeasonCard";
+import ApiSeasonCard from "../../components/external/ApiSeasonCard";
+import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
+import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
+    const [similarShows, setSimilarShows] = useState<ApiSimilarShow[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -30,6 +32,7 @@ export default function SeriesDetails() {
         getShow();
         getSeasons();
         getApiSeasons();
+        getSimilarsShows();
     }, []);
 
     const getShow = async () => {
@@ -75,6 +78,17 @@ export default function SeriesDetails() {
                 </Card.Body>
             </Card>
         )
+    }
+
+    const getSimilarsShows = async () => {
+        const resp = await searchService.getSimilarByShowId(Number(id));
+
+        if (resp.status === 200) {
+            const data: ApiSimilarShow[] = await resp.json();
+            setSimilarShows(data);
+        } else {
+            setError(await resp.json());
+        }
     }
 
     const onDelete = async () => {
@@ -124,10 +138,22 @@ export default function SeriesDetails() {
                     className="my-3"
                 >
                     <Tab eventKey="seasons" title="Saisons">
-                        <RowSeasonsCards showId={Number(id)} seasons={seasons} />
+                        <Row xs={2} md={3} lg={4} className="mt-4">
+                            {seasons && seasons.map(s => (
+                                <Col key={s.number}>
+                                    <SeasonCard key={s.number} preview={s} showId={Number(id)} />
+                                </Col>
+                            ))}
+                        </Row>
                     </Tab>
                     <Tab eventKey="add" title="Ajouter">
-                        <ApiSeasonsShowRow show={show} seasons={apiSeasons} />
+                        <Row xs={2} md={3} lg={4} className="mt-4">
+                            {seasons && seasons.map(s => (
+                                <Col key={s.number}>
+                                    <ApiSeasonCard preview={s} show={show} />
+                                </Col>
+                            ))}
+                        </Row>
                     </Tab>
                     <Tab eventKey="images" title="Images">
                         <ApiImagesRow showId={show.id} />
