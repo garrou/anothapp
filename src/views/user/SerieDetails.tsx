@@ -15,7 +15,6 @@ import ModalConfirm from "../../components/internal/ModalConfirm";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import SeasonCard from "../../components/internal/SeasonCard";
 import ApiSeasonCard from "../../components/external/ApiSeasonCard";
-import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function SeriesDetails() {
@@ -23,7 +22,6 @@ export default function SeriesDetails() {
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
-    const [similarShows, setSimilarShows] = useState<ApiSimilarShow[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -32,7 +30,6 @@ export default function SeriesDetails() {
         getShow();
         getSeasons();
         getApiSeasons();
-        getSimilarsShows();
     }, []);
 
     const getShow = async () => {
@@ -80,17 +77,6 @@ export default function SeriesDetails() {
         )
     }
 
-    const getSimilarsShows = async () => {
-        const resp = await searchService.getSimilarByShowId(Number(id));
-
-        if (resp.status === 200) {
-            const data: ApiSimilarShow[] = await resp.json();
-            setSimilarShows(data);
-        } else {
-            setError(await resp.json());
-        }
-    }
-
     const onDelete = async () => {
         const resp = await showService.deleteShow(Number(id));
 
@@ -129,9 +115,9 @@ export default function SeriesDetails() {
 
                 <ViewingTimeShowCard showId={show.id} />
 
-                <div className="mt-3">
-                    {seasons && apiSeasons && buildProgressBar()}
-                </div>
+                {seasons && apiSeasons && <div className="mt-3">
+                    {buildProgressBar()}
+                </div>}
 
                 <Tabs
                     defaultActiveKey="seasons"
@@ -141,14 +127,14 @@ export default function SeriesDetails() {
                         <Row xs={2} md={3} lg={4} className="mt-4">
                             {seasons && seasons.map(s => (
                                 <Col key={s.number}>
-                                    <SeasonCard key={s.number} preview={s} showId={Number(id)} />
+                                    <SeasonCard preview={s} showId={Number(id)} />
                                 </Col>
                             ))}
                         </Row>
                     </Tab>
                     <Tab eventKey="add" title="Ajouter">
                         <Row xs={2} md={3} lg={4} className="mt-4">
-                            {seasons && seasons.map(s => (
+                            {apiSeasons && apiSeasons.map(s => (
                                 <Col key={s.number}>
                                     <ApiSeasonCard preview={s} show={show} />
                                 </Col>
