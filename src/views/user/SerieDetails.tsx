@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Image, Stack, Tab, Tabs } from "react-bootstrap";
+import { Button, Card, Container, Image, ProgressBar, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -15,16 +15,21 @@ import ApiImagesRow from "../../components/external/ApiImagesRow";
 import { getImageUrl } from "../../models/external/ApiShowImage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import ModalConfirm from "../../components/internal/ModalConfirm";
+import { SeasonPreview } from "../../models/internal/SeasonPreview";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
+    const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
+    const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         getShow();
+        getSeasons();
+        getApiSeasons();
     }, []);
 
     const getShow = async () => {
@@ -36,6 +41,40 @@ export default function SeriesDetails() {
         } else {
             setError(await resp.json());
         }
+    }
+
+    const getSeasons = async () => {
+        const resp = await showService.getSeasonsByShow(Number(id));
+
+        if (resp.status === 200) {
+            const data: SeasonPreview[] = await resp.json();
+            setSeasons(data);
+        } else {
+            setError(await resp.json());
+        }
+    }
+
+    const getApiSeasons = async () => {
+        const resp = await searchService.getSeasonsByShowId(Number(id));
+
+        if (resp.status === 200) {
+            const data: SeasonPreview[] = await resp.json();
+            setApiSeasons(data);
+        } else {
+            setError(await resp.json());
+        }
+    }
+
+    const buildProgressBar = () => {
+        const progress = Math.ceil(seasons.length / apiSeasons.length * 100);
+        return (
+            <Card>
+                <Card.Body>
+                    <Card.Title>Avancement</Card.Title>
+                    <ProgressBar animated variant="success" now={progress} label={`${progress}%`} />
+                </Card.Body>
+            </Card>
+        )
     }
 
     const onDelete = async () => {
@@ -52,7 +91,7 @@ export default function SeriesDetails() {
         <Container className="mb-3">
             <Navigation url={'/series'} />
 
-            <ModalConfirm 
+            <ModalConfirm
                 show={showModal}
                 handleClose={() => setShowModal(false)}
                 handleConfirm={onDelete}
@@ -76,17 +115,19 @@ export default function SeriesDetails() {
 
                 <ViewingTimeShowCard showId={show.id} />
 
-                <hr />
+                <div className="mt-3">
+                    {seasons && apiSeasons && buildProgressBar()}
+                </div>
 
                 <Tabs
                     defaultActiveKey="seasons"
                     className="my-3"
                 >
                     <Tab eventKey="seasons" title="Saisons">
-                        <RowSeasonsCards showId={show.id} />
+                        <RowSeasonsCards showId={Number(id)} seasons={seasons} />
                     </Tab>
                     <Tab eventKey="add" title="Ajouter">
-                        <ApiSeasonsShowRow show={show} />
+                        <ApiSeasonsShowRow show={show} seasons={apiSeasons} />
                     </Tab>
                     <Tab eventKey="images" title="Images">
                         <ApiImagesRow showId={show.id} />
