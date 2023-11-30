@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Redirect from "../../components/Redirect";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import profileService from "../../services/profileService";
@@ -30,7 +30,7 @@ export default function Login() {
         <Container>
             <Redirect />
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-3">
                 <Card.Body>

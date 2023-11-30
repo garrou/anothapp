@@ -3,7 +3,7 @@ import { Button, Container, Image, Table } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowContinue } from "../../models/internal/ShowContinue";
 import showService from "../../services/showService";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
@@ -60,7 +60,7 @@ export default function ShowsToContinueTable() {
 
             {isLoad && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {shows.length === 0 && <p className="text-center mt-3">Vous-êtes à jour</p>}
 

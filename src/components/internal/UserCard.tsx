@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { User } from "../../models/internal/User";
 import profileService from "../../services/profileService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 
 export default function UserCard() {
@@ -29,7 +29,7 @@ export default function UserCard() {
         <>
             {!user && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {user &&
                 <Card className="mt-2">

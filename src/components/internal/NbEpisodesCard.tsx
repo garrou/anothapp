@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 export default function NbEpisodesCard() {
     const [num, setNum] = useState<number>(0);
@@ -24,7 +24,7 @@ export default function NbEpisodesCard() {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import { Card } from "react-bootstrap";
 import { minsToStringHours } from "../../helpers/format";
 
@@ -32,7 +32,7 @@ export default function MonthRecordViewingTime() {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

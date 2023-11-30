@@ -5,7 +5,7 @@ import { getImageUrl } from "../../models/external/ApiShowImage";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
     preview: ApiShowPreview
@@ -34,7 +34,7 @@ export default function ApiShowCard({ preview }: Props) {
                     <Card.Title>{preview.title}</Card.Title>
                     <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
 
-                    {error && <AlertError message={error.message} />}
+                    {error && <CustomAlert variant="danger" message={error.message} />}
                 </Card.Body>
             </Card>
         </Link>

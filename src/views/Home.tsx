@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
-import AlertError from '../components/AlertError';
+import CustomAlert from '../components/CustomAlert';
 import { ErrorMessage } from '../models/internal/ErrorMessage';
 import searchService from '../services/searchService';
 import { getImageUrl } from '../models/external/ApiShowImage';
@@ -33,7 +33,7 @@ export default function Home() {
 
             <Button href='/login' variant='outline-dark'>Se connecter</Button>
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.length === 0 && !error && <Loading />}

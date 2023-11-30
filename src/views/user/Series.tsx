@@ -1,7 +1,7 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import { useState, useEffect } from "react";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import ShowCard from "../../components/internal/ShowCard";
@@ -50,7 +50,7 @@ export default function Series() {
 
             {isLoad && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">

@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 export default function ViewingTimeMonthCard() {
     const [time, setTime] = useState<number>(0);
@@ -25,7 +25,7 @@ export default function ViewingTimeMonthCard() {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

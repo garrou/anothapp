@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import CustomBarChart from "./CustomBarChart";
 
@@ -35,7 +35,7 @@ export default function ShowsTimeRankingChart() {
         <>
             {!shows && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {shows && <CustomBarChart 
                 color="#0bb5b8" 

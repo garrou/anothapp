@@ -4,7 +4,7 @@ import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
     preview: SeasonPreview
@@ -26,7 +26,7 @@ export default function ApiSeasonCard({ preview, show }: Props) {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
             
             <Card className="mt-2">
                 <Card.Body>

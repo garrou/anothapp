@@ -4,7 +4,7 @@ import { ApiShowKind } from "../../models/external/ApiShowKind";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
 
@@ -49,7 +49,7 @@ export default function ApiDiscoverKindsRow() {
                 {kinds.map(k => <option key={k.value} value={k.value}>{k.name}</option>)}
             </Form.Select>
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {shows.length === 0 && !error && <Loading />}
 

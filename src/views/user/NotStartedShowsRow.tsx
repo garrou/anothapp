@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import ShowCard from "../../components/internal/ShowCard";
 import Navigation from "../../components/Navigation";
@@ -35,7 +35,7 @@ export default function NotStartedShowsRow() {
 
             {isLoad && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {notStartedShows.length === 0 && <p className="text-center mt-3">Aucune série à voir</p>}
 

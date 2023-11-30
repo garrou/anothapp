@@ -5,7 +5,7 @@ import { formatDate } from "../../helpers/format";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ModalConfirm from "./ModalConfirm";
 
@@ -59,7 +59,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
                 handleConfirm={deleteSeason}
             />
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

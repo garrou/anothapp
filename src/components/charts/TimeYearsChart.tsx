@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import CustomBarChart from "./CustomBarChart";
 
@@ -29,7 +29,7 @@ export default function TimeYearsChart() {
         <>
             {!timeByYears && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {timeByYears && <CustomBarChart 
                 color="#32a850" 

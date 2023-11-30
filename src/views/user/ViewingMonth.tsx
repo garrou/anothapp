@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Image, Table } from "react-bootstrap";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
@@ -37,7 +37,7 @@ export default function ViewingMonth() {
         <Container className="mb-3">
             <Navigation url={'/month'} />
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {isLoad && !error && <Loading />}
 

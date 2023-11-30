@@ -3,7 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
 
@@ -46,7 +46,7 @@ export default function ApiDiscoverTitleRow() {
 
             {isLoad && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (

@@ -5,7 +5,7 @@ import searchService from "../../services/searchService";
 import { Button, Container, Stack, Tab, Tabs, Image } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import Loading from "../../components/Loading";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
@@ -50,7 +50,7 @@ export default function ShowDetails() {
 
             {!show && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {show && <>
 

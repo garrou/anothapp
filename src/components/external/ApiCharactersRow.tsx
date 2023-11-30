@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ApiCharacterCard from "./ApiCharacterCard";
 
@@ -33,7 +33,7 @@ export default function ApiCharactersRow({ showId }: Props) {
         <>
             {characters.length === 0 && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {characters.map(c => (

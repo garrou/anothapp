@@ -4,7 +4,7 @@ import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import Loading from "../../components/Loading";
-import AlertError from "../../components/AlertError";
+import CustomAlert from "../../components/CustomAlert";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
 
@@ -52,7 +52,7 @@ export default function ShowsToContinueTable() {
 
             {isLoad && !error && <Loading />}
 
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <ModalConfirm
                 show={showModal}

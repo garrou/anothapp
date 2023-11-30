@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import profileService from "../../services/profileService";
 import searchService from "../../services/searchService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
     showId: number;
@@ -42,7 +42,7 @@ export default function ApiImagesRow({ showId }: Props) {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {images && <Row xs={2} md={3} lg={4} className="mt-4">
                 {images.map(image => (

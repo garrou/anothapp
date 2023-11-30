@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import AlertError from "../AlertError";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
     showId: number
@@ -30,7 +30,7 @@ export default function ApiSimilarShowTable({ showId }: Props) {
 
     return (
         <>
-            {error && <AlertError message={error.message} />}
+            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {shows && <Table striped hover className="mt-3">
                 <tbody>
