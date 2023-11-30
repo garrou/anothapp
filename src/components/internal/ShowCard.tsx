@@ -7,6 +7,7 @@ interface Props {
 };
 
 export default function ShowCard({ preview }: Props) {
+
     return (
         <Card className="mt-2">
             <Link to={`/series/${preview.id}`}>
