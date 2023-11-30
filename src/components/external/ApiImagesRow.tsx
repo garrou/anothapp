@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import profileService from "../../services/profileService";
 import searchService from "../../services/searchService";
@@ -13,7 +12,7 @@ interface Props {
 export default function ApiImagesRow({ showId }: Props) {
     const [images, setImages] = useState<string[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
-    const navigate = useNavigate();
+    const [success, setSuccess] = useState<boolean>(false);
 
     useEffect(() => {
         getImagesByShowId(showId);
@@ -34,7 +33,7 @@ export default function ApiImagesRow({ showId }: Props) {
         const resp = await profileService.setProfilePicture(image);
 
         if (resp.status === 200) {
-            navigate('/profile');
+            setSuccess(true);
         } else {
             setError(await resp.json());
         }
@@ -43,6 +42,8 @@ export default function ApiImagesRow({ showId }: Props) {
     return (
         <>
             {error && <CustomAlert variant="danger" message={error.message} />}
+
+            {success && <CustomAlert variant="success" message={"Image de profil définie"} />}
 
             {images && <Row xs={2} md={3} lg={4} className="mt-4">
                 {images.map(image => (

@@ -19,17 +19,20 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [seasonToDelete, setSeasonToDelete] = useState<number>(-1);
+    const [refresh, setRefresh] = useState<number>(0);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         getSeasonInfos();
-    }, []);
+    }, [refresh]);
 
     const getSeasonInfos = async () => {
         const resp = await showService.getSeasonInfo(Number(showId), Number(num));
 
         if (resp.status === 200) {
             const data: SeasonInfo[] = await resp.json();
+            if (data.length === 0) navigate(`/series/${showId}`, { replace: true });
             setInfos(data);
         }
     }
@@ -43,10 +46,11 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
         const resp = await showService.deleteSeason(seasonToDelete);
 
         if (resp.status === 204) {
-            navigate(`/series/${showId}`, { replace: true })
-        } else {
+            setRefresh(+1);
+        } else { 
             setError(await resp.json());
         }
+        setShowModal(false);
     }
 
     return (
@@ -64,7 +68,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
             <Card className="mt-2">
                 <Card.Body>
                     <Card.Title>{`Saison ${num}`}</Card.Title>
-                    <Card.Subtitle>{`Visonnée ${infos.length} fois`}</Card.Subtitle>
+                    <Card.Subtitle>{`Visionnée ${infos.length} fois`}</Card.Subtitle>
 
                     {infos.length === 0 && <Loading />}
 

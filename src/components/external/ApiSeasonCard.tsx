@@ -9,16 +9,17 @@ import CustomAlert from "../CustomAlert";
 interface Props {
     preview: SeasonPreview
     show: ApiShowDetails
+    notify: () => void
 };
 
-export default function ApiSeasonCard({ preview, show }: Props) {
+export default function ApiSeasonCard({ preview, show, notify }: Props) {
     const [error, setError] = useState<ErrorMessage|null>(null);
 
     const onClick = async () => {
         const resp = await showService.addSeason(show, preview);
 
         if (resp.status === 201) {
-            window.location.reload();
+            notify();
         } else {
             setError(await resp.json());
         }

@@ -24,15 +24,21 @@ export default function SeriesDetails() {
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
+    const [refresh, setRefresh] = useState<number>(0);
     const navigate = useNavigate();
 
     useEffect(() => {
         getShow();
         getSeasons();
         getApiSeasons();
-    }, []);
+    }, [refresh]);
+
+    const notify = () => setRefresh(+1);
 
     const getShow = async () => {
+
+        if (refresh !== 0) return 
+
         const resp = await searchService.getShowById(id!);
 
         if (resp.status === 200) {
@@ -55,6 +61,9 @@ export default function SeriesDetails() {
     }
 
     const getApiSeasons = async () => {
+
+        if (refresh !== 0) return 
+
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200) {
@@ -136,7 +145,7 @@ export default function SeriesDetails() {
                         <Row xs={2} md={3} lg={4} className="mt-4">
                             {apiSeasons && apiSeasons.map(s => (
                                 <Col key={s.number}>
-                                    <ApiSeasonCard preview={s} show={show} />
+                                    <ApiSeasonCard preview={s} show={show} notify={notify} />
                                 </Col>
                             ))}
                         </Row>
