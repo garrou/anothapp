@@ -16,10 +16,11 @@ export default function Series() {
     const [newShows, setNewShows] = useState<ApiShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [error, setError] = useState<ErrorMessage | null>(null);
+    const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
-        getShows("");
-    }, []);
+        getShows(search);
+    }, [search]);
 
     const getShows = async (title: string) => {
         const resp = await showService.getShows(title);
@@ -40,8 +41,7 @@ export default function Series() {
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
-        setShows([]);
-        getShows(e.target.titleSearch.value);
+        setSearch(e.target.titleSearch.value);
     }
 
     return (
