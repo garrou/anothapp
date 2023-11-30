@@ -1,4 +1,4 @@
-import { Container, Tab, Tabs } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import ShowsRow from "../../components/internal/ShowsRow";
 

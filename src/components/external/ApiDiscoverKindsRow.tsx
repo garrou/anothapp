@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Form, Row } from "react-bootstrap";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ErrorMessage } from "../../models/internal/ErrorMessage";

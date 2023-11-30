@@ -50,8 +50,8 @@ export default function ViewingMonth() {
                 <option value="12">Depuis 1 an</option>
             </Form.Select>
 
-            {seasons.length == 0 && <p className="text-center mt-3">Aucun visionnage</p>}
-            {seasons.length != 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
+            {seasons.length === 0 && <p className="text-center mt-3">Aucun visionnage</p>}
+            {seasons.length !== 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
 
             <Table className="mt-3">
                 <tbody>
