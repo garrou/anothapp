@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../helpers/format";
-
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";

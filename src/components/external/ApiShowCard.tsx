@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../models/external/ApiShowImage";

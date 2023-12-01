@@ -2,7 +2,6 @@ import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { errorToast } from "../../helpers/toasts";
 import Redirect from "../../components/Redirect";
-
 import profileService from "../../services/profileService";
 
 export default function Register() {

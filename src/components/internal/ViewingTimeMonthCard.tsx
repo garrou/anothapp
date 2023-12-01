@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
-
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 

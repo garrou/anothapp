@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
-import { ErrorMessage } from '../models/internal/ErrorMessage';
 import searchService from '../services/searchService';
 import { getImageUrl } from '../models/external/ApiShowImage';
 import { errorToast } from "../helpers/toasts";

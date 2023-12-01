@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-
 import { User } from "../../models/internal/User";
 import profileService from "../../services/profileService";
 import Loading from "../Loading";

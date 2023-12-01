@@ -1,16 +1,16 @@
 import moment from "moment";
 
-const minsInHour = 60;
+const MINS_IN_HOUR = 60;
 
-const minsInDay = 1440;
+const MINS_IN_DAY = 1440;
 
 const formatDate = (date: Date) => moment(date).format('DD/MM/YYYY');
 
-const minsToHours = (mins: number) => mins / minsInHour;
+const minsToHours = (mins: number) => mins / MINS_IN_HOUR;
 
-const minsToStringDays = (mins: number) => `${(mins / minsInDay).toFixed(2)} jours`;
+const minsToStringDays = (mins: number) => `${(mins / MINS_IN_DAY).toFixed(2)} jours`;
 
-const minsToStringHours = (mins: number) => `${(mins / minsInHour).toFixed(0)} h ${mins % minsInHour} minutes`;
+const minsToStringHours = (mins: number) => `${(mins / MINS_IN_HOUR).toFixed(0)} h ${mins % MINS_IN_HOUR} minutes`;
 
 export { 
     formatDate,

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import { Card } from "react-bootstrap";
