@@ -19,13 +19,12 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [seasonToDelete, setSeasonToDelete] = useState<number>(-1);
-    const [refresh, setRefresh] = useState<number>(0);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getSeasonInfos();
-    }, [refresh]);
+    }, []);
 
     const getSeasonInfos = async () => {
         const resp = await showService.getSeasonInfo(Number(showId), Number(num));
@@ -46,7 +45,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
         const resp = await showService.deleteSeason(seasonToDelete);
 
         if (resp.status === 204) {
-            setRefresh(+1);
+            infos.splice(infos.findIndex((info) => info.id === seasonToDelete), 1);
         } else { 
             setError(await resp.json());
         }

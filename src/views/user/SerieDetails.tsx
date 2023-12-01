@@ -33,11 +33,11 @@ export default function SeriesDetails() {
         getApiSeasons();
     }, [refresh]);
 
-    const notify = () => setRefresh(+1);
+    const notify = () => setRefresh(refresh+1);
 
     const getShow = async () => {
 
-        if (refresh !== 0) return 
+        if (refresh > 0) return 
 
         const resp = await searchService.getShowById(id!);
 
@@ -62,7 +62,7 @@ export default function SeriesDetails() {
 
     const getApiSeasons = async () => {
 
-        if (refresh !== 0) return 
+        if (refresh > 0) return 
 
         const resp = await searchService.getSeasonsByShowId(Number(id));
 

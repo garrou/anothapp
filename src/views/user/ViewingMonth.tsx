@@ -11,16 +11,13 @@ export default function ViewingMonth() {
     const [seasons, setSeasons] = useState<ViewedSeasonMonth[]>([]);
     const [error, setError] = useState<ErrorMessage | null>(null);
     const [isLoad, setIsLoad] = useState<boolean>(false);
+    const [month, setMonth] = useState<number>(0);
 
     useEffect(() => {
-        getViewedMonthAgo(0);
-    }, []);
+        getViewedMonthAgo();
+    }, [month]);
 
-    const onChange = (event: any) => {
-        getViewedMonthAgo(event.target.value);
-    }
-
-    const getViewedMonthAgo = async (month: number) => {
+    const getViewedMonthAgo = async () => {
         setIsLoad(true);
         const resp = await showService.getViewedMonthAgo(month);
 
@@ -41,7 +38,7 @@ export default function ViewingMonth() {
 
             {isLoad && !error && <Loading />}
 
-            <Form.Select aria-label="Shows seen since" onChange={onChange} className="mt-3">
+            <Form.Select aria-label="Shows seen since" onChange={(e: any) => setMonth(e.target.value)} className="mt-3">
                 <option value="0">Séries vues ce mois</option>
                 <option value="1">Depuis 1 mois</option>
                 <option value="2">Depuis 2 mois</option>
@@ -51,7 +48,7 @@ export default function ViewingMonth() {
             </Form.Select>
 
             {seasons.length === 0 && <p className="text-center mt-3">Aucun visionnage</p>}
-            {seasons.length !== 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
+            {seasons.length > 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
 
             <Table className="mt-3">
                 <tbody>

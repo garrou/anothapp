@@ -26,7 +26,6 @@ function App() {
 
 function Root() {
   return (
-    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -48,7 +47,6 @@ function Root() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
   );
 }
 
