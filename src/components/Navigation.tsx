@@ -24,7 +24,7 @@ export default function Navigation({ url }: Props) {
                     <Nav defaultActiveKey={url} className="me-auto">
                         <NavDropdown title="Séries" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/series">Mes séries</NavDropdown.Item>
-                            <NavDropdown.Item href="/add-series">Ajouter</NavDropdown.Item>
+                            <NavDropdown.Item href="/discover">Ajouter</NavDropdown.Item>
                             <NavDropdown.Item href="/not-started">À voir</NavDropdown.Item>
                             <NavDropdown.Item href="/continue">À suivre</NavDropdown.Item>
                             <NavDropdown.Item href="/month">Vues ces derniers mois</NavDropdown.Item>

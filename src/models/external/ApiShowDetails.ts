@@ -23,6 +23,8 @@ interface ApiShowDetails {
     status: string;
 
     creation: string;
+
+    kinds: string[];
 };
 
 export type { ApiShowDetails };

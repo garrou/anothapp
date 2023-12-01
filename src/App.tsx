@@ -44,8 +44,8 @@ function Root() {
         <Route path="/not-started" element={<NotStartedShowsRow />} />
         <Route path="/resume" element={<ShowsToResumeTable />} />
 
-        <Route path="/add-series" element={<Discover />} />
-        <Route path="/add-series/:id" element={<DiscoverDetails />} />
+        <Route path="/discover" element={<Discover />} />
+        <Route path="/discover/:id" element={<DiscoverDetails />} />
 
         <Route path="/month" element={<ViewingMonth />} />
         <Route path="/profile" element={<Profile />} />

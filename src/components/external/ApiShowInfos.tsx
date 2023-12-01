@@ -19,6 +19,7 @@ export default function ApiShowInfos({ show }: Props) {
             <TextCard title="Création" text={show.creation} />
             <TextCard title="Note" text={`${show.note.toFixed(2)} / 5`} />
             <TextCard title="Synopsis" text={show.description} />
+            <TextCard title="Genres" text={show.kinds.join(' • ')} />
         </>
     )
 }

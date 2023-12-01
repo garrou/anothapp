@@ -35,7 +35,7 @@ export default function Series() {
             const data = await resp.json();
             setIsLoad(false);
 
-            if (data.length > 0 && data[0].images) {
+            if (data.length && data[0].images) {
                 setNewShows(data);
             } else {
                 setShows(data);
@@ -65,19 +65,19 @@ export default function Series() {
             {shows.length === 0 && newShows.length === 0 && <p className="text-center mt-3">Aucune série</p>}
 
             <Row xs={2} md={3} lg={4}>
-                {shows.length > 0 && shows.map(s => (
+                {shows.length && shows.map(s => (
                     <Col key={s.id} >
                         <ShowCard preview={s} />
                     </Col>
                 ))}
-                {newShows.length > 0 && newShows.map(s => (
+                {newShows.length && newShows.map(s => (
                     <Col key={s.id} >
                         <ApiShowCard preview={s} />
                     </Col>
                 ))}
             </Row>
 
-            {shows.length > 0 &&
+            {shows.length &&
                 <div className="text-center mt-2">
                     <Button variant="outline-dark"
                         onClick={() => setLimit(limit+10)}

@@ -7,16 +7,16 @@ export default function Discover() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={'/add-series'} />
+            <Navigation url={'/discover'} />
 
             <Tabs
                 defaultActiveKey="title"
                 className="my-3"
             >
-                <Tab eventKey="title" title="Chercher par titre">
+                <Tab eventKey="title" title="Par titre">
                     <ApiDiscoverTitleRow />
                 </Tab>
-                <Tab eventKey="kinds" title="Chercher par genres">
+                <Tab eventKey="kinds" title="Par genres">
                     <ApiDiscoverKindsRow />
                 </Tab>
             </Tabs>

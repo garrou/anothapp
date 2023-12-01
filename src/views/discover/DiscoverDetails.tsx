@@ -44,7 +44,7 @@ export default function DiscoverDetails() {
 
     return (
         <Container>
-            <Navigation url={'/add-series'} />
+            <Navigation url={'/discover'} />
 
             {!show && <Loading />}
 

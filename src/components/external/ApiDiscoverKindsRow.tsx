@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
@@ -8,18 +8,16 @@ import ApiShowCard from "./ApiShowCard";
 import { errorToast } from "../../helpers/toasts";
 
 export default function ApiDiscoverKindsRow() {
-    
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
+    const [kind, setKind] = useState<string>("Comedy");
 
     useEffect(() => {
         getKinds();
-        handleChange('Comedy');
-    }, []);
+        getShowsByKind();
+    }, [kind]);
 
-    const handleChange = async (kind: string) => {
-        setShows([]);
-        
+    const getShowsByKind = async () => { 
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
@@ -31,6 +29,9 @@ export default function ApiDiscoverKindsRow() {
     }
 
     const getKinds = async () => {
+
+        if (kinds.length) return
+
         const resp = await searchService.getKinds();
 
         if (resp.status === 200) {
@@ -44,7 +45,7 @@ export default function ApiDiscoverKindsRow() {
 
     return (
         <>
-            <Form.Select onChange={(e => handleChange(e.target.value))}>
+            <Form.Select onChange={(e => setKind(e.target.value))}>
                 {kinds.map(k => <option key={k.value} value={k.value}>{k.name}</option>)}
             </Form.Select>
 
