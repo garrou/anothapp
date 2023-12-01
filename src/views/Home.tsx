@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
-import CustomAlert from '../components/CustomAlert';
 import { ErrorMessage } from '../models/internal/ErrorMessage';
 import searchService from '../services/searchService';
 import { getImageUrl } from '../models/external/ApiShowImage';
+import { errorToast } from "../helpers/toasts";
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
+    
 
     useEffect(() => {
         getImages();
@@ -22,7 +22,7 @@ export default function Home() {
             const data: ApiShowPreview[] = await resp.json();
             setShows(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -33,10 +33,8 @@ export default function Home() {
 
             <Button href='/login' variant='outline-dark'>Se connecter</Button>
 
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
             <Row xs={2} md={3} lg={4} className="mt-4">
-                {shows.length === 0 && !error && <Loading />}
+                {shows.length === 0 && <Loading />}
 
                 {shows.map(s => (
                     <Col key={s.id} >

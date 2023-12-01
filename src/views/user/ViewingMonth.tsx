@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Image, Table } from "react-bootstrap";
-import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ViewedSeasonMonth } from "../../models/internal/ViewedSeasonMonth";
 import showService from "../../services/showService";
+import { errorToast } from "../../helpers/toasts";
 
 export default function ViewingMonth() {
     const [seasons, setSeasons] = useState<ViewedSeasonMonth[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
     const [isLoad, setIsLoad] = useState<boolean>(false);
     const [month, setMonth] = useState<number>(0);
 
@@ -26,7 +24,7 @@ export default function ViewingMonth() {
             setSeasons(data);
             setIsLoad(false);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -34,9 +32,7 @@ export default function ViewingMonth() {
         <Container className="mb-3">
             <Navigation url={'/month'} />
 
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
-            {isLoad && !error && <Loading />}
+            {isLoad && <Loading />}
 
             <Form.Select aria-label="Shows seen since" onChange={(e: any) => setMonth(e.target.value)} className="mt-3">
                 <option value="0">Séries vues ce mois</option>

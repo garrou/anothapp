@@ -1,21 +1,19 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import { useState, useEffect } from "react";
-import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import ShowCard from "../../components/internal/ShowCard";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
+import { errorToast } from "../../helpers/toasts";
 
 export default function Series() {
 
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [newShows, setNewShows] = useState<ApiShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage | null>(null);
     const [search, setSearch] = useState<string>("");
     const [limit, setLimit] = useState<number>(20);
 
@@ -36,7 +34,7 @@ export default function Series() {
                 setShows(data);
             }
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -48,11 +46,8 @@ export default function Series() {
     return (
         <Container className="mb-3">
             <Navigation url={'/series'} />
-
-            {isLoad && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
+            
+            {isLoad && <Loading />}
             <Form className="mt-3" onSubmit={onSubmit}>
                 <Form.Group className="mb-3" controlId="titleSearch">
                     <Form.Control type="text" placeholder="Titre de la série" />

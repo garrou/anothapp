@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../helpers/format";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+
 import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
-import CustomAlert from "../CustomAlert";
+import { errorToast, successToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import ModalConfirm from "./ModalConfirm";
 
@@ -16,22 +16,24 @@ interface Props {
 
 export default function SeasonsInfosCard({ showId, num }: Props) {
     const [infos, setInfos] = useState<SeasonInfo[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [seasonToDelete, setSeasonToDelete] = useState<number>(-1);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         getSeasonInfos();
     }, []);
 
+    const checkIfAnySeason = (arr: SeasonInfo[]) => {
+        if (arr.length === 0) navigate(`/series/${showId}`, { replace: true });
+    }
+
     const getSeasonInfos = async () => {
         const resp = await showService.getSeasonInfo(Number(showId), Number(num));
 
         if (resp.status === 200) {
             const data: SeasonInfo[] = await resp.json();
-            if (data.length === 0) navigate(`/series/${showId}`, { replace: true });
+            checkIfAnySeason(data);
             setInfos(data);
         }
     }
@@ -46,8 +48,10 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
 
         if (resp.status === 204) {
             infos.splice(infos.findIndex((info) => info.id === seasonToDelete), 1);
+            checkIfAnySeason(infos);
+            successToast("Saison supprimée");
         } else { 
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
         setShowModal(false);
     }
@@ -61,8 +65,6 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
                 handleClose={() => setShowModal(false)}
                 handleConfirm={deleteSeason}
             />
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-2">
                 <Card.Body>

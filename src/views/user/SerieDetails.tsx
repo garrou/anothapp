@@ -7,8 +7,7 @@ import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
-import CustomAlert from "../../components/CustomAlert";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+import { errorToast } from "../../helpers/toasts";
 import ApiImagesRow from "../../components/external/ApiImagesRow";
 import { getImageUrl } from "../../models/external/ApiShowImage";
 import ModalConfirm from "../../components/internal/ModalConfirm";
@@ -22,7 +21,7 @@ export default function SeriesDetails() {
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
+    
     const [showModal, setShowModal] = useState<boolean>(false);
     const [refresh, setRefresh] = useState<number>(0);
     const navigate = useNavigate();
@@ -45,7 +44,7 @@ export default function SeriesDetails() {
             const data: ApiShowDetails = await resp.json();
             setShow(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -56,7 +55,7 @@ export default function SeriesDetails() {
             const data: SeasonPreview[] = await resp.json();
             setSeasons(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -70,7 +69,7 @@ export default function SeriesDetails() {
             const data: SeasonPreview[] = await resp.json();
             setApiSeasons(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -92,7 +91,7 @@ export default function SeriesDetails() {
         if (resp.status === 204) {
             navigate('/series', { replace: true });
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -106,9 +105,7 @@ export default function SeriesDetails() {
                 handleConfirm={onDelete}
             />
 
-            {!show && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+            {!show && <Loading />}
 
             {show && <>
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}

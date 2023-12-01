@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import CustomAlert from "../../components/CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 import Redirect from "../../components/Redirect";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+
 import profileService from "../../services/profileService";
 
 export default function Register() {
-    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
 
     const onSubmit = async (e: any) => {
@@ -21,15 +19,13 @@ export default function Register() {
         if (resp.status === 201) {
             navigate('/login');
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <Container>
             <Redirect />
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Card className="mt-3">
                 <Card.Body>

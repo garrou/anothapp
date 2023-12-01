@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
-import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import CustomBarChart from "./CustomBarChart";
+import { errorToast } from "../../helpers/toasts";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
+    
 
     useEffect(() => {
         getNbSeasonsByYears();
@@ -21,20 +20,18 @@ export default function SeasonsYearsChart() {
             const data: Stat[] = await resp.json();
             setSeasonsByYears(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {!seasonsByYears && !error && <Loading />}
+            {!seasonsByYears && <Loading />}
 
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
-            {seasonsByYears && <CustomBarChart 
-                color="#f5962a" 
-                title="Saisons par années" 
-                data={seasonsByYears} 
+            {seasonsByYears && <CustomBarChart
+                color="#f5962a"
+                title="Saisons par années"
+                data={seasonsByYears}
                 legend="Saisons"
                 ratio={20}
             />}

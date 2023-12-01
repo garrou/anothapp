@@ -5,18 +5,16 @@ import searchService from "../../services/searchService";
 import { Button, Container, Stack, Tab, Tabs, Image } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import Loading from "../../components/Loading";
-import CustomAlert from "../../components/CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 import ApiCharactersRow from "../../components/external/ApiCharactersRow";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { getImageUrl } from "../../models/external/ApiShowImage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function ShowDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
-    const [error, setError] = useState<ErrorMessage|null>(null);
     const navigate = useNavigate();
     
     const getShow = async () => {
@@ -26,7 +24,7 @@ export default function ShowDetails() {
             const data: ApiShowDetails = await resp.json();
             setShow(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -36,7 +34,7 @@ export default function ShowDetails() {
         if (resp.status === 201) {
             navigate(`/series/${show!.id}`);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     };
 
@@ -48,12 +46,9 @@ export default function ShowDetails() {
         <Container>
             <Navigation url={'/add-series'} />
 
-            {!show && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+            {!show && <Loading />}
 
             {show && <>
-
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>

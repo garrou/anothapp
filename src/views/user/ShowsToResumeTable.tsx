@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image, Table } from "react-bootstrap";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import showService from "../../services/showService";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import Loading from "../../components/Loading";
-import CustomAlert from "../../components/CustomAlert";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
+import { errorToast, successToast } from "../../helpers/toasts";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showToResume, setShowToResume] = useState<number>(-1);
 
@@ -27,7 +25,7 @@ export default function ShowsToContinueTable() {
             setShows(data);
             setIsLoad(false);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -40,19 +38,17 @@ export default function ShowsToContinueTable() {
         const resp = await showService.updateShowsToContinue(showToResume);
 
         if (resp.status === 200) {
-            window.alert("La série est reprise")
+            successToast("La série est reprise");
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <Container>
             <Navigation url={'/resume'} />
-
-            {isLoad && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+  
+            {isLoad && <Loading />}
 
             <ModalConfirm
                 show={showModal}

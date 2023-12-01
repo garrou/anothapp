@@ -1,36 +1,31 @@
 import { useEffect, useState } from "react";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
-import CustomAlert from "../CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import CustomBarChart from "./CustomBarChart";
 
 export default function EpisodesYearChart() {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
 
     useEffect(() => {
         getTimeByYears();
     }, []);
 
-    const getTimeByYears = async () => {
+    const getTimeByYears = async (): Promise<void> => {
         const resp = await statService.getNbEpisodesByYear();
 
         if (resp.status === 200) {
             const data: Stat[] = await resp.json();
             setEpisodesByYears(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {!episodesByYear && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
+            {!episodesByYear && <Loading />}
             {episodesByYear && <CustomBarChart 
                 color="#4287f5" 
                 title="Episodes par année" 

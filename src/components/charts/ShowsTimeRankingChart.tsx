@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import statService from "../../services/statService";
-import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import CustomBarChart from "./CustomBarChart";
+import { errorToast } from "../../helpers/toasts";
 
 interface RankedShow {
 
@@ -14,7 +13,7 @@ interface RankedShow {
 
 export default function ShowsTimeRankingChart() {
     const [shows, setShows] = useState<RankedShow[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
+
 
     useEffect(() => {
         getRanking();
@@ -27,20 +26,18 @@ export default function ShowsTimeRankingChart() {
             const data: RankedShow[] = await resp.json();
             setShows(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {!shows && !error && <Loading />}
+            {!shows && <Loading />}
 
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
-            {shows && <CustomBarChart 
-                color="#0bb5b8" 
-                title="10 séries les plus chronophages" 
-                data={shows} 
+            {shows && <CustomBarChart
+                color="#0bb5b8"
+                title="10 séries les plus chronophages"
+                data={shows}
                 legend="Heures"
                 ratio={20}
             />}

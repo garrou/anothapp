@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import CustomAlert from "../CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 
 interface Props {
     showId: number
 }
 
 export default function ApiSimilarShowTable({ showId }: Props) {
-    const [error, setError] = useState<ErrorMessage | null>(null);
     const [shows, setShows] = useState<ApiSimilarShow[]>([]);
 
     useEffect(() => {
@@ -24,14 +22,12 @@ export default function ApiSimilarShowTable({ showId }: Props) {
             const data: ApiSimilarShow[] = await resp.json();
             setShows(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
             {shows && <Table striped hover className="mt-3">
                 <tbody>
                     {shows.map(s => (

@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
+import { errorToast } from "../../helpers/toasts";
 
 export default function ApiDiscoverKindsRow() {
-    const [error, setError] = useState<ErrorMessage | null>(null);
+    
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
 
@@ -27,7 +26,7 @@ export default function ApiDiscoverKindsRow() {
             const data: ApiShowPreview[] = await resp.json();
             setShows(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -39,7 +38,7 @@ export default function ApiDiscoverKindsRow() {
             const transformed: ApiShowKind[] = Object.entries(data).map(e => new ApiShowKind(e[0], e[1] + ""));
             setKinds(transformed);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -49,9 +48,7 @@ export default function ApiDiscoverKindsRow() {
                 {kinds.map(k => <option key={k.value} value={k.value}>{k.name}</option>)}
             </Form.Select>
 
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
-            {shows.length === 0 && !error && <Loading />}
+            {shows.length === 0 && <Loading />}
 
             <Row xs={2} md={3} lg={4} className="mt-3">
                 {shows.map(s => (

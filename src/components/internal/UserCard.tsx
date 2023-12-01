@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+
 import { User } from "../../models/internal/User";
 import profileService from "../../services/profileService";
-import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
+import { errorToast } from "../../helpers/toasts";
 
 export default function UserCard() {
     const [user, setUser] = useState<User|null>(null);
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getUserProfile();
@@ -21,15 +20,13 @@ export default function UserCard() {
             const data: User = await resp.json();
             setUser(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
             {!user && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
 
             {user &&
                 <Card className="mt-2">

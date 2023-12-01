@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import CustomAlert from "../CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
 
 export default function ApiDiscoverTitleRow() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getShowsToDiscover("");
@@ -24,7 +22,7 @@ export default function ApiDiscoverTitleRow() {
             setIsLoad(false);
             setShows(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -44,9 +42,7 @@ export default function ApiDiscoverTitleRow() {
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
 
-            {isLoad && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+            {isLoad && <Loading />}
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (

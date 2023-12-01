@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
-import CustomAlert from "../CustomAlert";
+import { errorToast, successToast } from "../../helpers/toasts";
 
 interface Props {
     preview: SeasonPreview
@@ -13,22 +11,20 @@ interface Props {
 };
 
 export default function ApiSeasonCard({ preview, show, notify }: Props) {
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     const onClick = async () => {
         const resp = await showService.addSeason(show, preview);
 
         if (resp.status === 201) {
+            successToast("Saison ajoutée");
             notify();
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
-        <>
-            {error && <CustomAlert variant="danger" message={error.message} />}
-            
+        <> 
             <Card className="mt-2">
                 <Card.Body>
                     {preview.image && <Card.Img variant="top" src={preview.image} />}

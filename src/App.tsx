@@ -3,6 +3,7 @@ import Series from "./views/user/Series";
 import Home from "./views/Home";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Discover from "./views/discover/Discover";
 import Profile from "./views/user/Profile";
 import ShowDetails from "./views/discover/ShowDetails";
@@ -15,6 +16,7 @@ import Login from "./views/auth/Login";
 import ShowsToContinueTable from "./views/user/ShowsToContinueTable";
 import NotStartedShowsRow from "./views/user/NotStartedShowsRow";
 import ShowsToResumeTable from "./views/user/ShowsToResumeTable";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   { path: "*", element: <Root /> },
@@ -26,6 +28,8 @@ function App() {
 
 function Root() {
   return (
+    <>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -47,6 +51,7 @@ function Root() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+    </>
   );
 }
 

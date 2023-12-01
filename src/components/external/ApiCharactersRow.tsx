@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import searchService from "../../services/searchService";
-import CustomAlert from "../CustomAlert";
 import Loading from "../Loading";
 import ApiCharacterCard from "./ApiCharacterCard";
+import { errorToast } from "../../helpers/toasts";
 
 interface Props {
     showId: number
@@ -13,7 +12,6 @@ interface Props {
 
 export default function ApiCharactersRow({ showId }: Props) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getCharacters();
@@ -25,15 +23,13 @@ export default function ApiCharactersRow({ showId }: Props) {
         if (resp.status === 200) {
             setCharacters(await resp.json());
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
     
     return (
         <>
             {characters.length === 0 && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
 
             <Row xs={2} md={3} lg={4} className="mt-4">
                 {characters.map(c => (

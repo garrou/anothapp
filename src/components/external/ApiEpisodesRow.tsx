@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { ApiEpisodePreview } from "../../models/external/ApiEpisodePreview";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
 import ApiEpisodeCard from "./ApiEpisodeCard";
+import { errorToast } from "../../helpers/toasts";
 
 interface Props {
 
@@ -14,7 +15,6 @@ interface Props {
 
 export default function ApiEpisodesCards({showId, num }: Props) {
     const [episodes, setEpisodes] = useState<ApiEpisodePreview[]>([]);
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getEpisodes();
@@ -27,13 +27,13 @@ export default function ApiEpisodesCards({showId, num }: Props) {
             const data: ApiEpisodePreview[] = await resp.json();
             setEpisodes(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {error && <Loading />}
+            {episodes.length === 0 && <Loading />}
 
             <h3 className="mt-3">Episodes</h3>
 

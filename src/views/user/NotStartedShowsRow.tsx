@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
-import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import ShowCard from "../../components/internal/ShowCard";
 import Navigation from "../../components/Navigation";
+import { errorToast } from "../../helpers/toasts";
 
 export default function NotStartedShowsRow() {
     const [notStartedShows, setNotStartedShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage|null>(null);
 
     useEffect(() => {
         getNotStartedShows();
@@ -25,7 +23,7 @@ export default function NotStartedShowsRow() {
             setNotStartedShows(data);
             setIsLoad(false);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -33,9 +31,7 @@ export default function NotStartedShowsRow() {
         <Container>
             <Navigation url={'/not-started'} />
 
-            {isLoad && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+            {isLoad && <Loading />}
 
             {notStartedShows.length === 0 && <p className="text-center mt-3">Aucune série à voir</p>}
 

@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image, Table } from "react-bootstrap";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import { ShowContinue } from "../../models/internal/ShowContinue";
 import showService from "../../services/showService";
-import CustomAlert from "../../components/CustomAlert";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
+import { errorToast } from "../../helpers/toasts";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [error, setError] = useState<ErrorMessage | null>(null);
+    
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showToStop, setShowToStop] = useState<number>(-1);
 
@@ -27,7 +26,7 @@ export default function ShowsToContinueTable() {
             setShows(data);
             setIsLoad(false);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -42,14 +41,13 @@ export default function ShowsToContinueTable() {
         if (resp.status === 200) {
             setShowModal(false);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <Container>
             <Navigation url={'/continue'} />
-
             <ModalConfirm
                 show={showModal}
                 title="Arrêter la série"
@@ -58,9 +56,7 @@ export default function ShowsToContinueTable() {
                 handleConfirm={stopWatching}
             />
 
-            {isLoad && !error && <Loading />}
-
-            {error && <CustomAlert variant="danger" message={error.message} />}
+            {isLoad && <Loading />}
 
             {shows.length === 0 && <p className="text-center mt-3">Vous-êtes à jour</p>}
 

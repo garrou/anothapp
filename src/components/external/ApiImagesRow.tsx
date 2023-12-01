@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
 import profileService from "../../services/profileService";
 import searchService from "../../services/searchService";
-import CustomAlert from "../CustomAlert";
+import { errorToast, successToast } from "../../helpers/toasts";
 
 interface Props {
     showId: number;
@@ -11,8 +10,6 @@ interface Props {
 
 export default function ApiImagesRow({ showId }: Props) {
     const [images, setImages] = useState<string[]>([]);
-    const [error, setError] = useState<ErrorMessage | null>(null);
-    const [success, setSuccess] = useState<boolean>(false);
 
     useEffect(() => {
         getImagesByShowId(showId);
@@ -25,7 +22,7 @@ export default function ApiImagesRow({ showId }: Props) {
             const data: string[] = await resp.json();
             setImages(data);
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
@@ -33,18 +30,14 @@ export default function ApiImagesRow({ showId }: Props) {
         const resp = await profileService.setProfilePicture(image);
 
         if (resp.status === 200) {
-            setSuccess(true);
+            successToast("Image de profil modifiée");
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
-            {success && <CustomAlert variant="success" message={"Image de profil définie"} />}
-
             {images && <Row xs={2} md={3} lg={4} className="mt-4">
                 {images.map(image => (
                     <Col key={image} >

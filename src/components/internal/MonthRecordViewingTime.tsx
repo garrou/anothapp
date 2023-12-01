@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ErrorMessage } from "../../models/internal/ErrorMessage";
+
 import statService from "../../services/statService";
-import CustomAlert from "../CustomAlert";
+import { errorToast } from "../../helpers/toasts";
 import { Card } from "react-bootstrap";
 import { minsToStringHours } from "../../helpers/format";
 
@@ -14,8 +14,6 @@ interface MonthRecord {
 
 export default function MonthRecordViewingTime() {
     const [record, setRecord] = useState<MonthRecord|null>(null);
-    const [error, setError] = useState<ErrorMessage|null>(null);
-
     useEffect(() => {
         getMonthRecord();
     }, []);
@@ -26,14 +24,12 @@ export default function MonthRecordViewingTime() {
         if (resp.status === 200) {
             setRecord(await resp.json());
         } else {
-            setError(await resp.json());
+            errorToast(await resp.json());
         }
     }
 
     return (
         <>
-            {error && <CustomAlert variant="danger" message={error.message} />}
-
             <Card className="mt-2">
                 <Card.Body>
                     <Card.Title>Mois avec le plus de visionnage</Card.Title>
