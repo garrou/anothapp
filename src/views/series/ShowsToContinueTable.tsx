@@ -5,7 +5,7 @@ import showService from "../../services/showService";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
-import { errorToast } from "../../helpers/toasts";
+import { errorToast, successToast } from "../../helpers/toasts";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
@@ -40,6 +40,7 @@ export default function ShowsToContinueTable() {
 
         if (resp.status === 200) {
             setShowModal(false);
+            successToast("Visionnage arrêté");
         } else {
             errorToast(await resp.json());
         }

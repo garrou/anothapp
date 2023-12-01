@@ -1,22 +1,23 @@
 import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
-import Series from "./views/user/Series";
+import Series from "./views/series/Series";
 import Home from "./views/Home";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Discover from "./views/discover/Discover";
 import Profile from "./views/user/Profile";
-import ShowDetails from "./views/discover/ShowDetails";
-import SeriesDetails from "./views/user/SerieDetails";
-import SeasonDetails from "./views/user/SeasonDetails";
+import DiscoverDetails from "./views/discover/DiscoverDetails";
+import SeriesDetails from "./views/series/SerieDetails";
+import SeasonDetails from "./views/series/SeasonDetails";
 import NotFound from "./views/NotFound";
-import ViewingMonth from "./views/user/ViewingMonth";
+import ViewingMonth from "./views/series/ViewingMonth";
 import Register from "./views/auth/Register";
 import Login from "./views/auth/Login";
-import ShowsToContinueTable from "./views/user/ShowsToContinueTable";
-import NotStartedShowsRow from "./views/user/NotStartedShowsRow";
-import ShowsToResumeTable from "./views/user/ShowsToResumeTable";
+import ShowsToContinueTable from "./views/series/ShowsToContinueTable";
+import NotStartedShowsRow from "./views/series/NotStartedShowsRow";
+import ShowsToResumeTable from "./views/series/ShowsToResumeTable";
 import { ToastContainer } from "react-toastify";
+import Next from "./views/activities/Next";
 
 const router = createBrowserRouter([
   { path: "*", element: <Root /> },
@@ -44,10 +45,12 @@ function Root() {
         <Route path="/resume" element={<ShowsToResumeTable />} />
 
         <Route path="/add-series" element={<Discover />} />
-        <Route path="/add-series/:id" element={<ShowDetails />} />
+        <Route path="/add-series/:id" element={<DiscoverDetails />} />
 
         <Route path="/month" element={<ViewingMonth />} />
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/next" element={<Next />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

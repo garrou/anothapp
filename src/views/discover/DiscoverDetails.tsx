@@ -12,7 +12,7 @@ import showService from "../../services/showService";
 import { getImageUrl } from "../../models/external/ApiShowImage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
-export default function ShowDetails() {
+export default function DiscoverDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const navigate = useNavigate();

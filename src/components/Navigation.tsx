@@ -30,6 +30,9 @@ export default function Navigation({ url }: Props) {
                             <NavDropdown.Item href="/month">Vues ces derniers mois</NavDropdown.Item>
                             {/* <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item> */}
                         </NavDropdown>
+                        <NavDropdown title="Activités" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/next">Prochainement</NavDropdown.Item>
+                        </NavDropdown>
                         <NavDropdown title="Profil" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/profile">Afficher</NavDropdown.Item>
                             <NavDropdown.Item onClick={onClick} className="text-danger">Se déconnecter</NavDropdown.Item>

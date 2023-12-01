@@ -7,7 +7,6 @@ import { errorToast } from "../../helpers/toasts";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
-    
 
     useEffect(() => {
         getNbSeasonsByYears();
