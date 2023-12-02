@@ -9,7 +9,6 @@ import { errorToast } from "../helpers/toasts";
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     
-
     useEffect(() => {
         getImages();
     }, []);
@@ -39,10 +38,6 @@ export default function Home() {
                     <Col key={s.id} >
                         <Card className="mt-2">
                             {getImageUrl(s.images) && <Card.Img variant="top" src={getImageUrl(s.images)!} />}
-
-                            <Card.Body>
-                                <Card.Title>{s.title}</Card.Title>
-                            </Card.Body>
                         </Card>
                     </Col>
                 ))}
