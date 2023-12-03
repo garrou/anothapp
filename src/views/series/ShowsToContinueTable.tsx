@@ -73,7 +73,7 @@ export default function ShowsToContinueTable() {
                             </td>
                             <td>A voir : {s.nb} saison(s)</td>
                             <td>
-                                <Button variant="outline-danger" className="btn-sm" onClick={() => callModal(s.id)}>Arrêter</Button>
+                                <Button variant="outline-danger" onClick={() => callModal(s.id)}>Arrêter</Button>
                             </td>
                         </tr>
                     ))}

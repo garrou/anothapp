@@ -5,6 +5,8 @@ interface ShowPreview {
     title: string;
 
     poster: string;
+
+    kinds: string;
 };
 
 export type { ShowPreview };

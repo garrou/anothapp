@@ -44,7 +44,7 @@ export default function ViewingMonth() {
             </Form.Select>
 
             {seasons.length === 0 && <p className="text-center mt-3">Aucun visionnage</p>}
-            {seasons.length && <p className="text-center mt-3">{seasons.length} résultats</p>}
+            {seasons.length !== 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
 
             <Table className="mt-3">
                 <tbody>

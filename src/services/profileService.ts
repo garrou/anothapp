@@ -20,7 +20,7 @@ const checkUser = async (): Promise<Response> => {
 }
 
 const getProfile = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/auth/me/profile`, { 
+    return fetch(`${process.env.REACT_APP_SERVER}/profile`, { 
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }

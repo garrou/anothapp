@@ -1,4 +1,4 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Guard from "./Guard";
 
@@ -20,7 +20,7 @@ export default function Navigation({ url }: Props) {
 
             <Navbar bg="light">
                 <Container>
-                    <Navbar.Brand href="/series">Anothapp</Navbar.Brand>
+                    <Navbar.Brand href="/series">A</Navbar.Brand>
                     <Nav defaultActiveKey={url} className="me-auto">
                         <NavDropdown title="Séries" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/series">Mes séries</NavDropdown.Item>

@@ -9,11 +9,11 @@ export default function SeasonsMonthChart() {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
 
     useEffect(() => {
-        getNbSeasonsByYears();
+        getNbSeasonsByMonths();
     }, []);
 
-    const getNbSeasonsByYears = async () => {
-        const resp = await statService.getNbSeasonsByMonth();
+    const getNbSeasonsByMonths = async () => {
+        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "months");
 
         if (resp.status === 200) {
             const data: Stat[] = await resp.json();

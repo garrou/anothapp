@@ -9,11 +9,11 @@ export default function EpisodesYearChart() {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);
 
     useEffect(() => {
-        getTimeByYears();
+        getEpisodesByYears();
     }, []);
 
-    const getTimeByYears = async (): Promise<void> => {
-        const resp = await statService.getNbEpisodesByYear();
+    const getEpisodesByYears = async (): Promise<void> => {
+        const resp = await statService.getGroupedCountByTypeByPeriod("episodes", "years");
 
         if (resp.status === 200) {
             const data: Stat[] = await resp.json();
@@ -28,7 +28,7 @@ export default function EpisodesYearChart() {
             {!episodesByYear && <Loading />}
             {episodesByYear && <CustomBarChart 
                 color="#4287f5" 
-                title="Episodes par année" 
+                title="Episodes par années" 
                 data={episodesByYear} 
                 legend="Episodes"
                 ratio={500}

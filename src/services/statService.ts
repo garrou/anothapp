@@ -1,77 +1,21 @@
-const getNbShows = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/count/shows`, {
+const getCountByType = async (type: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/count?type=${type}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
     });
 }
 
-const getNbEpisodes = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/count/episodes`, {
+const getGroupedCountByTypeByPeriod = async (type: string, period: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/grouped-count?type=${type}&period=${period}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
     });
 }
 
-const getTotalTime = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/time`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getNbSeasonsByYears = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/seasons/years`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getTimeByYears = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/time/years`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getTimeCurrentMonth = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/time/month`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getNbSeasonsByMonth = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/seasons/months`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getNbEpisodesByYear = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/episodes/years`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getRankingShowsTime = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/shows/ranking`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-    });
-}
-
-const getMonthRecord = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/stats/time/month-best`, {
+const getTimeByType = async (type: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/stats/time?type=${type}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -79,14 +23,7 @@ const getMonthRecord = async (): Promise<Response> => {
 }
 
 export default {
-    getMonthRecord,
-    getNbEpisodes,
-    getNbEpisodesByYear,
-    getNbShows,
-    getNbSeasonsByMonth,
-    getNbSeasonsByYears,
-    getRankingShowsTime,
-    getTimeByYears,
-    getTimeCurrentMonth,
-    getTotalTime
+    getCountByType,
+    getGroupedCountByTypeByPeriod,
+    getTimeByType,
 };

@@ -13,7 +13,7 @@ export default function TimeYearsChart() {
     }, []);
 
     const getTimeByYears = async () => {
-        const resp = await statService.getTimeByYears();
+        const resp = await statService.getTimeByType("years");
 
         if (resp.status === 200) {
             const data: Stat[] = await resp.json();

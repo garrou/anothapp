@@ -30,7 +30,7 @@ export default function ApiDiscoverKindsRow() {
 
     const getKinds = async () => {
 
-        if (kinds.length) return
+        if (kinds.length !== 0) return
 
         const resp = await searchService.getKinds();
 

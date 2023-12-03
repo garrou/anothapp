@@ -12,7 +12,7 @@ export default function ViewingTimeMonthCard() {
     }, []);
 
     const getViewingTimeCurrentMonth = async () => {
-        const resp = await statService.getTimeCurrentMonth();
+        const resp = await statService.getTimeByType("month");
 
         if (resp.status === 200) {
             setTime(await resp.json());

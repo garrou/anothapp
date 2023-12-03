@@ -20,7 +20,7 @@ export default function ShowsTimeRankingChart() {
     }, []);
 
     const getRanking = async () => {
-        const resp = await statService.getRankingShowsTime();
+        const resp = await statService.getTimeByType("rank");
 
         if (resp.status === 200) {
             const data: RankedShow[] = await resp.json();

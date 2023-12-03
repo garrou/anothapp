@@ -12,7 +12,7 @@ export default function TotalViewingTimeCard() {
     }, []);
 
     const getTotalTime = async () => {
-        const resp = await statService.getTotalTime();
+        const resp = await statService.getTimeByType("total");
 
         if (resp.status === 200) {
             setTime(await resp.json());

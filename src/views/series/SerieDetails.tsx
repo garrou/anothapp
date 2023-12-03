@@ -15,15 +15,16 @@ import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import SeasonCard from "../../components/internal/SeasonCard";
 import ApiSeasonCard from "../../components/external/ApiSeasonCard";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
+import ApiShowInfos from "../../components/external/ApiShowInfos";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
-    
     const [showModal, setShowModal] = useState<boolean>(false);
     const [refresh, setRefresh] = useState<number>(0);
+    const [displayDetails, setDisplayDetails] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -117,7 +118,12 @@ export default function SeriesDetails() {
                     <Button variant="outline-danger" onClick={() => setShowModal(true)}>Supprimer</Button>
                 </Stack>
 
-                <p className="font-weight-bold">{show.seasons} saisons • {show.network}</p>
+                <Button variant="outline-dark" onClick={() => setDisplayDetails(!displayDetails)}>
+                        {!displayDetails && "Voir le détail"}
+                        {displayDetails && "Masquer le détail"}
+                </Button>
+
+                {displayDetails && <ApiShowInfos show={show} />}
 
                 <ViewingTimeShowCard showId={show.id} />
 

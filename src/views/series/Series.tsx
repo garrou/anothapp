@@ -30,12 +30,12 @@ export default function Series() {
     const getShows = async () => {
         resetShows();
         const resp = await showService.getShows(search, limit);
-  
+
         if (resp.status === 200) {
             const data = await resp.json();
             setIsLoad(false);
 
-            if (data.length && data[0].images) {
+            if (data.length !== 0 && data[0].images) {
                 setNewShows(data);
             } else {
                 setShows(data);
@@ -53,35 +53,40 @@ export default function Series() {
     return (
         <Container className="mb-3">
             <Navigation url={'/series'} />
-            
+
             {isLoad && <Loading />}
-            <Form className="mt-3" onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="titleSearch">
-                    <Form.Control type="text" placeholder="Titre de la série" />
-                </Form.Group>
-                <Button variant="outline-dark" type="submit">Rechercher</Button>
+
+            <Form className="my-3" onSubmit={onSubmit}>
+                <Row>
+                    <Col>
+                        <Form.Group controlId="titleSearch">
+                            <Form.Control type="text" placeholder="Titre de la série" />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Button variant="outline-dark" type="submit">Rechercher</Button>
+                    </Col>
+                </Row>
             </Form>
 
             {shows.length === 0 && newShows.length === 0 && <p className="text-center mt-3">Aucune série</p>}
 
             <Row xs={2} md={3} lg={4}>
-                {shows.length && shows.map(s => (
+                {shows.length !== 0 && shows.map(s => (
                     <Col key={s.id} >
                         <ShowCard preview={s} />
                     </Col>
                 ))}
-                {newShows.length && newShows.map(s => (
+                {newShows.length !== 0 && newShows.map(s => (
                     <Col key={s.id} >
                         <ApiShowCard preview={s} />
                     </Col>
                 ))}
             </Row>
 
-            {shows.length &&
+            {shows.length !== 0 && !search &&
                 <div className="text-center mt-2">
-                    <Button variant="outline-dark"
-                        onClick={() => setLimit(limit+10)}
-                    >
+                    <Button variant="outline-dark" onClick={() => setLimit(limit + 10)}>
                         Voir plus
                     </Button>
                 </div>

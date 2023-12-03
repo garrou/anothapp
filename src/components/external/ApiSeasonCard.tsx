@@ -30,7 +30,7 @@ export default function ApiSeasonCard({ preview, show, notify }: Props) {
                     {preview.image && <Card.Img variant="top" src={preview.image} />}
                     <Card.Title>{`Saison ${preview.number}`}</Card.Title>
                     <Card.Subtitle>{`Episodes : ${preview.episode}`}</Card.Subtitle>
-                    <Button variant="outline-dark" onClick={onClick} className="mt-2">Ajouter</Button>
+                    <Button className="mt-2" variant="outline-dark" onClick={onClick}>Ajouter</Button>
                 </Card.Body>
             </Card>
         </>

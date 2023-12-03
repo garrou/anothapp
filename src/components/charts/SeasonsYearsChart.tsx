@@ -13,7 +13,7 @@ export default function SeasonsYearsChart() {
     }, []);
 
     const getNbSeasonsByYears = async () => {
-        const resp = await statService.getNbSeasonsByYears();
+        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "years");
 
         if (resp.status === 200) {
             const data: Stat[] = await resp.json();
