@@ -25,14 +25,14 @@ export default function SeasonsYearsChart() {
 
     return (
         <>
-            {!seasonsByYears && <Loading />}
+            {seasonsByYears.length === 0 && <Loading />}
 
-            {seasonsByYears && <CustomBarChart
+            {seasonsByYears.length > 0 && <CustomBarChart
                 color="#f5962a"
                 title="Saisons par années"
                 data={seasonsByYears}
                 legend="Saisons"
-                ratio={20}
+                max={200}
             />}
         </>
     );

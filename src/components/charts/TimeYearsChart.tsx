@@ -25,14 +25,14 @@ export default function TimeYearsChart() {
 
     return (
         <>
-            {!timeByYears && <Loading />}
+            {timeByYears.length === 0 && <Loading />}
 
-            {timeByYears && <CustomBarChart
+            {timeByYears.length > 0 && <CustomBarChart
                 color="#32a850"
                 title="Temps par année"
                 data={timeByYears}
                 legend="Temps en heures"
-                ratio={100}
+                max={2500}
             />}
         </>
     );

@@ -11,6 +11,7 @@ import NbEpisodesCard from "../../components/internal/NbEpisodesCard";
 import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import MonthRecordViewingTime from "../../components/internal/MonthRecordViewingTime";
+import KindsChart from "../../components/charts/KindsChart";
 
 export default function Profile() {
 
@@ -36,6 +37,7 @@ export default function Profile() {
             <SeasonsYearsChart />
             <EpisodesYearChart />
             <SeasonsMonthChart />
+            <KindsChart />
         </Container>
     );
 };

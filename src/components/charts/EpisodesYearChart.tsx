@@ -25,13 +25,14 @@ export default function EpisodesYearChart() {
 
     return (
         <>
-            {!episodesByYear && <Loading />}
-            {episodesByYear && <CustomBarChart 
+            {episodesByYear.length === 0 && <Loading />}
+
+            {episodesByYear.length > 0 && <CustomBarChart 
                 color="#4287f5" 
                 title="Episodes par années" 
                 data={episodesByYear} 
                 legend="Episodes"
-                ratio={500}
+                max={3000}
             />}
         </>
     );

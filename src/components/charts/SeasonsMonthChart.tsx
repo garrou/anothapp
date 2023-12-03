@@ -22,16 +22,17 @@ export default function SeasonsMonthChart() {
             errorToast(await resp.json());
         }
     }
+
     return (
         <>
-            {!seasonsByMonths && <Loading />}
+            {seasonsByMonths.length === 0 && <Loading />}
 
-            {seasonsByMonths && <CustomBarChart 
+            {seasonsByMonths.length > 0 && <CustomBarChart 
                 color="#ae34eb" 
                 title="Saisons par mois" 
                 data={seasonsByMonths} 
                 legend="Saisons"
-                ratio={20}
+                max={150}
             />}
         </>
     );
