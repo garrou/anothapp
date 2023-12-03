@@ -22,8 +22,7 @@ export default function ShowsToContinueTable() {
         const resp = await showService.getShowsToContinue();
 
         if (resp.status === 200) {
-            const data: ShowContinue[] = await resp.json();
-            setShows(data);
+            setShows(await resp.json());
             setIsLoad(false);
         } else {
             errorToast(await resp.json());

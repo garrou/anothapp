@@ -16,8 +16,7 @@ export default function SeasonsYearsChart() {
         const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "years");
 
         if (resp.status === 200) {
-            const data: Stat[] = await resp.json();
-            setSeasonsByYears(data);
+            setSeasonsByYears(await resp.json());
         } else {
             errorToast(await resp.json());
         }

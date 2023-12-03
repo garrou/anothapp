@@ -16,8 +16,7 @@ export default function KindsChart() {
         const resp = await statService.getGroupedCountByTypeByPeriod("kinds", "");
 
         if (resp.status === 200) {
-            const data: Stat[] = await resp.json();
-            setKinds(data);
+            setKinds(await resp.json());
         } else {
             errorToast(await resp.json());
         }

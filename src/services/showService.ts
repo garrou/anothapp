@@ -17,7 +17,12 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
-        body: JSON.stringify(show)
+        body: JSON.stringify({
+            "id": show.id,
+            "title": show.title,
+            "images": show.images,
+            "kinds": show.kinds.join(";")
+        })
     });
 }
 

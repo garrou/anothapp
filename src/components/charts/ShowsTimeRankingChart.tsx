@@ -17,8 +17,7 @@ export default function ShowsTimeRankingChart() {
         const resp = await statService.getTimeByType("rank");
 
         if (resp.status === 200) {
-            const data: Stat[] = await resp.json();
-            setShows(data);
+            setShows(await resp.json());
         } else {
             errorToast(await resp.json());
         }

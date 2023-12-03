@@ -9,18 +9,18 @@ import ApiShowCard from "./ApiShowCard";
 export default function ApiDiscoverTitleRow() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
-        getShowsToDiscover("");
-    }, []);
+        getShowsToDiscover();
+    }, [search]);
 
-    const getShowsToDiscover = async (title: string) => {
-        const resp: Response = await searchService.discoverShows(title);
+    const getShowsToDiscover = async () => {
+        const resp: Response = await searchService.discoverShows(search);
 
         if (resp.status === 200) {
-            const data: ApiShowPreview[] = await resp.json();
             setIsLoad(false);
-            setShows(data);
+            setShows(await resp.json());
         } else {
             errorToast(await resp.json());
         }
@@ -30,7 +30,7 @@ export default function ApiDiscoverTitleRow() {
         e.preventDefault();
         setShows([]);
         setIsLoad(true);
-        getShowsToDiscover(e.target.titleSearch.value);
+        setSearch(e.target.titleSearch.value);
     }
     
     return (

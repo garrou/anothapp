@@ -7,6 +7,8 @@ interface ApiShowPreview {
     title: string;
 
     images: ApiShowImage;
+
+    kinds: string[];
 };
 
 export type { ApiShowPreview };

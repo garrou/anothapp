@@ -19,8 +19,7 @@ export default function ApiImagesRow({ showId }: Props) {
         const resp = await searchService.getImagesByShowId(id);
 
         if (resp.status === 200) {
-            const data: string[] = await resp.json();
-            setImages(data);
+            setImages(await resp.json());
         } else {
             errorToast(await resp.json());
         }

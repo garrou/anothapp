@@ -42,8 +42,7 @@ export default function SeriesDetails() {
         const resp = await searchService.getShowById(id!);
 
         if (resp.status === 200) {
-            const data: ApiShowDetails = await resp.json();
-            setShow(data);
+            setShow(await resp.json());
         } else {
             errorToast(await resp.json());
         }
@@ -53,8 +52,7 @@ export default function SeriesDetails() {
         const resp = await showService.getSeasonsByShow(Number(id));
 
         if (resp.status === 200) {
-            const data: SeasonPreview[] = await resp.json();
-            setSeasons(data);
+            setSeasons(await resp.json());
         } else {
             errorToast(await resp.json());
         }
@@ -67,8 +65,7 @@ export default function SeriesDetails() {
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200) {
-            const data: SeasonPreview[] = await resp.json();
-            setApiSeasons(data);
+            setApiSeasons(await resp.json());
         } else {
             errorToast(await resp.json());
         }

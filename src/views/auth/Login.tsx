@@ -15,8 +15,7 @@ export default function Login() {
         const resp = await profileService.login(email, password);
 
         if (resp.status === 200) {
-            const data = await resp.json();
-            localStorage.setItem('jwt', data.token);
+            localStorage.setItem('jwt', (await resp.json()).token);
             navigate('/series', { replace: true });
         } else {
             errorToast(await resp.json());

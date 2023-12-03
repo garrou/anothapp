@@ -1,11 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { ApiShowKind } from "../../models/external/ApiShowKind";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
 import { errorToast } from "../../helpers/toasts";
+import { ApiShowKind } from "../../models/external/ApiShowKind";
 
 export default function ApiDiscoverKindsRow() {
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
@@ -21,8 +21,7 @@ export default function ApiDiscoverKindsRow() {
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
-            const data: ApiShowPreview[] = await resp.json();
-            setShows(data);
+            setShows(await resp.json());
         } else {
             errorToast(await resp.json());
         }
@@ -36,7 +35,9 @@ export default function ApiDiscoverKindsRow() {
 
         if (resp.status === 200) {
             const data = await resp.json();
-            const transformed: ApiShowKind[] = Object.entries(data).map(e => new ApiShowKind(e[0], e[1] + ""));
+            const transformed: ApiShowKind[] = Object.entries(data)
+                .map(e => new ApiShowKind(e[0], e[1] + ""))
+                .sort((a, b) => a.name.localeCompare(b.name));
             setKinds(transformed);
         } else {
             errorToast(await resp.json());

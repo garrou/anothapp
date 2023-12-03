@@ -16,8 +16,7 @@ export default function EpisodesYearChart() {
         const resp = await statService.getGroupedCountByTypeByPeriod("episodes", "years");
 
         if (resp.status === 200) {
-            const data: Stat[] = await resp.json();
-            setEpisodesByYears(data);
+            setEpisodesByYears(await resp.json());
         } else {
             errorToast(await resp.json());
         }

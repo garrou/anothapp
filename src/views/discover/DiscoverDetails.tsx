@@ -21,8 +21,7 @@ export default function DiscoverDetails() {
         const resp = await searchService.getShowById(id!);
 
         if (resp.status === 200) {
-            const data: ApiShowDetails = await resp.json();
-            setShow(data);
+            setShow(await resp.json());
         } else {
             errorToast(await resp.json());
         }

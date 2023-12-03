@@ -16,8 +16,7 @@ export default function TimeYearsChart() {
         const resp = await statService.getTimeByType("years");
 
         if (resp.status === 200) {
-            const data: Stat[] = await resp.json();
-            setTimeByYears(data);
+            setTimeByYears(await resp.json());
         } else {
             errorToast(await resp.json());
         }

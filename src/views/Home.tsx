@@ -17,8 +17,7 @@ export default function Home() {
         const resp = await searchService.getHomeImages();
 
         if (resp.status === 200) {
-            const data: ApiShowPreview[] = await resp.json();
-            setShows(data);
+            setShows(await resp.json());
         } else {
             errorToast(await resp.json());
         }

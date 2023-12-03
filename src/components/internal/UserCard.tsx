@@ -16,8 +16,7 @@ export default function UserCard() {
         const resp = await profileService.getProfile();
 
         if (resp.status === 200) {
-            const data: User = await resp.json();
-            setUser(data);
+            setUser(await resp.json());
         } else {
             errorToast(await resp.json());
         }

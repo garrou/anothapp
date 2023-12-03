@@ -19,8 +19,7 @@ export default function NotStartedShowsRow() {
         const resp = await showService.getNotStartedShows();
 
         if (resp.status === 200) {
-            const data: ShowPreview[] = await resp.json();
-            setNotStartedShows(data);
+            setNotStartedShows(await resp.json());
             setIsLoad(false);
         } else {
             errorToast(await resp.json());
