@@ -20,8 +20,8 @@ export default function ViewingMonth() {
         const resp = await showService.getViewedMonthAgo(month);
 
         if (resp.status === 200) {
-            setIsLoad(false);
             setSeasons(await resp.json());
+            setIsLoad(false);
         } else {
             errorToast(await resp.json());
         }

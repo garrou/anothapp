@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
-import CustomBarChart from "./CustomBarChart";
 import { errorToast } from "../../helpers/toasts";
+import CustomLineChart from "./CustomLineChart";
 
 export default function SeasonsMonthChart() {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
@@ -26,7 +26,7 @@ export default function SeasonsMonthChart() {
         <>
             {seasonsByMonths.length === 0 && <Loading />}
 
-            {seasonsByMonths.length > 0 && <CustomBarChart 
+            {seasonsByMonths.length > 0 && <CustomLineChart 
                 color="#ae34eb" 
                 title="Saisons par mois" 
                 data={seasonsByMonths} 

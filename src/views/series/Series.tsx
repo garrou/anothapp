@@ -33,13 +33,13 @@ export default function Series() {
 
         if (resp.status === 200) {
             const data = await resp.json();
-            setIsLoad(false);
 
             if (data.length !== 0 && data[0].images) {
                 setNewShows(data);
             } else {
                 setShows(data);
             }
+            setIsLoad(false);
         } else {
             errorToast(await resp.json());
         }

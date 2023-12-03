@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import searchService from "../../services/searchService";
