@@ -32,7 +32,7 @@ export default function EpisodesYearChart() {
                 title="Episodes par années"
                 data={episodesByYear}
                 legend="Episodes"
-                max={3000}
+                ratio={500}
             />}
         </>
     );

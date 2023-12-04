@@ -4,10 +4,10 @@ import { Chart } from "../../models/internal/Chart"
 export default function CustomLineChart(props: Chart) {
     return (
         <ResponsiveContainer width="100%" height={300}>
-            <LineChart width={730} height={250} data={props.data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <LineChart width={500} height={300} data={props.data}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="label" domain={[0, props.max]} allowDecimals={false} />
-                <YAxis />
+                <XAxis dataKey="label" />
+                <YAxis ticks={Array.from({ length: props.data.length }, (_, i) => i * props.ratio)} />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="value" stroke={props.color} name={props.legend} />

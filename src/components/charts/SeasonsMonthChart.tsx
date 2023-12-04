@@ -32,7 +32,7 @@ export default function SeasonsMonthChart() {
                 title="Saisons par mois"
                 data={seasonsByMonths}
                 legend="Saisons"
-                max={150}
+                ratio={25}
             />}
         </>
     );

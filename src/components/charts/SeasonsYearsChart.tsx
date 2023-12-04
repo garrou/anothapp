@@ -32,7 +32,7 @@ export default function SeasonsYearsChart() {
                 title="Saisons par années"
                 data={seasonsByYears}
                 legend="Saisons"
-                max={200}
+                ratio={25}
             />}
         </>
     );

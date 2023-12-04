@@ -12,7 +12,7 @@ interface Chart {
 
     legend: string
 
-    max: number
+    ratio: number
 }
 
 export type { Chart };

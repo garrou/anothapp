@@ -32,7 +32,7 @@ export default function KindsChart() {
                 title="10 genres les plus regardés" 
                 data={kinds} 
                 legend="Genres"
-                max={300}
+                ratio={50}
             />}
         </>
     );

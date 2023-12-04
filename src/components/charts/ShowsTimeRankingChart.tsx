@@ -33,7 +33,7 @@ export default function ShowsTimeRankingChart() {
                 title="10 séries les plus chronophages"
                 data={shows}
                 legend="Heures"
-                max={1000}
+                ratio={50}
             />}
         </>
     );

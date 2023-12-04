@@ -3,12 +3,12 @@ import { Chart } from "../../models/internal/Chart";
 import CustomLineChart from "./CustomLineChart";
 import CustomBarChart from "./CustomBarChart";
 import CustomPieChart from "./CustomPieChart";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CustomChartWrapper(props: Chart) {
     const [type, setType] = useState<string | null>(null);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const savedType = localStorage.getItem(props.id);
 
         if (type && savedType !== type) {
@@ -21,11 +21,11 @@ export default function CustomChartWrapper(props: Chart) {
     const displayChart = () => {
         switch (type) {
             case "line":
-                return <CustomLineChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} max={props.max} />
+                return <CustomLineChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} ratio={props.ratio} />
             case "bar":
-                return <CustomBarChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} max={props.max} />
+                return <CustomBarChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} ratio={props.ratio} />
             case "pie":
-                return <CustomPieChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} max={props.max} />
+                return <CustomPieChart id={props.id} color={props.color} title={props.title} data={props.data} legend={props.legend} ratio={props.ratio} />
         }
     }
 
@@ -40,10 +40,9 @@ export default function CustomChartWrapper(props: Chart) {
                                 checked={t === type}
                                 inline
                                 type="radio"
-                                id={t}
                                 label={t}
                                 name={`group-${props.id}`}
-                                onChange={(e) => setType(e.target.id)}
+                                onChange={(_) => setType(t)}
                             />
                         ))
                     }
