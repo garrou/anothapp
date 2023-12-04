@@ -1,5 +1,4 @@
-import { Card, Tooltip } from "react-bootstrap"
-import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts"
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from "recharts"
 import { Chart } from "../../models/internal/Chart"
 
 const COLORS = [
@@ -17,23 +16,18 @@ const COLORS = [
 
 export default function CustomPieChart(props: Chart) {
     return (
-        <Card className="mt-2">
-            <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
-                <ResponsiveContainer width="100%" height={300}>
-                    <PieChart width={500} height={300}>
-                        <Pie data={props.data} dataKey="value" nameKey="label" cx="50%" cy="50%" outerRadius={80}>
-                            {
-                                props.data.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                ))
-                            }
-                        </Pie>
-                        <Tooltip />
-                        <Legend layout="vertical" align="right" name={props.legend} />
-                    </PieChart>
-                </ResponsiveContainer>
-            </Card.Body>
-        </Card>
+        <ResponsiveContainer width="100%" height={300}>
+            <PieChart width={500} height={300}>
+                <Pie data={props.data} dataKey="value" nameKey="label" cx="50%" cy="50%" outerRadius={80}>
+                    {
+                        props.data.map((_, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))
+                    }
+                </Pie>
+                <Tooltip />
+                <Legend layout="vertical" align="right" name={props.legend} />
+            </PieChart>
+        </ResponsiveContainer>
     )
 }

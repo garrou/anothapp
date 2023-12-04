@@ -3,7 +3,7 @@ import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
-import CustomBarChart from "./CustomBarChart";
+import CustomChartWrapper from "./CustomChartWrapper";
 
 export default function KindsChart() {
     const [kinds, setKinds] = useState<Stat[]>([]);
@@ -26,7 +26,8 @@ export default function KindsChart() {
         <>
             {kinds.length === 0 && <Loading />}
 
-            {kinds.length > 0 && <CustomBarChart 
+            {kinds.length > 0 && <CustomChartWrapper 
+                id="kinds-chart"
                 color="#329ea8" 
                 title="10 genres les plus regardés" 
                 data={kinds} 

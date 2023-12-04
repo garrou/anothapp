@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
-import CustomBarChart from "./CustomBarChart";
 import { errorToast } from "../../helpers/toasts";
+import CustomChartWrapper from "./CustomChartWrapper";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
@@ -26,7 +26,8 @@ export default function SeasonsYearsChart() {
         <>
             {seasonsByYears.length === 0 && <Loading />}
 
-            {seasonsByYears.length > 0 && <CustomBarChart
+            {seasonsByYears.length > 0 && <CustomChartWrapper
+                id="seasons-years-chart"
                 color="#f5962a"
                 title="Saisons par années"
                 data={seasonsByYears}

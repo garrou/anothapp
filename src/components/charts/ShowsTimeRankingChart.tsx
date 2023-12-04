@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import statService from "../../services/statService";
 import Loading from "../Loading";
-import CustomBarChart from "./CustomBarChart";
 import { errorToast } from "../../helpers/toasts";
 import { Stat } from "../../models/internal/Stat";
+import CustomChartWrapper from "./CustomChartWrapper";
 
 export default function ShowsTimeRankingChart() {
     const [shows, setShows] = useState<Stat[]>([]);
@@ -27,7 +27,8 @@ export default function ShowsTimeRankingChart() {
         <>
             {shows.length === 0 && <Loading />}
 
-            {shows.length > 0 && <CustomBarChart
+            {shows.length > 0 && <CustomChartWrapper
+                id="shows-chart"
                 color="#0bb5b8"
                 title="10 séries les plus chronophages"
                 data={shows}

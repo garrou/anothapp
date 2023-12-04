@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
-import CustomBarChart from "./CustomBarChart";
 import { errorToast } from "../../helpers/toasts";
+import CustomChartWrapper from "./CustomChartWrapper";
 
 export default function TimeYearsChart() {
     const [timeByYears, setTimeByYears] = useState<Stat[]>([]);
@@ -26,7 +26,8 @@ export default function TimeYearsChart() {
         <>
             {timeByYears.length === 0 && <Loading />}
 
-            {timeByYears.length > 0 && <CustomBarChart
+            {timeByYears.length > 0 && <CustomChartWrapper
+                id="time-month-chart"
                 color="#32a850"
                 title="Temps par année"
                 data={timeByYears}

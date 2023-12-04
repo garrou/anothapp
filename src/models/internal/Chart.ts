@@ -1,6 +1,8 @@
 import { Stat } from "./Stat"
 
 interface Chart {
+
+    id: string
     
     data: Stat[]
 

@@ -3,7 +3,7 @@ import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
-import CustomLineChart from "./CustomLineChart";
+import CustomChartWrapper from "./CustomChartWrapper";
 
 export default function SeasonsMonthChart() {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
@@ -26,10 +26,11 @@ export default function SeasonsMonthChart() {
         <>
             {seasonsByMonths.length === 0 && <Loading />}
 
-            {seasonsByMonths.length > 0 && <CustomLineChart 
-                color="#ae34eb" 
-                title="Saisons par mois" 
-                data={seasonsByMonths} 
+            {seasonsByMonths.length > 0 && <CustomChartWrapper
+                id="seasons-months-chart"
+                color="#ae34eb"
+                title="Saisons par mois"
+                data={seasonsByMonths}
                 legend="Saisons"
                 max={150}
             />}
