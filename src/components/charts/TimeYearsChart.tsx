@@ -33,6 +33,7 @@ export default function TimeYearsChart() {
                 data={timeByYears}
                 legend="Temps en heures"
                 ratio={300}
+                max={1000}
             />}
         </>
     );

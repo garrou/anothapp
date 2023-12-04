@@ -33,6 +33,7 @@ export default function KindsChart() {
                 data={kinds} 
                 legend="Genres"
                 ratio={50}
+                max={200}
             />}
         </>
     );

@@ -34,6 +34,7 @@ export default function ShowsTimeRankingChart() {
                 data={shows}
                 legend="Heures"
                 ratio={50}
+                max={100}
             />}
         </>
     );

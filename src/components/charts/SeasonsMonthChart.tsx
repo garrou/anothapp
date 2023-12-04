@@ -33,6 +33,7 @@ export default function SeasonsMonthChart() {
                 data={seasonsByMonths}
                 legend="Saisons"
                 ratio={25}
+                max={100}
             />}
         </>
     );

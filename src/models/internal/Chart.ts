@@ -13,6 +13,8 @@ interface Chart {
     legend: string
 
     ratio: number
+
+    max: number
 }
 
 export type { Chart };
