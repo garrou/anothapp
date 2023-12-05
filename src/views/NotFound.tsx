@@ -1,12 +1,12 @@
-import { Container } from "react-bootstrap";
-import Guard from "../components/Guard";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
-    return (
-        <Container>
-            <Guard />
+    const navigate = useNavigate();
 
-            <h1>NOT FOUND</h1>
-        </Container>
-    );
+    useEffect(() => {
+        navigate("/", { replace: true });
+    }, []);
+
+    return (<></>);
 }

@@ -1,12 +1,24 @@
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { errorToast } from "../../helpers/toasts";
-import Redirect from "../../components/Redirect";
 import profileService from "../../services/profileService";
 import storageService from "../../services/storageService";
+import { useEffect } from "react";
 
 export default function Login() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        checkIfLogged();
+    }, []);
+
+    const checkIfLogged = async () => {
+        const resp = await profileService.checkUser();
+
+        if (resp.status === 200) {
+            navigate("/series", { replace: true });
+        } 
+    }
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
@@ -17,7 +29,7 @@ export default function Login() {
 
         if (resp.status === 200) {
             storageService.storeJwt((await resp.json()).token);
-            navigate('/series', { replace: true });
+            navigate("/series", { replace: true });
         } else {
             errorToast(await resp.json());
         }
@@ -25,8 +37,6 @@ export default function Login() {
 
     return (
         <Container>
-            <Redirect />
-
             <Card className="mt-3">
                 <Card.Body>
                     <Card.Title>Se connecter</Card.Title>

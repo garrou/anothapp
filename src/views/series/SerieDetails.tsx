@@ -87,7 +87,7 @@ export default function SeriesDetails() {
         const resp = await showService.deleteShow(Number(id));
 
         if (resp.status === 204) {
-            navigate('/series', { replace: true });
+            navigate("/series", { replace: true });
         } else {
             errorToast(await resp.json());
         }

@@ -4,7 +4,7 @@ const storeJwt = (token: string) => {
     localStorage.setItem('jwt', token);
 }
 
-const getJwt = (): string | null => localStorage.getItem('jwt');
+const getJwt = (): string | null => localStorage.getItem('jwt') ?? "";
 
 const deleteJwt = () => localStorage.removeItem('jwt');
 

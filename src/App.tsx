@@ -1,9 +1,8 @@
-import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
-import Series from "./views/series/Series";
-import Home from "./views/Home";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { createBrowserRouter, redirect, Route, RouterProvider, Routes } from "react-router-dom";
+import Series from "./views/series/Series";
+import Home from "./views/Home";
 import Discover from "./views/discover/Discover";
 import Profile from "./views/user/Profile";
 import DiscoverDetails from "./views/discover/DiscoverDetails";
@@ -20,7 +19,9 @@ import { ToastContainer } from "react-toastify";
 import Next from "./views/activities/Next";
 
 const router = createBrowserRouter([
-  { path: "*", element: <Root /> },
+  {
+    path: "*", element: <Root />
+  }
 ]);
 
 function App() {
