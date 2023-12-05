@@ -30,7 +30,7 @@ function App() {
 function Root() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer limit={3} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
