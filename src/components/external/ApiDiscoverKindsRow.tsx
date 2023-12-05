@@ -17,7 +17,7 @@ export default function ApiDiscoverKindsRow() {
         getShowsByKind();
     }, [kind]);
 
-    const getShowsByKind = async () => { 
+    const getShowsByKind = async () => {
         const resp = await searchService.getShowsByKind(kind);
 
         if (resp.status === 200) {
@@ -29,7 +29,7 @@ export default function ApiDiscoverKindsRow() {
 
     const getKinds = async () => {
 
-        if (kinds.length !== 0) return
+        if (kinds.length > 0) return
 
         const resp = await searchService.getKinds();
 
@@ -50,15 +50,13 @@ export default function ApiDiscoverKindsRow() {
                 {kinds.map(k => <option key={k.value} value={k.value}>{k.name}</option>)}
             </Form.Select>
 
-            {shows.length === 0 && <Loading />}
-
-            <Row xs={2} md={3} lg={4} className="mt-3">
+            {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-3">
                 {shows.map(s => (
                     <Col key={s.id} >
                         <ApiShowCard preview={s} />
                     </Col>
                 ))}
-            </Row>
+            </Row> : <Loading />}
         </>
     );
 }

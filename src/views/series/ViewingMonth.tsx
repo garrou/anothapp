@@ -42,24 +42,24 @@ export default function ViewingMonth() {
                 <option value="12">Depuis 1 an</option>
             </Form.Select>
 
-            {seasons.length === 0 && <p className="text-center mt-3">Aucun visionnage</p>}
-            {seasons.length !== 0 && <p className="text-center mt-3">{seasons.length} résultats</p>}
-
-            <Table className="mt-3">
-                <tbody>
-                    {seasons.map(s => (
-                        <tr key={s.id * s.number} className="align-middle">
-                            <td>
-                                <Image src={s.image ?? s.poster} alt="Poster" height={75} width={75} fluid={true} />
-                            </td>
-                            <td>
-                                <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
-                            </td>
-                            <td>Saison {s.number}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+            {seasons.length > 0 ? <>
+                <p className="text-center mt-3">{seasons.length} résultats</p>
+                <Table className="mt-3">
+                    <tbody>
+                        {seasons.map(s => (
+                            <tr key={s.id * s.number} className="align-middle">
+                                <td>
+                                    <Image src={s.image ?? s.poster} alt="Poster" height={75} width={75} fluid={true} />
+                                </td>
+                                <td>
+                                    <a href={`/series/${s.id}`} className="text-dark">{s.title}</a>
+                                </td>
+                                <td>Saison {s.number}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </> : <p className="text-center mt-3">Aucun visionnage</p>}
         </Container>
     );
 };

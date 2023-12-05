@@ -45,9 +45,7 @@ export default function DiscoverDetails() {
         <Container>
             <Navigation url={'/discover'} />
 
-            {!show && <Loading />}
-
-            {show && <>
+            {show ? <>
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
@@ -69,7 +67,7 @@ export default function DiscoverDetails() {
                         <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
-            </>}
+            </> : <Loading />}
         </Container>
     );
 };

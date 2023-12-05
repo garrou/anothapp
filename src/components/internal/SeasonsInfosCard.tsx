@@ -49,7 +49,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
             infos.splice(infos.findIndex((info) => info.id === seasonToDelete), 1);
             checkIfAnySeason(infos);
             successToast("Saison supprimée");
-        } else { 
+        } else {
             errorToast(await resp.json());
         }
         setShowModal(false);
@@ -70,9 +70,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
                     <Card.Title>{`Saison ${num}`}</Card.Title>
                     <Card.Subtitle>{`Visionnée ${infos.length} fois`}</Card.Subtitle>
 
-                    {infos.length === 0 && <Loading />}
-
-                    <Table striped hover className="mt-3">
+                    {infos.length > 0 ? <Table striped hover className="mt-3">
                         <tbody>
                             {infos.map(i => (
                                 <tr key={i.id}>
@@ -83,7 +81,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
                                 </tr>
                             ))}
                         </tbody>
-                    </Table>
+                    </Table> : <Loading />}
                 </Card.Body>
             </Card>
         </>

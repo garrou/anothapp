@@ -24,9 +24,7 @@ export default function SeasonsYearsChart() {
 
     return (
         <>
-            {seasonsByYears.length === 0 && <Loading />}
-
-            {seasonsByYears.length > 0 && <CustomChartWrapper
+            {seasonsByYears.length > 0 ? <CustomChartWrapper
                 id="seasons-years-chart"
                 color="#f5962a"
                 title="Saisons par années"
@@ -34,7 +32,7 @@ export default function SeasonsYearsChart() {
                 legend="Saisons"
                 ratio={25}
                 max={100}
-            />}
+            /> : <Loading />}
         </>
     );
 }

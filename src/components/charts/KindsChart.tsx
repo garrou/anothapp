@@ -24,17 +24,15 @@ export default function KindsChart() {
 
     return (
         <>
-            {kinds.length === 0 && <Loading />}
-
-            {kinds.length > 0 && <CustomChartWrapper 
+            {kinds.length > 0 ? <CustomChartWrapper 
                 id="kinds-chart"
                 color="#329ea8" 
                 title="10 genres les plus regardés" 
-                data={kinds} 
+                data={kinds.reverse()} 
                 legend="Genres"
                 ratio={50}
                 max={200}
-            />}
+            /> : <Loading />}
         </>
     );
 }

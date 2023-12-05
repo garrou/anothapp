@@ -8,7 +8,6 @@ import ApiShowCard from "./ApiShowCard";
 
 export default function ApiDiscoverTitleRow() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(true);
     const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
@@ -19,7 +18,6 @@ export default function ApiDiscoverTitleRow() {
         const resp: Response = await searchService.discoverShows(search);
 
         if (resp.status === 200) {
-            setIsLoad(false);
             setShows(await resp.json());
         } else {
             errorToast(await resp.json());
@@ -29,10 +27,9 @@ export default function ApiDiscoverTitleRow() {
     const onSubmit = async (e: any) => {
         e.preventDefault();
         setShows([]);
-        setIsLoad(true);
         setSearch(e.target.titleSearch.value);
     }
-    
+
     return (
         <>
             <Form className="mt-3" onSubmit={onSubmit}>
@@ -42,15 +39,13 @@ export default function ApiDiscoverTitleRow() {
                 <Button variant="outline-dark" type="submit">Rechercher</Button>
             </Form>
 
-            {isLoad && <Loading />}
-
-            <Row xs={2} md={3} lg={4} className="mt-4">
+            {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (
                     <Col key={s.id} >
                         <ApiShowCard preview={s} />
                     </Col>
                 ))}
-            </Row>
+            </Row> : <Loading />}
         </>
     );
 }

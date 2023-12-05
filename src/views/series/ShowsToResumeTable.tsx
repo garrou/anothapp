@@ -58,7 +58,7 @@ export default function ShowsToContinueTable() {
                 handleConfirm={resumeWatching}
             />
 
-            <Table className="mt-3">
+            {shows.length > 0 ? <Table className="mt-3">
                 <tbody>
                     {shows.map(s => (
                         <tr key={s.id} className="align-middle">
@@ -74,7 +74,7 @@ export default function ShowsToContinueTable() {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
+            </Table> : <p className="text-center mt-3">Aucune série à reprendre</p>}
         </Container>
     );
 }

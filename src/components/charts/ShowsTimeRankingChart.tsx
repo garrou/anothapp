@@ -8,7 +8,6 @@ import CustomChartWrapper from "./CustomChartWrapper";
 export default function ShowsTimeRankingChart() {
     const [shows, setShows] = useState<Stat[]>([]);
 
-
     useEffect(() => {
         getRanking();
     }, []);
@@ -25,17 +24,15 @@ export default function ShowsTimeRankingChart() {
 
     return (
         <>
-            {shows.length === 0 && <Loading />}
-
-            {shows.length > 0 && <CustomChartWrapper
+            {shows.length > 0 ? <CustomChartWrapper
                 id="shows-chart"
                 color="#0bb5b8"
                 title="10 séries les plus chronophages"
-                data={shows}
+                data={shows.reverse()}
                 legend="Heures"
                 ratio={50}
                 max={100}
-            />}
+            /> : <Loading />}
         </>
     );
 }

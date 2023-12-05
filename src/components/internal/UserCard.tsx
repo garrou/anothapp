@@ -6,7 +6,7 @@ import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 
 export default function UserCard() {
-    const [user, setUser] = useState<User|null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         getUserProfile();
@@ -24,15 +24,12 @@ export default function UserCard() {
 
     return (
         <>
-            {!user && <Loading />}
-
-            {user &&
-                <Card className="mt-2">
-                    {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
-                    <Card.Body>
-                        <Card.Title>{user.email}</Card.Title>
-                    </Card.Body>
-                </Card>}
+            {user ? <Card className="mt-2">
+                {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
+                <Card.Body>
+                    <Card.Title>{user.email}</Card.Title>
+                </Card.Body>
+            </Card> : <Loading />}
         </>
     );
 };

@@ -24,9 +24,7 @@ export default function TimeYearsChart() {
 
     return (
         <>
-            {timeByYears.length === 0 && <Loading />}
-
-            {timeByYears.length > 0 && <CustomChartWrapper
+            {timeByYears.length > 0 ? <CustomChartWrapper
                 id="time-month-chart"
                 color="#32a850"
                 title="Temps par année"
@@ -34,7 +32,7 @@ export default function TimeYearsChart() {
                 legend="Temps en heures"
                 ratio={300}
                 max={1000}
-            />}
+            /> : <Loading />}
         </>
     );
 }

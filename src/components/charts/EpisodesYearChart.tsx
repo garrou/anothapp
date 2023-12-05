@@ -24,9 +24,7 @@ export default function EpisodesYearChart() {
 
     return (
         <>
-            {episodesByYear.length === 0 && <Loading />}
-
-            {episodesByYear.length > 0 && <CustomChartWrapper
+            {episodesByYear.length > 0 ? <CustomChartWrapper
                 id="episodes-years-chart"
                 color="#4287f5"
                 title="Episodes par années"
@@ -34,7 +32,7 @@ export default function EpisodesYearChart() {
                 legend="Episodes"
                 ratio={500}
                 max={2000}
-            />}
+            /> : <Loading />}
         </>
     );
 }

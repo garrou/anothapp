@@ -10,7 +10,6 @@ import { errorToast, successToast } from "../../helpers/toasts";
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
-    
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showToStop, setShowToStop] = useState<number>(-1);
 
@@ -58,9 +57,7 @@ export default function ShowsToContinueTable() {
 
             {isLoad && <Loading />}
 
-            {shows.length === 0 && <p className="text-center mt-3">Vous-êtes à jour</p>}
-
-            <Table className="mt-3">
+            {shows.length > 0 ? <Table className="mt-3">
                 <tbody>
                     {shows.map(s => (
                         <tr key={s.id} className="align-middle">
@@ -77,7 +74,7 @@ export default function ShowsToContinueTable() {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
+            </Table> : <p className="text-center mt-3">Vous-êtes à jour</p>}
         </Container>
     );
 }

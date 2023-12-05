@@ -33,11 +33,11 @@ export default function SeriesDetails() {
         getApiSeasons();
     }, [refresh]);
 
-    const notify = () => setRefresh(refresh+1);
+    const notify = () => setRefresh(refresh + 1);
 
     const getShow = async () => {
 
-        if (refresh > 0) return 
+        if (refresh > 0) return
 
         const resp = await searchService.getShowById(id!);
 
@@ -60,7 +60,7 @@ export default function SeriesDetails() {
 
     const getApiSeasons = async () => {
 
-        if (refresh > 0) return 
+        if (refresh > 0) return
 
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
@@ -103,9 +103,7 @@ export default function SeriesDetails() {
                 handleConfirm={onDelete}
             />
 
-            {!show && <Loading />}
-
-            {show && <>
+            {show ? <>
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
                 <Stack direction="horizontal" gap={3}>
@@ -116,8 +114,8 @@ export default function SeriesDetails() {
                 </Stack>
 
                 <Button variant="outline-dark" onClick={() => setDisplayDetails(!displayDetails)}>
-                        {!displayDetails && "Voir le détail"}
-                        {displayDetails && "Masquer le détail"}
+                    {!displayDetails && "Voir le détail"}
+                    {displayDetails && "Masquer le détail"}
                 </Button>
 
                 {displayDetails && <ApiShowInfos show={show} />}
@@ -157,7 +155,7 @@ export default function SeriesDetails() {
                         <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
-            </>}
+            </> : <Loading />}
         </Container>
     );
 };

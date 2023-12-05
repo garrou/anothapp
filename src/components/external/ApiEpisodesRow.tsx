@@ -13,7 +13,7 @@ interface Props {
     num: string;
 }
 
-export default function ApiEpisodesCards({showId, num }: Props) {
+export default function ApiEpisodesCards({ showId, num }: Props) {
     const [episodes, setEpisodes] = useState<ApiEpisodePreview[]>([]);
 
     useEffect(() => {
@@ -32,11 +32,10 @@ export default function ApiEpisodesCards({showId, num }: Props) {
 
     return (
         <>
-            {episodes.length === 0 && <Loading />}
-
-            <h3 className="mt-3">Episodes</h3>
-
-            {episodes.map(e => <ApiEpisodeCard key={e.id} episode={e} /> )}
+            {episodes.length > 0 ? <>
+                <h3 className="mt-3">Episodes</h3>
+                {episodes.map(e => <ApiEpisodeCard key={e.id} episode={e} />)}
+            </> : <Loading />}
         </>
     );
 }

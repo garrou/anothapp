@@ -24,9 +24,7 @@ export default function SeasonsMonthChart() {
 
     return (
         <>
-            {seasonsByMonths.length === 0 && <Loading />}
-
-            {seasonsByMonths.length > 0 && <CustomChartWrapper
+            {seasonsByMonths.length > 0 ? <CustomChartWrapper
                 id="seasons-months-chart"
                 color="#ae34eb"
                 title="Saisons par mois"
@@ -34,7 +32,7 @@ export default function SeasonsMonthChart() {
                 legend="Saisons"
                 ratio={25}
                 max={100}
-            />}
+            /> : <Loading />}
         </>
     );
 }
