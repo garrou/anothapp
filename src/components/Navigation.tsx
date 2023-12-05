@@ -1,6 +1,7 @@
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Guard from "./Guard";
+import storageService from "../services/storageService";
 
 interface Props {
     url: string
@@ -10,7 +11,7 @@ export default function Navigation({ url }: Props) {
     const navigate = useNavigate();
 
     const onClick = () => {
-        localStorage.removeItem('jwt');
+        storageService.deleteJwt();
         navigate('/', { replace: true });
     }
 

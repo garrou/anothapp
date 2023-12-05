@@ -25,7 +25,7 @@ export default function ShowsTimeRankingChart() {
     return (
         <>
             {shows.length > 0 ? <CustomChartWrapper
-                id="shows-chart"
+                id="shows-ranking-chart"
                 color="#0bb5b8"
                 title="10 séries les plus chronophages"
                 data={shows.reverse()}

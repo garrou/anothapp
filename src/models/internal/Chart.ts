@@ -1,5 +1,11 @@
 import { Stat } from "./Stat"
 
+enum ChartType {
+    Line = "line",
+    Bar = "bar",
+    Pie = "pie",
+}
+
 interface Chart {
 
     id: string
@@ -17,4 +23,11 @@ interface Chart {
     max: number
 }
 
-export type { Chart };
+interface ChartInfo {
+
+    type: ChartType
+
+    range: number
+}
+
+export { type Chart, type ChartInfo, ChartType };

@@ -1,11 +1,12 @@
 import { SeasonPreview } from "../models/internal/SeasonPreview";
 import { ApiShowPreview } from "../models/external/ApiShowPreview";
 import { ApiShowDetails } from "../models/external/ApiShowDetails";
+import storageService from "./storageService";
 
 const getShows = async (title: string, limit: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows?title=${title}&limit=${limit}`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -15,7 +16,7 @@ const addShow = async (show: ApiShowPreview): Promise<Response> => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             "id": show.id,
@@ -31,7 +32,7 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             "number": season.number,
@@ -45,7 +46,7 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
 const deleteShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         method: 'DELETE',
     });
@@ -54,7 +55,7 @@ const deleteShow = async (id: number): Promise<Response> => {
 const getSeasonsByShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -62,7 +63,7 @@ const getSeasonsByShow = async (id: number): Promise<Response> => {
 const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -70,7 +71,7 @@ const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
 const deleteSeason = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/seasons/${id}`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         method: 'DELETE'
     });
@@ -79,7 +80,7 @@ const deleteSeason = async (id: number): Promise<Response> => {
 const getViewedTimeByShowId = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/time`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -87,7 +88,7 @@ const getViewedTimeByShowId = async (id: number): Promise<Response> => {
 const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}/time`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -95,7 +96,7 @@ const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<R
 const getViewedMonthAgo = async (month: number) => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/viewed?month=${month}`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -103,7 +104,7 @@ const getViewedMonthAgo = async (month: number) => {
 const getNotStartedShows = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/not-started`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -111,7 +112,7 @@ const getNotStartedShows = async () => {
 const getShowsToContinue = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/continue`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -119,7 +120,7 @@ const getShowsToContinue = async () => {
 const getShowsToResume = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/resume`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -127,7 +128,7 @@ const getShowsToResume = async () => {
 const updateShowsToContinue = async (id: number) => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/watching`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         method: 'PATCH'
     });

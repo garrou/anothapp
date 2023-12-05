@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { errorToast } from "../../helpers/toasts";
 import Redirect from "../../components/Redirect";
 import profileService from "../../services/profileService";
+import storageService from "../../services/storageService";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Login() {
         const resp = await profileService.login(email, password);
 
         if (resp.status === 200) {
-            localStorage.setItem('jwt', (await resp.json()).token);
+            storageService.storeJwt((await resp.json()).token);
             navigate('/series', { replace: true });
         } else {
             errorToast(await resp.json());

@@ -1,9 +1,11 @@
+import storageService from "./storageService";
+
 const setProfilePicture = async (image: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/profile/image`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             'image': image
@@ -14,7 +16,7 @@ const setProfilePicture = async (image: string): Promise<Response> => {
 const checkUser = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/auth/me`, { 
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -22,7 +24,7 @@ const checkUser = async (): Promise<Response> => {
 const getProfile = async (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/profile`, { 
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            'Authorization': `Bearer ${storageService.getJwt()}`
         }
     });
 }

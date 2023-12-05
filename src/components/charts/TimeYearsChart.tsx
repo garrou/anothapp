@@ -25,7 +25,7 @@ export default function TimeYearsChart() {
     return (
         <>
             {timeByYears.length > 0 ? <CustomChartWrapper
-                id="time-month-chart"
+                id="time-years-chart"
                 color="#32a850"
                 title="Temps par année"
                 data={timeByYears}
