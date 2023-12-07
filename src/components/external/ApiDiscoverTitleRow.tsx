@@ -17,12 +17,11 @@ export default function ApiDiscoverTitleRow() {
     const getShowsToDiscover = async () => {
         const resp: Response = await searchService.discoverShows(search);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShows(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
         }
-    }
 
     const onSubmit = async (e: any) => {
         e.preventDefault();

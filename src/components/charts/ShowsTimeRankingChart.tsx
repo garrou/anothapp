@@ -15,11 +15,10 @@ export default function ShowsTimeRankingChart() {
     const getRanking = async () => {
         const resp = await statService.getTimeByType("rank");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShows(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function ShowsTimeRankingChart() {
                 title="10 séries les plus chronophages"
                 data={shows.reverse()}
                 legend="Heures"
-                ratio={50}
+                range={50}
                 max={100}
             /> : <Loading />}
         </>

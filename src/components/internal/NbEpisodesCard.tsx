@@ -13,11 +13,10 @@ export default function NbEpisodesCard() {
     const getNbEpisodes = async () => {
         const resp = await statService.getCountByType("episodes");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setNum(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

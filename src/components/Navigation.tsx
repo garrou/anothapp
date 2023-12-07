@@ -18,9 +18,8 @@ export default function Navigation({ url }: Props) {
     const checkIfLogged = async () => {
         const resp = await profileService.checkUser();
 
-        if (resp.status !== 200) {
+        if (resp.status !== 200)
             navigate("/login", { replace: true });
-        }
     }
 
     const onClick = () => {

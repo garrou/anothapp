@@ -15,11 +15,10 @@ export default function KindsChart() {
     const getKinds = async (): Promise<void> => {
         const resp = await statService.getGroupedCountByTypeByPeriod("kinds", "");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setKinds(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function KindsChart() {
                 title="10 genres les plus regardés" 
                 data={kinds.reverse()} 
                 legend="Genres"
-                ratio={50}
+                range={50}
                 max={200}
             /> : <Loading />}
         </>

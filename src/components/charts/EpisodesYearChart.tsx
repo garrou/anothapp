@@ -15,11 +15,10 @@ export default function EpisodesYearChart() {
     const getEpisodesByYears = async (): Promise<void> => {
         const resp = await statService.getGroupedCountByTypeByPeriod("episodes", "years");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setEpisodesByYears(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function EpisodesYearChart() {
                 title="Episodes par années"
                 data={episodesByYear}
                 legend="Episodes"
-                ratio={500}
+                range={500}
                 max={2000}
             /> : <Loading />}
         </>

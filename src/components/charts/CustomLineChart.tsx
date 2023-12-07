@@ -7,7 +7,7 @@ export default function CustomLineChart(props: Chart) {
             <LineChart width={500} height={300} data={props.data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="label" />
-                <YAxis ticks={Array.from({ length: props.data.length }, (_, i) => i * props.ratio)} />
+                <YAxis ticks={Array.from({ length: props.data.length }, (_, i) => i * props.range)} />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="value" stroke={props.color} name={props.legend} />

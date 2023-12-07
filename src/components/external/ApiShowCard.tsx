@@ -17,11 +17,10 @@ export default function ApiShowCard({ preview }: Props) {
     const onClick = async () => {
         const resp = await showService.addShow(preview);
 
-        if (resp.status === 201) {
+        if (resp.status === 201)
             navigate(`/series/${preview.id}`);
-        } else {
+        else
             errorToast(await resp.json());
-        }
     };
 
     return (

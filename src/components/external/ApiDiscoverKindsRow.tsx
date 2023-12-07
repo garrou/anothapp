@@ -20,11 +20,10 @@ export default function ApiDiscoverKindsRow() {
     const getShowsByKind = async () => {
         const resp = await searchService.getShowsByKind(kind);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShows(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const getKinds = async () => {

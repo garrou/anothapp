@@ -15,9 +15,7 @@ export default function Login() {
     const checkIfLogged = async () => {
         const resp = await profileService.checkUser();
 
-        if (resp.status === 200) {
-            navigate("/series", { replace: true });
-        } 
+        if (resp.status === 200) navigate("/series", { replace: true });
     }
 
     const onSubmit = async (e: any) => {

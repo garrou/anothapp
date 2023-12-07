@@ -18,11 +18,10 @@ export default function ApiSimilarShowTable({ showId }: Props) {
     const getSimilarsShows = async () => {
         const resp = await searchService.getSimilarByShowId(showId);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShows(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

@@ -16,11 +16,11 @@ export default function Home() {
     const getImages = async () => {
         const resp = await searchService.getHomeImages();
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShows(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
+
     }
 
     return (

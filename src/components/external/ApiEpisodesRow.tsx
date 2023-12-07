@@ -23,11 +23,10 @@ export default function ApiEpisodesCards({ showId, num }: Props) {
     const getEpisodes = async () => {
         const resp = await searchService.getEpisodesByShowIdBySeasonNum(Number(showId), Number(num));
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setEpisodes(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

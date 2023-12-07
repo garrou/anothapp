@@ -18,7 +18,7 @@ interface Chart {
 
     legend: string
 
-    ratio: number
+    range: number
 
     max: number
 }
@@ -28,6 +28,8 @@ interface ChartInfo {
     type: ChartType
 
     range: number
+
+    color: string
 }
 
 export { type Chart, type ChartInfo, ChartType };

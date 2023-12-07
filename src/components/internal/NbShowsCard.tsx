@@ -13,11 +13,10 @@ export default function NbShowsCard() {
     const getNbShows = async () => {
         const resp = await statService.getCountByType("shows");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setNum(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

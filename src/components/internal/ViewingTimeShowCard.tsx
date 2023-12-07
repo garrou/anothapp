@@ -18,11 +18,10 @@ export default function ViewingTimeShowCard({ showId }: Props) {
     const getViewingTime = async () => {
         const resp = await showService.getViewedTimeByShowId(showId);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setTime(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

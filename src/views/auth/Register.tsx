@@ -14,9 +14,7 @@ export default function Register() {
     const checkIfLogged = async () => {
         const resp = await profileService.checkUser();
 
-        if (resp.status === 200) {
-            navigate("/series", { replace: true });
-        }
+        if (resp.status === 200) navigate("/series", { replace: true });
     }
 
     const onSubmit = async (e: any) => {
@@ -27,11 +25,10 @@ export default function Register() {
         const confirm: string = e.target.registerConfirm.value;
         const resp = await profileService.register(email, password, confirm);
 
-        if (resp.status === 201) {
+        if (resp.status === 201)
             navigate("/login");
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

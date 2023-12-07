@@ -20,21 +20,19 @@ export default function DiscoverDetails() {
     const getShow = async () => {
         const resp = await searchService.getShowById(id!);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShow(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const onClick = async () => {
         const resp = await showService.addShow(show!);
 
-        if (resp.status === 201) {
+        if (resp.status === 201)
             navigate(`/series/${show!.id}`);
-        } else {
+        else
             errorToast(await resp.json());
-        }
     };
 
     useEffect(() => {

@@ -20,11 +20,10 @@ export default function MonthRecordViewingTime() {
     const getMonthRecord = async () => {
         const resp = await statService.getTimeByType("best-month");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setRecord(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

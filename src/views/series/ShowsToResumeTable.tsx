@@ -36,11 +36,10 @@ export default function ShowsToContinueTable() {
     const resumeWatching = async () => {
         const resp = await showService.updateShowsToContinue(showToResume);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             successToast("La série est reprise");
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

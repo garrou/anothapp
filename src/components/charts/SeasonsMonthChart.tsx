@@ -15,11 +15,10 @@ export default function SeasonsMonthChart() {
     const getNbSeasonsByMonths = async () => {
         const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "months");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setSeasonsByMonths(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function SeasonsMonthChart() {
                 title="Saisons par mois"
                 data={seasonsByMonths}
                 legend="Saisons"
-                ratio={25}
+                range={25}
                 max={100}
             /> : <Loading />}
         </>

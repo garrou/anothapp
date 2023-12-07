@@ -1,27 +1,19 @@
 interface ApiShowImage {
 
-    poster: string|null;
+    poster: string | null;
 
-    show: string|null;
+    show: string | null;
 
-    banner: string|null;
+    banner: string | null;
 
-    box: string|null;
+    box: string | null;
 };
 
-const getImageUrl = (image: ApiShowImage): string|null => {
-    if (image.poster) {
-        return image.poster;
-    } 
-    if (image.show) {
-        return image.show;
-    }
-    if (image.banner) {
-        return image.banner;
-    }
-    if (image.box) {
-        return image.box;
-    }
+const getImageUrl = (image: ApiShowImage): string | null => {
+    if (image.poster) return image.poster;
+    if (image.show) return image.show;
+    if (image.banner) return image.banner;
+    if (image.box) return image.box;
     return null;
 }
 

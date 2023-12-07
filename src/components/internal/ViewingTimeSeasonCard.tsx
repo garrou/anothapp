@@ -19,11 +19,10 @@ export default function ViewingTimeSeasonCard({ showId, num }: Props) {
     const getViewingTimeBySeasonNumber = async () => {
         const resp = await showService.getViewedTimeByShowIdBySeason(Number(showId), Number(num));
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setTime(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

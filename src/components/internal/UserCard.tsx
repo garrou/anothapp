@@ -15,11 +15,10 @@ export default function UserCard() {
     const getUserProfile = async () => {
         const resp = await profileService.getProfile();
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setUser(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

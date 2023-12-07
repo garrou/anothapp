@@ -41,21 +41,19 @@ export default function SeriesDetails() {
 
         const resp = await searchService.getShowById(id!);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setShow(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const getSeasons = async () => {
         const resp = await showService.getSeasonsByShow(Number(id));
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setSeasons(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const getApiSeasons = async () => {
@@ -64,11 +62,10 @@ export default function SeriesDetails() {
 
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setApiSeasons(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const buildProgressBar = () => {
@@ -86,11 +83,10 @@ export default function SeriesDetails() {
     const onDelete = async () => {
         const resp = await showService.deleteShow(Number(id));
 
-        if (resp.status === 204) {
+        if (resp.status === 204)
             navigate("/series", { replace: true });
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (

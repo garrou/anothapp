@@ -15,11 +15,10 @@ export default function SeasonsYearsChart() {
     const getNbSeasonsByYears = async () => {
         const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "years");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setSeasonsByYears(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function SeasonsYearsChart() {
                 title="Saisons par années"
                 data={seasonsByYears}
                 legend="Saisons"
-                ratio={25}
+                range={25}
                 max={100}
             /> : <Loading />}
         </>

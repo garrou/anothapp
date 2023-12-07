@@ -20,12 +20,11 @@ export default function ApiCharactersRow({ showId }: Props) {
     const getCharacters = async () => {
         const resp = await searchService.getCharactersByShowId(showId);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setCharacters(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
         }
-    }
 
     return (
         <>

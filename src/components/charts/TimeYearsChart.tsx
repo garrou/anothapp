@@ -15,11 +15,10 @@ export default function TimeYearsChart() {
     const getTimeByYears = async () => {
         const resp = await statService.getTimeByType("years");
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setTimeByYears(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -30,7 +29,7 @@ export default function TimeYearsChart() {
                 title="Temps par année"
                 data={timeByYears}
                 legend="Temps en heures"
-                ratio={300}
+                range={300}
                 max={1000}
             /> : <Loading />}
         </>

@@ -18,21 +18,19 @@ export default function ApiImagesRow({ showId }: Props) {
     const getImagesByShowId = async (id: number) => {
         const resp = await searchService.getImagesByShowId(id);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             setImages(await resp.json());
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     const setProfilePicture = async (image: string) => {
         const resp = await profileService.setProfilePicture(image);
 
-        if (resp.status === 200) {
+        if (resp.status === 200)
             successToast("Image de profil modifiée");
-        } else {
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
