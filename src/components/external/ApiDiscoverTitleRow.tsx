@@ -8,7 +8,7 @@ import ApiShowCard from "./ApiShowCard";
 
 export default function ApiDiscoverTitleRow() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
-    const [search, setSearch] = useState<string>("");
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         getShowsToDiscover();

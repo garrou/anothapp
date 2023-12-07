@@ -1,5 +1,5 @@
 import { Accordion, Card, Form } from "react-bootstrap";
-import { Chart, ChartInfo, ChartType } from "../../models/internal/Chart";
+import { Chart, ChartType } from "../../models/internal/Chart";
 import CustomLineChart from "./CustomLineChart";
 import CustomBarChart from "./CustomBarChart";
 import CustomPieChart from "./CustomPieChart";
@@ -10,21 +10,29 @@ export default function CustomChartWrapper(props: Chart) {
     const [type, setType] = useState(ChartType.Bar);
     const [range, setRange] = useState(props.range);
     const [color, setColor] = useState(props.color);
+    const [isFirst, setIsFirst] = useState(true);
 
     useEffect(() => {
-        const savedInfo: ChartInfo = storageService.getChartInfo(props.id, props.range, props.color);
-
-        if (savedInfo.type !== type || savedInfo.range !== range || savedInfo.color !== color)
+        if (isFirst) {
+            const storedInfo = storageService.getChartInfo(props.id);
+            if (storedInfo) {
+                setType(storedInfo.type);
+                setRange(storedInfo.range);
+                setColor(storedInfo.color);
+            }
+            setIsFirst(false);
+        } else {
             storageService.storeChartInfo(props.id, { type, range, color });
+        }
     }, [type, range, color]);
 
     const displayChart = () => {
         switch (type) {
-            case "line":
+            case ChartType.Line:
                 return <CustomLineChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
-            case "bar":
+            case ChartType.Bar:
                 return <CustomBarChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
-            case "pie":
+            case ChartType.Pie:
                 return <CustomPieChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
         }
     }
@@ -50,14 +58,14 @@ export default function CustomChartWrapper(props: Chart) {
                                         />
                                     ))
                                 }
-                                <Form.Range value={range} className="dark" onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
-                                <Form.Control
+                                <Form.Range value={range} onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
+                                {type !== ChartType.Pie && <Form.Control
                                     type="color"
                                     id="color"
-                                    defaultValue={props.color}
+                                    defaultValue={color}
                                     title="Choose your color"
                                     onChange={(e) => setColor(e.target.value)}
-                                />
+                                />}
                             </Form>
                         </Accordion.Body>
                     </Accordion.Item>

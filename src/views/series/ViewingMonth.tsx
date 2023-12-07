@@ -8,7 +8,7 @@ import { errorToast } from "../../helpers/toasts";
 
 export default function ViewingMonth() {
     const [seasons, setSeasons] = useState<ViewedSeasonMonth[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(false);
+    const [isLoad, setIsLoad] = useState(false);
     const [month, setMonth] = useState<number>(0);
 
     useEffect(() => {

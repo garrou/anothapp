@@ -9,8 +9,8 @@ import { errorToast, successToast } from "../../helpers/toasts";
 
 export default function ShowsToContinueTable() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [isLoad, setIsLoad] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const [showToStop, setShowToStop] = useState<number>(-1);
 
     useEffect(() => {

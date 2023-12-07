@@ -28,7 +28,7 @@ export default function TimeYearsChart() {
                 color="#32a850"
                 title="Temps par année"
                 data={timeByYears}
-                legend="Temps en heures"
+                legend="Heures"
                 range={300}
                 max={1000}
             /> : <Loading />}

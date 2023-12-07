@@ -9,7 +9,7 @@ import { errorToast } from "../../helpers/toasts";
 
 export default function NotStartedShowsRow() {
     const [notStartedShows, setNotStartedShows] = useState<ShowPreview[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isLoad, setIsLoad] = useState(true);
 
     useEffect(() => {
         getNotStartedShows();

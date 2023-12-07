@@ -15,7 +15,7 @@ interface Props {
 
 export default function SeasonsInfosCard({ showId, num }: Props) {
     const [infos, setInfos] = useState<SeasonInfo[]>([]);
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState(false);
     const [seasonToDelete, setSeasonToDelete] = useState<number>(-1);
     const navigate = useNavigate();
 

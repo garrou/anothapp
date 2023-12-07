@@ -13,8 +13,8 @@ export default function Series() {
 
     const [shows, setShows] = useState<ShowPreview[]>([]);
     const [newShows, setNewShows] = useState<ApiShowPreview[]>([]);
-    const [isLoad, setIsLoad] = useState<boolean>(true);
-    const [search, setSearch] = useState<string>("");
+    const [isLoad, setIsLoad] = useState(true);
+    const [search, setSearch] = useState("");
     const [limit, setLimit] = useState<number>(20);
 
     useEffect(() => {

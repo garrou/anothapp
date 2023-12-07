@@ -22,9 +22,9 @@ export default function SeriesDetails() {
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState(false);
     const [refresh, setRefresh] = useState<number>(0);
-    const [displayDetails, setDisplayDetails] = useState<boolean>(false);
+    const [displayDetails, setDisplayDetails] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {

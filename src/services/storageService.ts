@@ -12,13 +12,12 @@ const storeChartInfo = (id: string, info: ChartInfo) => {
     localStorage.setItem(id, JSON.stringify(info));
 }
 
-const getChartInfo = (id: string, range: number, color: string): ChartInfo => {
+const getChartInfo = (id: string): ChartInfo | undefined => {
     try {
         return JSON.parse(localStorage.getItem(id) ?? "{}");
     } catch (_) {
         deleteChartInfo(id);
     }   
-    return { type: ChartType.Bar, range, color }; 
 }
 
 const deleteChartInfo = (id: string) => localStorage.removeItem(id);
