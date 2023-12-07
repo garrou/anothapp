@@ -27,7 +27,7 @@ export default function CustomChartWrapper(props: Chart) {
     }, [type, range, color]);
 
     const displayChart = () => {
-        switch (String(type)) {
+        switch (type) {
             case ChartType.Line:
                 return <CustomLineChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
             case ChartType.Bar:

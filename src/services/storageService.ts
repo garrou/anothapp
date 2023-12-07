@@ -1,4 +1,4 @@
-import { ChartInfo, ChartType } from "../models/internal/Chart";
+import { ChartInfo, isChartInfo } from "../models/internal/Chart";
 
 const storeJwt = (token: string) => {
     localStorage.setItem('jwt', token);
@@ -13,11 +13,14 @@ const storeChartInfo = (id: string, info: ChartInfo) => {
 }
 
 const getChartInfo = (id: string): ChartInfo | undefined => {
-    try {
-        return JSON.parse(localStorage.getItem(id) ?? "{}");
-    } catch (_) {
-        deleteChartInfo(id);
-    }   
+    const item = localStorage.getItem(id);
+    if (!item) return undefined
+
+    const obj = JSON.parse(item)
+    if (isChartInfo(obj)) return obj;
+
+    deleteChartInfo(id);
+    return undefined;
 }
 
 const deleteChartInfo = (id: string) => localStorage.removeItem(id);

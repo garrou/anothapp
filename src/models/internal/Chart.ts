@@ -32,4 +32,12 @@ interface ChartInfo {
     color: string
 }
 
-export { type Chart, type ChartInfo, ChartType };
+const isChartInfo = (value: unknown) => {
+    if (!value || typeof value !== "object") return false;
+    const object = value as Record<string, unknown>
+    return typeof object.type === "string"
+        &&  typeof object.range === "number"
+        && typeof object.color === "string";
+}
+
+export { type Chart, type ChartInfo, ChartType, isChartInfo };
