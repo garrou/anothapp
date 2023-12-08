@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
 import UserCard from "../../components/internal/UserCard";
@@ -12,8 +12,20 @@ import EpisodesYearChart from "../../components/charts/EpisodesYearChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import MonthRecordViewingTime from "../../components/internal/MonthRecordViewingTime";
 import KindsChart from "../../components/charts/KindsChart";
+import { useEffect, useState } from "react";
+import storageService from "../../services/storageService";
 
 export default function Profile() {
+    const [displayChart, setDisplayChart] = useState(true);
+    const [isFirst, setIsFirst] = useState(true);
+
+    useEffect(() => {
+        if (isFirst) {
+            setDisplayChart(storageService.getDisplayChart());
+            setIsFirst(false);
+        }
+        storageService.storeDisplayChart(displayChart);
+    }, [displayChart]);
 
     return (
         <Container className="mb-3">
@@ -22,22 +34,33 @@ export default function Profile() {
             <Row xs={1} md={2} className="mt-4">
                 <Col>
                     <UserCard />
+
+                    <Form.Switch
+                        className="mt-3"
+                        type="switch"
+                        id="chart-switch"
+                        label="Afficher les graphiques"
+                        checked={displayChart}
+                        onChange={(e) => setDisplayChart(e.target.checked)}
+                    />
                 </Col>
                 <Col>
                     <ViewingTimeMonthCard />
                     <NbShowsCard />
                     <NbEpisodesCard />
-                    <TotalViewingTimeCard /> 
+                    <TotalViewingTimeCard />
                     <MonthRecordViewingTime />
                 </Col>
             </Row>
 
-            <ShowsTimeRankingChart />
-            <TimeYearsChart />
-            <SeasonsYearsChart />
-            <EpisodesYearChart />
-            <SeasonsMonthChart />
-            <KindsChart />
+            {displayChart && <>
+                <ShowsTimeRankingChart />
+                <TimeYearsChart />
+                <SeasonsYearsChart />
+                <EpisodesYearChart />
+                <SeasonsMonthChart />
+                <KindsChart />
+            </>}
         </Container>
     );
 };
