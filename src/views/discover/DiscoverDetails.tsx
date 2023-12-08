@@ -16,7 +16,7 @@ export default function DiscoverDetails() {
     const { id } = useParams<string>();
     const [show, setShow] = useState<ApiShowDetails | null>(null);
     const navigate = useNavigate();
-    
+
     const getShow = async () => {
         const resp = await searchService.getShowById(id!);
 
@@ -48,20 +48,22 @@ export default function DiscoverDetails() {
 
                 <Stack direction="horizontal" gap={3}>
                     <h1 className="header">{show.title}</h1>
-                    <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
+                    <Button variant="outline-dark" onClick={onClick}>
+                        <i className="bi-plus"></i>
+                    </Button>
                 </Stack>
-                
+
                 <Tabs
                     defaultActiveKey="infos"
                     className="my-3"
                 >
-                    <Tab eventKey="infos" title="Informations">
+                    <Tab eventKey="infos" title="Infos">
                         <ApiShowInfos show={show} />
                     </Tab>
                     <Tab eventKey="characters" title="Acteurs">
                         <ApiCharactersRow showId={show.id} />
                     </Tab>
-                    <Tab eventKey="similar" title="Séries similaires">
+                    <Tab eventKey="similar" title="Similaires">
                         <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>

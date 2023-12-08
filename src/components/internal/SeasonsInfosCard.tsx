@@ -76,7 +76,9 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
                                 <tr key={i.id}>
                                     <td>{formatDate(i.addedAt)}</td>
                                     <td>
-                                        <Button variant="outline-danger" onClick={() => callModal(i.id)}>Supprimer</Button>
+                                        <Button variant="outline-danger" onClick={() => callModal(i.id)}>
+                                            <i className="bi-trash"></i>
+                                        </Button>
                                     </td>
                                 </tr>
                             ))}

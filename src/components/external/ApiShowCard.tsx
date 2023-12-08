@@ -24,12 +24,14 @@ export default function ApiShowCard({ preview }: Props) {
     };
 
     return (
-        <Link to={`/discover/${preview.id}`} style={{textDecoration: 'none', color: 'black'}}>
+        <Link to={`/discover/${preview.id}`} style={{ textDecoration: 'none', color: 'black' }}>
             <Card className="mt-2">
                 {image && <Card.Img variant="top" src={image} />}
                 <Card.Body>
                     <Card.Title>{preview.title}</Card.Title>
-                    <Button variant="outline-dark" onClick={onClick}>Ajouter</Button>
+                    <Button variant="outline-dark" onClick={onClick}>
+                        <i className="bi-plus"></i>
+                    </Button>
                 </Card.Body>
             </Card>
         </Link>

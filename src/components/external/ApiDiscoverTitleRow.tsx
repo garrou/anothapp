@@ -21,7 +21,7 @@ export default function ApiDiscoverTitleRow() {
             setShows(await resp.json());
         else
             errorToast(await resp.json());
-        }
+    }
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
@@ -32,10 +32,18 @@ export default function ApiDiscoverTitleRow() {
     return (
         <>
             <Form className="mt-3" onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="titleSearch">
-                    <Form.Control type="text" placeholder="Titre de la série" required />
-                </Form.Group>
-                <Button variant="outline-dark" type="submit">Rechercher</Button>
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="titleSearch">
+                            <Form.Control type="text" placeholder="Titre de la série" required />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Button variant="outline-dark" type="submit">
+                            <i className="bi-search"></i>
+                        </Button>
+                    </Col>
+                </Row>
             </Form>
 
             {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">

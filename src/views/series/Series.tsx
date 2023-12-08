@@ -64,7 +64,9 @@ export default function Series() {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Button variant="outline-dark" type="submit">Rechercher</Button>
+                        <Button variant="outline-dark" type="submit">
+                            <i className="bi-search"></i>
+                        </Button>
                     </Col>
                 </Row>
             </Form>

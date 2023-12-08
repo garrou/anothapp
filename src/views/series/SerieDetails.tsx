@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Image, ProgressBar, Row, Stack, Tab, Tabs } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Image, ProgressBar, Row, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -102,17 +102,23 @@ export default function SeriesDetails() {
             {show ? <>
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}
 
-                <Stack direction="horizontal" gap={3}>
+                <Stack direction="horizontal" className="mt-1" gap={3}>
                     <Link to={`/discover/${show.id}`} className="text-dark">
                         <h1 className="header">{show.title}</h1>
                     </Link>
-                    <Button variant="outline-danger" onClick={() => setShowModal(true)}>Supprimer</Button>
+                    <Button variant="outline-danger" onClick={() => setShowModal(true)}>
+                        <i className="bi-trash"></i>    
+                    </Button>
                 </Stack>
 
-                <Button variant="outline-dark" onClick={() => setDisplayDetails(!displayDetails)}>
-                    {!displayDetails && "Voir le détail"}
-                    {displayDetails && "Masquer le détail"}
-                </Button>
+                <Form.Switch
+                    className="mb-2"
+                    type="switch"
+                    id="detail-switch"
+                    label="Voir le détail"
+                    checked={displayDetails}
+                    onChange={(e) => setDisplayDetails(e.target.checked)}
+                />
 
                 {displayDetails && <ApiShowInfos show={show} />}
 

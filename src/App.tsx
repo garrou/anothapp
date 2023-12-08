@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { createBrowserRouter, redirect, Route, RouterProvider, Routes } from "react-router-dom";
+import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import Series from "./views/series/Series";
 import Home from "./views/Home";
 import Discover from "./views/discover/Discover";
