@@ -37,7 +37,6 @@ export default function Profile() {
 
                     <Form.Switch
                         className="mt-3"
-                        type="switch"
                         id="chart-switch"
                         label="Afficher les graphiques"
                         checked={displayChart}

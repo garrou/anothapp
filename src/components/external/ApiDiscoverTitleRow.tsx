@@ -46,7 +46,7 @@ export default function ApiDiscoverTitleRow() {
                 </Row>
             </Form>
 
-            {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">
+            {shows.length > 0 ? <Row xs={2} md={3} lg={4}>
                 {shows.map(s => (
                     <Col key={s.id} >
                         <ApiShowCard show={s} />
