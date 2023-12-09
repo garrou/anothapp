@@ -41,7 +41,8 @@ export default function Navigation() {
                         <NavDropdown.Item href="/next" active={url === "/next"}>Prochainement</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Profil" id="profile-dropdown">
-                        <NavDropdown.Item href="/profile" active={url === "/profile"}>Afficher</NavDropdown.Item>
+                        <NavDropdown.Item href="/stats" active={url === "/stats"}>Statistiques</NavDropdown.Item>
+                        <NavDropdown.Item href="/profile" active={url === "/profile"}>Profil</NavDropdown.Item>
                         <NavDropdown.Item onClick={onClick} className="text-danger">Se déconnecter</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

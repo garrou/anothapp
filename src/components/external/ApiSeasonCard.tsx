@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
