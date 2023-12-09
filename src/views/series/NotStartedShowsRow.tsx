@@ -28,7 +28,7 @@ export default function NotStartedShowsRow() {
 
     return (
         <Container>
-            <Navigation url={'/not-started'} />
+            <Navigation url={window.location.pathname} />
 
             {isLoad && <Loading />}
 

@@ -46,7 +46,7 @@ export default function ShowsToContinueTable() {
 
     return (
         <Container>
-            <Navigation url={'/continue'} />
+            <Navigation url={window.location.pathname} />
             <ModalConfirm
                 show={showModal}
                 title="Arrêter la série"

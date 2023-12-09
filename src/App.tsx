@@ -46,7 +46,7 @@ function Root() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/discover/:id" element={<DiscoverDetails />} />
 
-        <Route path="/month" element={<ViewingMonth />} />
+        <Route path="/last-months" element={<ViewingMonth />} />
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/next" element={<Next />} />

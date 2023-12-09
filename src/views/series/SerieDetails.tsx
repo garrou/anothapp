@@ -94,7 +94,7 @@ export default function SeriesDetails() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={'/series'} />
+            <Navigation url={window.location.pathname} />
 
             <ModalConfirm
                 show={showModal}

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { ApiEpisodePreview } from "../../models/external/ApiEpisodePreview";
-
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
-import ApiEpisodeCard from "./ApiEpisodeCard";
 import { errorToast } from "../../helpers/toasts";
+import { Card } from "react-bootstrap";
 
 interface Props {
 
@@ -33,7 +32,15 @@ export default function ApiEpisodesCards({ showId, num }: Props) {
         <>
             {episodes.length > 0 ? <>
                 <h3 className="mt-3">Episodes</h3>
-                {episodes.map(e => <ApiEpisodeCard key={e.id} episode={e} />)}
+                {episodes.map(episode => (
+                    <Card className="mt-2" key={episode.id}>
+                        <Card.Body>
+                            <Card.Title>{episode.code} • {episode.title}</Card.Title>
+                            <Card.Text>{episode.description}</Card.Text>
+                            <Card.Subtitle>{episode.date}</Card.Subtitle>
+                        </Card.Body>
+                    </Card>
+                ))}
             </> : <Loading />}
         </>
     );

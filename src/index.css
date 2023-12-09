@@ -33,3 +33,15 @@
     border-color: #212529;
     box-shadow: none;
 }
+
+.dropdown-item.active {
+    background-color: #212529;
+}
+
+.dropdown-item:focus {
+    background-color: #212529;
+}
+
+.nav-tabs .nav-link {
+    color: #212529;
+}
