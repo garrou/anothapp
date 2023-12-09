@@ -6,7 +6,7 @@ interface ApiCharacterPreview {
 
     actor: string;
 
-    picture: string|null;
+    picture: string |   null;
 }
 
 export type { ApiCharacterPreview };
