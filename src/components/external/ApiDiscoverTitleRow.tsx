@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import searchService from "../../services/searchService";
 import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
 export default function ApiDiscoverTitleRow() {
-    const [shows, setShows] = useState<ApiShowPreview[]>([]);
+    const [shows, setShows] = useState<ApiShowDetails[]>([]);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function ApiDiscoverTitleRow() {
     }, [search]);
 
     const getShowsToDiscover = async () => {
-        const resp: Response = await searchService.discoverShows(search);
+        const resp = await searchService.discoverShows(search);
 
         if (resp.status === 200)
             setShows(await resp.json());
@@ -49,7 +49,7 @@ export default function ApiDiscoverTitleRow() {
             {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">
                 {shows.map(s => (
                     <Col key={s.id} >
-                        <ApiShowCard preview={s} />
+                        <ApiShowCard show={s} />
                     </Col>
                 ))}
             </Row> : <Loading />}

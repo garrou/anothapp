@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
 import ApiShowCard from "./ApiShowCard";
 import { errorToast } from "../../helpers/toasts";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
 export default function ApiDiscoverKindsRow() {
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
-    const [shows, setShows] = useState<ApiShowPreview[]>([]);
+    const [shows, setShows] = useState<ApiShowDetails[]>([]);
     const [kind, setKind] = useState<string>("Comedy");
 
     useEffect(() => {
@@ -32,15 +32,10 @@ export default function ApiDiscoverKindsRow() {
 
         const resp = await searchService.getKinds();
 
-        if (resp.status === 200) {
-            const data = await resp.json();
-            const transformed: ApiShowKind[] = Object.entries(data)
-                .map(e => new ApiShowKind(e[0], e[1] + ""))
-                .sort((a, b) => a.name.localeCompare(b.name));
-            setKinds(transformed);
-        } else {
+        if (resp.status === 200) 
+            setKinds(await resp.json());
+        else
             errorToast(await resp.json());
-        }
     }
 
     return (
@@ -52,7 +47,7 @@ export default function ApiDiscoverKindsRow() {
             {shows.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-3">
                 {shows.map(s => (
                     <Col key={s.id} >
-                        <ApiShowCard preview={s} />
+                        <ApiShowCard show={s} />
                     </Col>
                 ))}
             </Row> : <Loading />}

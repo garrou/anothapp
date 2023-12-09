@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import type { ApiShowPreview } from '../models/external/ApiShowPreview';
 import Loading from '../components/Loading';
 import searchService from '../services/searchService';
-import { getImageUrl } from '../models/external/ApiShowImage';
 import { errorToast } from "../helpers/toasts";
+import { ApiShowPreview } from '../models/external/ApiShowPreview';
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);
@@ -20,7 +19,6 @@ export default function Home() {
             setShows(await resp.json());
         else
             errorToast(await resp.json());
-
     }
 
     return (
@@ -34,9 +32,9 @@ export default function Home() {
                 {shows.length === 0 && <Loading />}
 
                 {shows.map(s => (
-                    <Col key={s.id} >
+                    <Col key={s.title} >
                         <Card className="mt-2">
-                            {getImageUrl(s.images) && <Card.Img variant="top" src={getImageUrl(s.images)!} />}
+                            {s.image && <Card.Img variant="top" src={s.image} />}
                         </Card>
                     </Col>
                 ))}

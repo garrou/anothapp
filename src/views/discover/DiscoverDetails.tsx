@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import { Button, Container, Stack, Tab, Tabs, Image } from "react-bootstrap";
@@ -13,12 +13,23 @@ import { getImageUrl } from "../../models/external/ApiShowImage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 
 export default function DiscoverDetails() {
-    const { id } = useParams<string>();
-    const [show, setShow] = useState<ApiShowDetails | null>(null);
+    const { id } = useParams();
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const [show, setShow] = useState<ApiShowDetails>();
+
+    useEffect(() => {
+        if (state) {
+            const { serie } = state;
+            if (serie) setShow(serie);
+        } else {
+            getShow();
+        }
+    }, []);
 
     const getShow = async () => {
-        const resp = await searchService.getShowById(id!);
+        if (!id) return navigate(`/discover`);
+        const resp = await searchService.getShowById(id);
 
         if (resp.status === 200)
             setShow(await resp.json());
@@ -27,17 +38,14 @@ export default function DiscoverDetails() {
     }
 
     const onClick = async () => {
-        const resp = await showService.addShow(show!);
+        if (!show) return errorToast({ message: "Impossible d'ajouter la série" });
+        const resp = await showService.addShow(show);
 
         if (resp.status === 201)
-            navigate(`/series/${show!.id}`);
+            navigate(`/series/${show.id}`);
         else
             errorToast(await resp.json());
     };
-
-    useEffect(() => {
-        getShow();
-    }, []);
 
     return (
         <Container>

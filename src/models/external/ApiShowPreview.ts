@@ -1,14 +1,10 @@
-import { ApiShowImage } from "./ApiShowImage";
-
 interface ApiShowPreview {
 
-    id: number;
+    id: number
 
-    title: string;
+    title: string
 
-    images: ApiShowImage;
-
-    kinds: string[];
-};
+    image: string
+}
 
 export type { ApiShowPreview };

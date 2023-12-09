@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import ShowCard from "../../components/internal/ShowCard";
-import { ApiShowPreview } from "../../models/external/ApiShowPreview";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
+import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
 export default function Series() {
 
     const [shows, setShows] = useState<ShowPreview[]>([]);
-    const [newShows, setNewShows] = useState<ApiShowPreview[]>([]);
+    const [newShows, setNewShows] = useState<ApiShowDetails[]>([]);
     const [isLoad, setIsLoad] = useState(true);
     const [search, setSearch] = useState("");
     const [limit, setLimit] = useState<number>(20);
@@ -81,7 +81,7 @@ export default function Series() {
                 ))}
                 {newShows.length > 0 && newShows.map(s => (
                     <Col key={s.id} >
-                        <ApiShowCard preview={s} />
+                        <ApiShowCard show={s} />
                     </Col>
                 ))}
             </Row>
