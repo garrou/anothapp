@@ -52,7 +52,7 @@ export default function DiscoverDetails() {
 
     return (
         <Container>
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             {show ? <>
                 {getImageUrl(show.images) && <Image src={show.images.show ?? getImageUrl(show.images)!} alt="Poster" fluid={true} />}

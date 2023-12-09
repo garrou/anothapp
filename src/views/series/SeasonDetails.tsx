@@ -10,7 +10,7 @@ export default function SeasonDetails() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             {id && num && (
                 <>

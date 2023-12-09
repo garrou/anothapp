@@ -29,7 +29,7 @@ export default function Profile() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             <Row xs={1} md={2} className="mt-4">
                 <Col>

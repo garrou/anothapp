@@ -44,7 +44,7 @@ export default function ShowsToContinueTable() {
 
     return (
         <Container>
-            <Navigation url={window.location.pathname} />
+            <Navigation />
   
             {isLoad && <Loading />}
 

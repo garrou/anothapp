@@ -11,7 +11,7 @@ import { ApiShowKind } from "../../models/external/ApiShowKind";
 export default function Discover() {
     return (
         <Container className="mb-3">
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             <Tabs
                 defaultActiveKey="title"

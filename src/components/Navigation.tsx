@@ -4,12 +4,9 @@ import storageService from "../services/storageService";
 import { useEffect } from "react";
 import profileService from "../services/profileService";
 
-interface Props {
-    url: string
-}
-
-export default function Navigation({ url }: Props) {
+export default function Navigation() {
     const navigate = useNavigate();
+    const url = window.location.pathname;
 
     useEffect(() => {
         checkIfLogged();

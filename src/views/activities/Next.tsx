@@ -4,7 +4,7 @@ import Navigation from "../../components/Navigation";
 export default function Next() {
     return (
         <Container className="mb-3">
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             <p className="text-center mt-3r">WORK IN PROGRESS</p>
         </Container>

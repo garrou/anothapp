@@ -52,7 +52,7 @@ export default function Series() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={window.location.pathname} />
+            <Navigation />
 
             {isLoad && <Loading />}
 
