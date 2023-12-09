@@ -7,21 +7,25 @@ import ApiShowCard from "../../components/external/ApiShowCard";
 import { errorToast } from "../../helpers/toasts";
 import searchService from "../../services/searchService";
 import { ApiShowKind } from "../../models/external/ApiShowKind";
+import TabEventKey from "../../models/internal/TabEventKey";
 
 export default function Discover() {
+    const [key, setKey] = useState(TabEventKey.ApiSearchTitle);
+
     return (
         <Container className="mb-3">
             <Navigation />
 
             <Tabs
-                defaultActiveKey="title"
+                activeKey={key}
                 className="my-3"
+                onSelect={(k) => setKey(k! as TabEventKey)}
             >
-                <Tab eventKey="title" title="Par titre">
+                <Tab eventKey={TabEventKey.ApiSearchTitle} title="Par titre">
                     <ApiDiscoverTitleRow />
                 </Tab>
-                <Tab eventKey="kinds" title="Par genres">
-                    <ApiDiscoverKindsRow />
+                <Tab eventKey={TabEventKey.ApiSearchKind} title="Par genres">
+                    <ApiDiscoverKindsRow tabKey={key} />
                 </Tab>
             </Tabs>
         </Container>
@@ -79,7 +83,12 @@ function ApiDiscoverTitleRow() {
     );
 }
 
-function ApiDiscoverKindsRow() {
+
+interface Props {
+    tabKey: TabEventKey
+}
+
+function ApiDiscoverKindsRow({ tabKey }: Props) {
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiShowDetails[]>([]);
     const [kind, setKind] = useState<string>("Comedy");
@@ -87,25 +96,25 @@ function ApiDiscoverKindsRow() {
     useEffect(() => {
         getKinds();
         getShowsByKind();
-    }, [kind]);
-
-    const getShowsByKind = async () => {
-        const resp = await searchService.getShowsByKind(kind);
-
-        if (resp.status === 200)
-            setShows(await resp.json());
-        else
-            errorToast(await resp.json());
-    }
+    }, [kind, tabKey]);
 
     const getKinds = async () => {
-
-        if (kinds.length > 0) return
-
+        if (kinds.length > 0 || tabKey !== TabEventKey.ApiSearchKind) return
         const resp = await searchService.getKinds();
 
         if (resp.status === 200)
             setKinds(await resp.json());
+        else
+            errorToast(await resp.json());
+    }
+
+    const getShowsByKind = async () => {
+        if (tabKey !== TabEventKey.ApiSearchKind) return
+        setShows([]);
+        const resp = await searchService.getShowsByKind(kind);
+
+        if (resp.status === 200)
+            setShows(await resp.json());
         else
             errorToast(await resp.json());
     }

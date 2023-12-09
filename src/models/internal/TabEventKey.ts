@@ -10,7 +10,11 @@ enum TabEventKey {
 
     ApiShowInfo = "api-show-infos",
 
-    ApiCharacters = "api-characters"
+    ApiCharacters = "api-characters",
+
+    ApiSearchTitle = "api-title",
+
+    ApiSearchKind = "api-kind"
 }
 
 export default TabEventKey;

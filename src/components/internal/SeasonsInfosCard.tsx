@@ -68,7 +68,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
             <Card className="mt-2">
                 <Card.Body>
                     <Card.Title>{`Saison ${num}`}</Card.Title>
-                    <Card.Subtitle>{`Visionnée ${infos.length} fois`}</Card.Subtitle>
+                    <Card.Subtitle>{`Vue ${infos.length} fois`}</Card.Subtitle>
 
                     {infos.length > 0 ? <Table striped hover className="mt-3">
                         <tbody>

@@ -39,9 +39,7 @@ export default function SeriesDetails() {
     const notify = () => setRefresh(refresh + 1);
 
     const getShow = async () => {
-
         if (refresh > 0) return
-
         const resp = await searchService.getShowById(id!);
 
         if (resp.status === 200)
@@ -60,9 +58,7 @@ export default function SeriesDetails() {
     }
 
     const getApiSeasons = async () => {
-
         if (refresh > 0) return
-
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200)
