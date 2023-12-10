@@ -6,6 +6,8 @@ interface ApiEpisodePreview {
 
     code: string;
 
+    global: number;
+
     description: string;
 
     date: string;

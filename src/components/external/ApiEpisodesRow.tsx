@@ -35,7 +35,7 @@ export default function ApiEpisodesCards({ showId, num }: Props) {
                 {episodes.map(episode => (
                     <Card className="mt-2" key={episode.id}>
                         <Card.Body>
-                            <Card.Title>{episode.code} • {episode.title}</Card.Title>
+                            <Card.Title>{episode.code} • {episode.title} • {episode.global}</Card.Title>
                             <Card.Text>{episode.description}</Card.Text>
                             <Card.Subtitle>{episode.date}</Card.Subtitle>
                         </Card.Body>
