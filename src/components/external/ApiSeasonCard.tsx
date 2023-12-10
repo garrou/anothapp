@@ -5,9 +5,12 @@ import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
 
 interface Props {
-    preview: SeasonPreview
-    show: ApiShowDetails
-    notify: () => void
+
+    preview: SeasonPreview;
+    
+    show: ApiShowDetails;
+    
+    notify: () => void;
 };
 
 export default function ApiSeasonCard({ preview, show, notify }: Props) {

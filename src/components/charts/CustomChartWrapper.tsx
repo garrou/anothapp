@@ -54,15 +54,15 @@ export default function CustomChartWrapper(props: Chart) {
                                             type="radio"
                                             label={t}
                                             name={`group-${props.id}`}
-                                            onChange={(_) => setType(t)}
+                                            onChange={() => setType(t)}
                                         />
                                     ))
                                 }
                                 <Form.Range value={range} onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
                                 {type !== ChartType.Pie && <Form.Control
                                     type="color"
-                                    id="color"
-                                    defaultValue={color}
+                                    id={`${props.id}-color  `}
+                                    value={color}
                                     title="Choose your color"
                                     onChange={(e) => setColor(e.target.value)}
                                 />}

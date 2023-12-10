@@ -6,7 +6,7 @@ import { errorToast } from "../../helpers/toasts";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
 interface Props {
-    show: ApiShowDetails
+    show: ApiShowDetails;
 };
 
 export default function ApiShowCard({ show }: Props) {

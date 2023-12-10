@@ -121,9 +121,9 @@ export default function SeriesDetails() {
 
                 {displayDetails && <ApiShowInfos show={show} />}
 
-                <ViewingTimeShowCard showId={show.id} />
+                <ViewingTimeShowCard showId={show.id} refresh={refresh} />
 
-                {seasons && apiSeasons && <div className="mt-3">
+                {seasons && apiSeasons && <div className="mt-2">
                     {progressBar()}
                 </div>}
 

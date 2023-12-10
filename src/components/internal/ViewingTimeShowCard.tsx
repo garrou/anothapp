@@ -5,15 +5,18 @@ import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
 
 interface Props {
-    showId: number
+    
+    showId: number;
+
+    refresh: number;
 }
 
-export default function ViewingTimeShowCard({ showId }: Props) {
+export default function ViewingTimeShowCard({ showId, refresh }: Props) {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
         getViewingTime();
-    }, []);
+    }, [refresh]);
 
     const getViewingTime = async () => {
         const resp = await showService.getViewedTimeByShowId(showId);

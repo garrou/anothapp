@@ -85,7 +85,7 @@ function ApiDiscoverTitleRow() {
 
 
 interface Props {
-    tabKey: TabEventKey
+    tabKey: TabEventKey;
 }
 
 function ApiDiscoverKindsRow({ tabKey }: Props) {

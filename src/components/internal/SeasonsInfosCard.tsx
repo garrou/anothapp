@@ -9,8 +9,10 @@ import Loading from "../Loading";
 import ModalConfirm from "./ModalConfirm";
 
 interface Props {
-    showId: string
-    num: string
+
+    showId: string;
+    
+    num: string;
 }
 
 export default function SeasonsInfosCard({ showId, num }: Props) {

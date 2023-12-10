@@ -1,12 +1,18 @@
 import { Button, Modal } from "react-bootstrap"
 
 interface Props {
-    show: boolean
-    color?: string
-    title?: string
-    body?: string
-    handleClose: VoidFunction
-    handleConfirm: VoidFunction
+
+    show: boolean;
+    
+    color?: string;
+    
+    title?: string;
+    
+    body?: string;
+    
+    handleClose: VoidFunction;
+    
+    handleConfirm: VoidFunction;
 }
 
 export default function ModalConfirm({

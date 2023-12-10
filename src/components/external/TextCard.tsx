@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
 
 interface Props {
+    
     title: string;
 
     text: string;
