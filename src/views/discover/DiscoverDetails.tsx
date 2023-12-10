@@ -121,7 +121,7 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
 
     return (
         <>
-            <Modal show={showModal} fullscreen={true} onHide={() => setShowModal(false)}>
+            <Modal show={showModal} dialogClassName="modal-90w" onHide={() => setShowModal(false)}>
                 {person ? <ModalContent person={person} /> : <Loading />}
             </Modal>
 
