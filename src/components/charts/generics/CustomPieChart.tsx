@@ -3,7 +3,7 @@ import { Chart } from "../../../models/internal/Chart"
 
 const COLORS = [
     "#4287f5",
-    "#329ea8",
+    "#e3e022",
     "#ae34eb",
     "#f5962a",
     "#0bb5b8",
@@ -11,7 +11,7 @@ const COLORS = [
     "#f54284",
     "#e0b067",
     "#f7a1b5",
-    "#7bacb8"
+    "#612004"
 ]
 
 export default function CustomPieChart(props: Chart) {

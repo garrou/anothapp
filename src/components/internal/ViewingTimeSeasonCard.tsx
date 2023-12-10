@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { minsToStringDays, minsToStringHours } from "../../helpers/format";
+import { minsToStringHoursDays } from "../../helpers/format";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
 
@@ -32,9 +32,7 @@ export default function ViewingTimeSeasonCard({ showId, num }: Props) {
             <Card className="mt-2">
                 <Card.Body>
                     <Card.Title>Temps de visionnage</Card.Title>
-                    <Card.Text>
-                        {minsToStringHours(time)} • {minsToStringDays(time)}
-                    </Card.Text>
+                    <Card.Text>{minsToStringHoursDays(time)}</Card.Text>
                 </Card.Body>
             </Card>
         </>

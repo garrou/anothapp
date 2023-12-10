@@ -1,4 +1,4 @@
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import storageService from "../../services/storageService";
 import { useState, useEffect } from "react";
@@ -8,10 +8,7 @@ import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
 import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import TimeYearsChart from "../../components/charts/TimeYearsChart";
-import NbEpisodesCard from "../../components/internal/NbEpisodesCard";
-import NbShowsCard from "../../components/internal/NbShowsCard";
-import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";
-import ViewingTimeMonthCard from "../../components/internal/ViewingTimeMonthCard";
+import StatInfos from "../../components/internal/StatInfos";
 
 export default function Stats() {
     const [displayChart, setDisplayChart] = useState(true);
@@ -29,17 +26,8 @@ export default function Stats() {
         <Container className="mb-3">
             <Navigation />
 
-            <Row>
-                <Col><ViewingTimeMonthCard /></Col>
-                {/* <Col><MonthRecordViewingTime /></Col> */}
-                <Col><TotalViewingTimeCard /></Col>
-            </Row>
-            <Row>
-                <Col><NbShowsCard /></Col>
-                <Col><NbEpisodesCard /></Col>
-            </Row>
+            <StatInfos />
             
-
             <Form.Switch
                 className="mt-3"
                 id="chart-switch"
