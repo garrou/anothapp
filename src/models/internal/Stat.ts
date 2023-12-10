@@ -1,6 +1,6 @@
 interface Stat {
 
-    label: number;
+    label: string;
 
     value: number;
 }

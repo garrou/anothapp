@@ -3,7 +3,7 @@ import statService from "../../services/statService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import { Stat } from "../../models/internal/Stat";
-import CustomChartWrapper from "./CustomChartWrapper";
+import CustomChartWrapper from "./generics/CustomChartWrapper";
 
 export default function ShowsTimeRankingChart() {
     const [shows, setShows] = useState<Stat[]>([]);

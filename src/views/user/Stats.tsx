@@ -8,7 +8,6 @@ import SeasonsMonthChart from "../../components/charts/SeasonsMonthChart";
 import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import TimeYearsChart from "../../components/charts/TimeYearsChart";
-import MonthRecordViewingTime from "../../components/internal/MonthRecordViewingTime";
 import NbEpisodesCard from "../../components/internal/NbEpisodesCard";
 import NbShowsCard from "../../components/internal/NbShowsCard";
 import TotalViewingTimeCard from "../../components/internal/TotalViewingTimeCard";

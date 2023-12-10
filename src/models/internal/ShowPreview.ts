@@ -6,7 +6,7 @@ interface ShowPreview {
 
     poster: string;
 
-    kinds: string;
+    kinds?: string;
 };
 
 export type { ShowPreview };

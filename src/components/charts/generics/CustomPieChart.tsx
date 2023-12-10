@@ -1,5 +1,5 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from "recharts"
-import { Chart } from "../../models/internal/Chart"
+import { Chart } from "../../../models/internal/Chart"
 
 const COLORS = [
     "#4287f5",

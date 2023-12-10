@@ -3,7 +3,7 @@ import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
-import CustomChartWrapper from "./CustomChartWrapper";
+import CustomChartWrapper from "./generics/CustomChartWrapper";
 
 export default function SeasonsMonthChart() {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);

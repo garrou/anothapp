@@ -1,10 +1,10 @@
 import { Accordion, Card, Form } from "react-bootstrap";
-import { Chart, ChartType } from "../../models/internal/Chart";
+import { Chart, ChartType } from "../../../models/internal/Chart";
 import CustomLineChart from "./CustomLineChart";
 import CustomBarChart from "./CustomBarChart";
 import CustomPieChart from "./CustomPieChart";
 import { useEffect, useState } from "react";
-import storageService from "../../services/storageService";
+import storageService from "../../../services/storageService";
 
 export default function CustomChartWrapper(props: Chart) {
     const [type, setType] = useState(ChartType.Bar);

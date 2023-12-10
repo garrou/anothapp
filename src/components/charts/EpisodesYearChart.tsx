@@ -3,7 +3,7 @@ import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
-import CustomChartWrapper from "./CustomChartWrapper";
+import CustomChartWrapper from "./generics/CustomChartWrapper";
 
 export default function EpisodesYearChart() {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);

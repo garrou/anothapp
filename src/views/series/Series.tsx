@@ -29,7 +29,7 @@ export default function Series() {
 
     const getShows = async () => {
         resetShows();
-        const resp = await showService.getShows(search, limit);
+        const resp = await showService.getShows(limit, search);
 
         if (resp.status === 200) {
             const data = await resp.json();

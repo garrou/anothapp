@@ -1,5 +1,5 @@
 import { ResponsiveContainer, CartesianGrid, Line, LineChart, XAxis, YAxis, Legend, Tooltip } from "recharts"
-import { Chart } from "../../models/internal/Chart"
+import { Chart } from "../../../models/internal/Chart"
 
 export default function CustomLineChart(props: Chart) {
     return (

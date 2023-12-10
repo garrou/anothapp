@@ -1,5 +1,5 @@
 import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Chart } from "../../models/internal/Chart";
+import { Chart } from "../../../models/internal/Chart";
 
 export default function CustomBarChart(props: Chart) {
     return (
