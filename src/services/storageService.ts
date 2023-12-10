@@ -1,10 +1,14 @@
 import { ChartInfo, isChartInfo } from "../models/internal/Chart";
 
-const storeJwt = (token: string): void => localStorage.setItem('jwt', token);
+const JWT = "jwt";
 
-const getJwt = (): string | null => localStorage.getItem('jwt') ?? "";
+const DISPLAY_CHART = "displayChart";
 
-const deleteJwt = (): void => localStorage.removeItem('jwt');
+const storeJwt = (token: string): void => localStorage.setItem(JWT, token);
+
+const getJwt = (): string | null => localStorage.getItem(JWT) ?? "";
+
+const deleteJwt = (): void => localStorage.removeItem(JWT);
 
 const storeChartInfo = (id: string, info: ChartInfo): void => localStorage.setItem(id, JSON.stringify(info));
 
@@ -21,9 +25,9 @@ const getChartInfo = (id: string): ChartInfo | undefined => {
 
 const deleteChartInfo = (id: string): void => localStorage.removeItem(id);
 
-const storeDisplayChart = (value: boolean): void => localStorage.setItem('dispChart', `${value}`);
+const storeDisplayChart = (value: boolean): void => localStorage.setItem(DISPLAY_CHART, `${value}`);
 
-const getDisplayChart = (): boolean => localStorage.getItem('displayChart') === "true";
+const getDisplayChart = (): boolean => localStorage.getItem(DISPLAY_CHART) === "true";
 
 export default {
     deleteJwt,

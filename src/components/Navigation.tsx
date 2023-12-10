@@ -1,15 +1,12 @@
-import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import storageService from "../services/storageService";
 import { useEffect } from "react";
 import profileService from "../services/profileService";
 
-interface Props {
-    url: string
-}
-
-export default function Navigation({ url }: Props) {
+export default function Navigation() {
     const navigate = useNavigate();
+    const url = window.location.pathname;
 
     useEffect(() => {
         checkIfLogged();
@@ -31,20 +28,21 @@ export default function Navigation({ url }: Props) {
         <Navbar bg="light">
             <Container>
                 <Navbar.Brand href="/series">A</Navbar.Brand>
-                <Nav defaultActiveKey={url} className="me-auto">
+                <Nav className="me-auto">
                     <NavDropdown title="Séries" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/series">Mes séries</NavDropdown.Item>
-                        <NavDropdown.Item href="/discover">Ajouter</NavDropdown.Item>
-                        <NavDropdown.Item href="/not-started">À voir</NavDropdown.Item>
-                        <NavDropdown.Item href="/continue">À suivre</NavDropdown.Item>
-                        <NavDropdown.Item href="/month">Vues ces derniers mois</NavDropdown.Item>
+                        <NavDropdown.Item href="/series" active={url === "/series"}>Mes séries</NavDropdown.Item>
+                        <NavDropdown.Item href="/discover" active={url === "/discover"}>Ajouter</NavDropdown.Item>
+                        <NavDropdown.Item href="/not-started" active={url === "/not-started"}>À voir</NavDropdown.Item>
+                        <NavDropdown.Item href="/continue" active={url === "/continue"}>À suivre</NavDropdown.Item>
+                        <NavDropdown.Item href="/last-months" active={url === "/last-months"}>Vues ces derniers mois</NavDropdown.Item>
                         {/* <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item> */}
                     </NavDropdown>
-                    <NavDropdown title="Activités" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/next">Prochainement</NavDropdown.Item>
+                    <NavDropdown title="Activités" id="activities-dropdown">
+                        <NavDropdown.Item href="/next" active={url === "/next"}>Prochainement</NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Profil" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/profile">Afficher</NavDropdown.Item>
+                    <NavDropdown title="Profil" id="profile-dropdown">
+                        <NavDropdown.Item href="/stats" active={url === "/stats"}>Statistiques</NavDropdown.Item>
+                        <NavDropdown.Item href="/profile" active={url === "/profile"}>Profil</NavDropdown.Item>
                         <NavDropdown.Item onClick={onClick} className="text-danger">Se déconnecter</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

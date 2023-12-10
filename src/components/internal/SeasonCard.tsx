@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 
 interface Props {
-    preview: SeasonPreview
-    showId: number
+
+    preview: SeasonPreview;
+    
+    showId: number;
 };
 
 export default function SeasonCard({ preview, showId }: Props) {

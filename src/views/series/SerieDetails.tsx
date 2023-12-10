@@ -7,15 +7,17 @@ import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
-import { errorToast } from "../../helpers/toasts";
-import ApiImagesRow from "../../components/external/ApiImagesRow";
+import { errorToast, successToast } from "../../helpers/toasts";
 import { getImageUrl } from "../../models/external/ApiShowImage";
 import ModalConfirm from "../../components/internal/ModalConfirm";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import SeasonCard from "../../components/internal/SeasonCard";
 import ApiSeasonCard from "../../components/external/ApiSeasonCard";
-import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
+import profileService from "../../services/profileService";
+import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
+import TabEventKey from "../../models/internal/TabEventKey";
+import { TabProps } from "../../models/internal/TabProps";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -23,8 +25,9 @@ export default function SeriesDetails() {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [refresh, setRefresh] = useState<number>(0);
+    const [refresh, setRefresh] = useState(0);
     const [displayDetails, setDisplayDetails] = useState(false);
+    const [key, setKey] = useState(TabEventKey.Seasons);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,9 +39,7 @@ export default function SeriesDetails() {
     const notify = () => setRefresh(refresh + 1);
 
     const getShow = async () => {
-
         if (refresh > 0) return
-
         const resp = await searchService.getShowById(id!);
 
         if (resp.status === 200)
@@ -57,9 +58,7 @@ export default function SeriesDetails() {
     }
 
     const getApiSeasons = async () => {
-
         if (refresh > 0) return
-
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200)
@@ -68,7 +67,7 @@ export default function SeriesDetails() {
             errorToast(await resp.json());
     }
 
-    const buildProgressBar = () => {
+    const progressBar = () => {
         const progress = Math.ceil(seasons.length / apiSeasons.length * 100);
         return (
             <Card>
@@ -91,7 +90,7 @@ export default function SeriesDetails() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={'/series'} />
+            <Navigation />
 
             <ModalConfirm
                 show={showModal}
@@ -107,7 +106,7 @@ export default function SeriesDetails() {
                         <h1 className="header">{show.title}</h1>
                     </Link>
                     <Button variant="outline-danger" onClick={() => setShowModal(true)}>
-                        <i className="bi-trash"></i>    
+                        <i className="bi-trash"></i>
                     </Button>
                 </Stack>
 
@@ -122,17 +121,19 @@ export default function SeriesDetails() {
 
                 {displayDetails && <ApiShowInfos show={show} />}
 
-                <ViewingTimeShowCard showId={show.id} />
+                <ViewingTimeShowCard showId={show.id} refresh={refresh} />
 
-                {seasons && apiSeasons && <div className="mt-3">
-                    {buildProgressBar()}
+                {seasons && apiSeasons && <div className="mt-2">
+                    {progressBar()}
                 </div>}
 
                 <Tabs
-                    defaultActiveKey="seasons"
+                    id="series-details-tab"
+                    activeKey={key}
                     className="my-3"
+                    onSelect={(k) => setKey(k! as TabEventKey)}
                 >
-                    <Tab eventKey="seasons" title="Saisons">
+                    <Tab eventKey={TabEventKey.Seasons} title="Saisons">
                         <Row xs={2} md={3} lg={4} className="mt-4">
                             {seasons && seasons.map(s => (
                                 <Col key={s.number}>
@@ -141,7 +142,7 @@ export default function SeriesDetails() {
                             ))}
                         </Row>
                     </Tab>
-                    <Tab eventKey="add" title="Ajouter">
+                    <Tab eventKey={TabEventKey.ApiSeasons} title="Ajouter">
                         <Row xs={2} md={3} lg={4} className="mt-4">
                             {apiSeasons && apiSeasons.map(s => (
                                 <Col key={s.number}>
@@ -150,14 +151,60 @@ export default function SeriesDetails() {
                             ))}
                         </Row>
                     </Tab>
-                    <Tab eventKey="images" title="Images">
-                        <ApiImagesRow showId={show.id} />
+                    <Tab eventKey={TabEventKey.ApiImages} title="Images">
+                        <ApiImagesRow showId={show.id} tabKey={key} />
                     </Tab>
-                    <Tab eventKey="similar" title="Similaires">
-                        <ApiSimilarShowTable showId={show.id} />
+                    <Tab eventKey={TabEventKey.ApiSimilars} title="Similaires">
+                        <ApiSimilarShowTable showId={show.id} tabKey={key} />
                     </Tab>
                 </Tabs>
             </> : <Loading />}
         </Container>
     );
 };
+
+function ApiImagesRow({ showId, tabKey }: TabProps) {
+    const [images, setImages] = useState<string[]>([]);
+
+    useEffect(() => {
+        getImagesByShowId(showId);
+    }, [tabKey]);
+
+    const getImagesByShowId = async (id: number) => {
+
+        if (tabKey !== TabEventKey.ApiImages || images.length > 0) return
+
+        const resp = await searchService.getImagesByShowId(id);
+
+        if (resp.status === 200)
+            setImages(await resp.json());
+        else
+            errorToast(await resp.json());
+    }
+
+    const setProfilePicture = async (image: string) => {
+        const resp = await profileService.setProfilePicture(image);
+
+        if (resp.status === 200)
+            successToast("Image de profil modifiée");
+        else
+            errorToast(await resp.json());
+    }
+
+    return (
+        <>
+            {images && <Row xs={2} md={3} lg={4} className="mt-4">
+                {images.map(image => (
+                    <Col key={image} >
+                        <Card className="mt-2">
+                            <Card.Img variant="top" src={image} />
+                            <Card.Body>
+                                <Button onClick={_ => setProfilePicture(image)} variant="outline-dark">Choisir comme image de profil</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>}
+        </>
+    );
+}

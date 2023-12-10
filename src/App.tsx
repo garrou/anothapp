@@ -15,6 +15,7 @@ import NotStartedShowsRow from "./views/series/NotStartedShowsRow";
 import ShowsToResumeTable from "./views/series/ShowsToResumeTable";
 import { ToastContainer } from "react-toastify";
 import Next from "./views/activities/Next";
+import Stats from "./views/user/Stats";
 
 const router = createBrowserRouter([
   {
@@ -38,18 +39,17 @@ function Root() {
         <Route path="/series" element={<Series />} />
         <Route path="/series/:id" element={<SeriesDetails />} />
         <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
-
         <Route path="/continue" element={<ShowsToContinueTable />} />
         <Route path="/not-started" element={<NotStartedShowsRow />} />
         <Route path="/resume" element={<ShowsToResumeTable />} />
-
         <Route path="/discover" element={<Discover />} />
         <Route path="/discover/:id" element={<DiscoverDetails />} />
-
-        <Route path="/month" element={<ViewingMonth />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/last-months" element={<ViewingMonth />} />
 
         <Route path="/next" element={<Next />} />
+
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/stats" element={<Stats />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

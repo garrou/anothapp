@@ -44,7 +44,7 @@ export default function ShowsToContinueTable() {
 
     return (
         <Container>
-            <Navigation url={'/resume'} />
+            <Navigation />
   
             {isLoad && <Loading />}
 

@@ -29,7 +29,7 @@ export default function ViewingMonth() {
 
     return (
         <Container className="mb-3">
-            <Navigation url={'/month'} />
+            <Navigation />
 
             {isLoad && <Loading />}
 

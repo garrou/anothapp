@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 
 interface Props {
-    preview: ShowPreview
+    preview: ShowPreview;
 };
 
 export default function ShowCard({ preview }: Props) {

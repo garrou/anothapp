@@ -1,5 +1,4 @@
 import { SeasonPreview } from "../models/internal/SeasonPreview";
-import { ApiShowPreview } from "../models/external/ApiShowPreview";
 import { ApiShowDetails } from "../models/external/ApiShowDetails";
 import storageService from "./storageService";
 
@@ -11,7 +10,7 @@ const getShows = async (title: string, limit: number): Promise<Response> => {
     });
 }
 
-const addShow = async (show: ApiShowPreview): Promise<Response> => {
+const addShow = async (show: ApiShowDetails): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
         method: 'POST',
         headers: {

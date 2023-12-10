@@ -4,7 +4,7 @@ import TextCard from "./TextCard";
 import { minsToStringHours } from "../../helpers/format";
 
 interface Props {
-    show: ApiShowDetails
+    show: ApiShowDetails;
 }
 
 export default function ApiShowInfos({ show }: Props) {

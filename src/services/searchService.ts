@@ -76,6 +76,14 @@ const getImagesByShowId = (id: number): Promise<Response> => {
     });
 }
 
+const getPersonById = (id: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/persons/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`
+        }
+    });
+}
+
 export default { 
     discoverShows, 
     getCharactersByShowId,
@@ -83,6 +91,7 @@ export default {
     getHomeImages,
     getImagesByShowId,
     getKinds,
+    getPersonById,
     getSeasonsByShowId, 
     getShowById, 
     getShowsByKind,

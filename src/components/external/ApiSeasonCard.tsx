@@ -1,13 +1,16 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
 
 interface Props {
-    preview: SeasonPreview
-    show: ApiShowDetails
-    notify: () => void
+
+    preview: SeasonPreview;
+    
+    show: ApiShowDetails;
+    
+    notify: () => void;
 };
 
 export default function ApiSeasonCard({ preview, show, notify }: Props) {
@@ -28,20 +31,13 @@ export default function ApiSeasonCard({ preview, show, notify }: Props) {
             <Card className="mt-2">
                 <Card.Body>
                     {preview.image && <Card.Img variant="top" src={preview.image} />}
-
-                    <Row className="mt-2">
-                        <Col>
-                            <Card.Title>{`Saison ${preview.number}`}</Card.Title>
-                            <Card.Subtitle>{`Episodes : ${preview.episode}`}</Card.Subtitle>
-                        </Col>
-                        <Col>
-                            <Button variant="outline-dark" onClick={onClick}>
-                                <i className="bi-plus"></i>
-                            </Button>
-                        </Col>
-                    </Row>
+                    <Card.Title>{`Saison ${preview.number}`}</Card.Title>
+                    <Card.Subtitle>{`Episodes : ${preview.episode}`}</Card.Subtitle>
+                    <Button variant="outline-dark mt-2" onClick={onClick}>
+                        <i className="bi-plus"></i>
+                    </Button>
                 </Card.Body>
-            </Card>
+            </Card >
         </>
     );
 }

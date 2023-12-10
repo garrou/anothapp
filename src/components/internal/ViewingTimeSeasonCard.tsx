@@ -5,8 +5,10 @@ import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
 
 interface Props {
-    showId: string
-    num: string
+
+    showId: string;
+
+    num: string;
 }
 
 export default function ViewingTimeSeasonCard({ showId, num }: Props) {
