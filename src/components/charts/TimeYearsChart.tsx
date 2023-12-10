@@ -21,6 +21,10 @@ export default function TimeYearsChart() {
             errorToast(await resp.json());
     }
 
+    const handleClick = (data: any) => {
+        console.log(data);
+    }
+
     return (
         <>
             {timeByYears.length > 0 ? <CustomChartWrapper
@@ -31,6 +35,7 @@ export default function TimeYearsChart() {
                 legend="Heures"
                 range={300}
                 max={1000}
+                click={handleClick}
             /> : <Loading />}
         </>
     );

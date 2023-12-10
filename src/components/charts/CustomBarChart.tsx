@@ -9,7 +9,7 @@ export default function CustomBarChart(props: Chart) {
                 <YAxis type="number" ticks={Array.from({ length: props.data.length }, (_, i) => i * props.range)} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="value" fill={props.color} stroke={props.color} name={props.legend} />
+                <Bar dataKey="value" fill={props.color} stroke={props.color} name={props.legend} onClick={props.click} />
             </BarChart>
         </ResponsiveContainer>
     )

@@ -29,11 +29,11 @@ export default function CustomChartWrapper(props: Chart) {
     const displayChart = () => {
         switch (type) {
             case ChartType.Line:
-                return <CustomLineChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
+                return <CustomLineChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
             case ChartType.Bar:
-                return <CustomBarChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
+                return <CustomBarChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
             case ChartType.Pie:
-                return <CustomPieChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} />
+                return <CustomPieChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
         }
     }
 

@@ -19,6 +19,7 @@
 }
 
 .accordion-button:focus {
+    color: #FFF;
     background-color: #212529;
     box-shadow: none;
 }

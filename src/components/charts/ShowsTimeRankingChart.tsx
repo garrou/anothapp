@@ -21,6 +21,10 @@ export default function ShowsTimeRankingChart() {
             errorToast(await resp.json());
     }
 
+    const handleClick = (data: any) => {
+        console.log(data);
+    }
+
     return (
         <>
             {shows.length > 0 ? <CustomChartWrapper
@@ -31,6 +35,7 @@ export default function ShowsTimeRankingChart() {
                 legend="Heures"
                 range={50}
                 max={100}
+                click={handleClick}
             /> : <Loading />}
         </>
     );

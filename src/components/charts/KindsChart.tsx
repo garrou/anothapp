@@ -21,6 +21,10 @@ export default function KindsChart() {
             errorToast(await resp.json());
     }
 
+    const handleClick = (data: any) => {
+        console.log(data);
+    }
+
     return (
         <>
             {kinds.length > 0 ? <CustomChartWrapper 
@@ -31,6 +35,7 @@ export default function KindsChart() {
                 legend="Genres"
                 range={50}
                 max={200}
+                click={handleClick}
             /> : <Loading />}
         </>
     );

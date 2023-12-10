@@ -18,7 +18,7 @@ export default function CustomPieChart(props: Chart) {
     return (
         <ResponsiveContainer width="100%" height={300}>
             <PieChart width={500} height={300}>
-                <Pie data={props.data} dataKey="value" nameKey="label" cx="50%" cy="50%" outerRadius={props.range}>
+                <Pie data={props.data} dataKey="value" nameKey="label" cx="50%" cy="50%" outerRadius={props.range} onClick={props.click}>
                     {
                         props.data.map((_, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

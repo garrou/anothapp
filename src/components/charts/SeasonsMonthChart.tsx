@@ -21,6 +21,10 @@ export default function SeasonsMonthChart() {
             errorToast(await resp.json());
     }
 
+    const handleClick = (data: any) => {
+        console.log(data);
+    }
+
     return (
         <>
             {seasonsByMonths.length > 0 ? <CustomChartWrapper
@@ -31,6 +35,7 @@ export default function SeasonsMonthChart() {
                 legend="Saisons"
                 range={25}
                 max={100}
+                click={handleClick}
             /> : <Loading />}
         </>
     );

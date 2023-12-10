@@ -21,6 +21,10 @@ export default function EpisodesYearChart() {
             errorToast(await resp.json());
     }
 
+    const handleClick = (data: any) => {
+        console.log(data);
+    }
+
     return (
         <>
             {episodesByYear.length > 0 ? <CustomChartWrapper
@@ -31,6 +35,7 @@ export default function EpisodesYearChart() {
                 legend="Episodes"
                 range={500}
                 max={2000}
+                click={handleClick}
             /> : <Loading />}
         </>
     );

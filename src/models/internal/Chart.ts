@@ -21,6 +21,8 @@ interface Chart {
     range: number
 
     max: number
+
+    click: (data: any) => void
 }
 
 interface ChartInfo {

@@ -25,7 +25,9 @@ export default function ApiSimilarShowTable({ showId, tabKey }: TabProps) {
 
     return (
         <>
-            {shows && <Table striped hover className="mt-3">
+            {shows.length === 0 && <p className="text-center">Aucune série similaire</p>}
+
+            <Table striped hover className="mt-3">
                 <tbody>
                     {shows.map(s => (
                         <tr key={s.id}>
@@ -35,7 +37,7 @@ export default function ApiSimilarShowTable({ showId, tabKey }: TabProps) {
                         </tr>
                     ))}
                 </tbody>
-            </Table>}
+            </Table>
         </>
     );
 }

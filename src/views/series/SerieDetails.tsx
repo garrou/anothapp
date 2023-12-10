@@ -176,9 +176,7 @@ function ApiImagesRow({ showId, tabKey }: TabProps) {
     }, [tabKey]);
 
     const getImagesByShowId = async (id: number) => {
-
         if (tabKey !== TabEventKey.ApiImages || images.length > 0) return
-
         const resp = await searchService.getImagesByShowId(id);
 
         if (resp.status === 200)
@@ -198,18 +196,20 @@ function ApiImagesRow({ showId, tabKey }: TabProps) {
 
     return (
         <>
-            {images && <Row xs={2} md={3} lg={4} className="mt-4">
+            {images.length === 0 && <p className="text-center">Aucune image</p>}
+
+            <Row xs={2} md={3} lg={4} className="mt-4">
                 {images.map(image => (
                     <Col key={image} >
                         <Card className="mt-2">
                             <Card.Img variant="top" src={image} />
                             <Card.Body>
-                                <Button onClick={_ => setProfilePicture(image)} variant="outline-dark">Choisir comme image de profil</Button>
+                                <Button onClick={() => setProfilePicture(image)} variant="outline-dark">Choisir comme image de profil</Button>
                             </Card.Body>
                         </Card>
                     </Col>
                 ))}
-            </Row>}
+            </Row>
         </>
     );
 }

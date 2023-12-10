@@ -1,4 +1,4 @@
-import { Container, Form } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import storageService from "../../services/storageService";
 import { useState, useEffect } from "react";
@@ -30,11 +30,16 @@ export default function Stats() {
         <Container className="mb-3">
             <Navigation />
 
-            <ViewingTimeMonthCard />
-            <NbShowsCard />
-            <NbEpisodesCard />
-            <TotalViewingTimeCard />
-            <MonthRecordViewingTime />
+            <Row>
+                <Col><ViewingTimeMonthCard /></Col>
+                {/* <Col><MonthRecordViewingTime /></Col> */}
+                <Col><TotalViewingTimeCard /></Col>
+            </Row>
+            <Row>
+                <Col><NbShowsCard /></Col>
+                <Col><NbEpisodesCard /></Col>
+            </Row>
+            
 
             <Form.Switch
                 className="mt-3"
