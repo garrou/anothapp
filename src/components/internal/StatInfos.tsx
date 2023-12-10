@@ -9,15 +9,15 @@ export default function StatInfos() {
         <>
             <Row>
                 <Col><ViewingTimeMonthCard /></Col>
-                {/* <Col><MonthRecordViewingTime/></Col> */}
-                <Col><TotalViewingTimeCard /></Col>
+                <Col><BestMonthViewingTime /></Col>
             </Row>
-            < Row >
+            <Row>
                 <Col><NbShowsCard /></Col>
-                <Col><NbEpisodesCard /></Col>
-            </Row>
-            < Row >
                 <Col><NbSeasonsCard /></Col>
+            </Row>
+            <Row>
+                <Col><NbEpisodesCard /></Col>
+                <Col><TotalViewingTimeCard /></Col>
             </Row>
         </>
     );
@@ -159,7 +159,7 @@ function NbSeasonsCard() {
 }
 
 
-function MonthRecordViewingTime() {
+function BestMonthViewingTime() {
 
     interface MonthRecord {
         date: string,
