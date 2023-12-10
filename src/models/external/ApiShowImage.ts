@@ -1,12 +1,12 @@
 interface ApiShowImage {
 
-    poster: string | null;
+    poster?: string;
 
-    show: string | null;
+    show?: string;
 
-    banner: string | null;
+    banner?: string;
 
-    box: string | null;
+    box?: string;
 };
 
 const getImageUrl = (image: ApiShowImage): string | null => {

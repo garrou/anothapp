@@ -7,7 +7,7 @@ import ShowCard from "../../components/internal/ShowCard";
 import Navigation from "../../components/Navigation";
 import { errorToast } from "../../helpers/toasts";
 
-export default function NotStartedShowsRow() {
+export default function NotStartedShows() {
     const [notStartedShows, setNotStartedShows] = useState<ShowPreview[]>([]);
     const [isLoad, setIsLoad] = useState(true);
 

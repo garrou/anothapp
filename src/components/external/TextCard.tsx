@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 
 interface Props {
     
-    title: string;
+    title?: string;
 
     text: string;
 };

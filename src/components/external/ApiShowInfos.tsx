@@ -11,7 +11,7 @@ export default function ApiShowInfos({ show }: Props) {
 
     return (
         <>
-            <p className="font-weight-bold">{show.seasons} saisons • {show.network}</p>
+            <p>{show.seasons} saisons • {show.network}</p>
 
             <Alert variant={show.status === "Ended" ? "success" : "warning"}>
                 {show.status === "Ended" ? "Terminée" : "En cours"}

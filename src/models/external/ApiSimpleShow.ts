@@ -4,7 +4,7 @@ interface ApiSimpleShow {
 
     title: string;
 
-    poster: string|null;
+    poster?: string;
 }
 
 export type { ApiSimpleShow };

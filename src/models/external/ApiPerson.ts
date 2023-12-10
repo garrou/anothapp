@@ -4,15 +4,15 @@ interface ApiPerson {
 
     name: string;
 
-    birthday: string;
+    birthday?: string;
 
-    deathday: string;
+    deathday?: string;
 
-    nationality: string;
+    nationality?: string;
 
-    description: string;
+    description?: string;
 
-    poster: string;
+    poster?: string;
 
     shows: ApiPersonShow[];
 
@@ -33,7 +33,7 @@ interface ApiPersonShow {
 
     creation: string;
 
-    poster: string | null;
+    poster?: string;
 }
 
 interface ApiPersonMovie {
@@ -46,7 +46,7 @@ interface ApiPersonMovie {
 
     productionYear: number;
 
-    poster: string | null;
+    poster?: string;
 }
 
 export type { ApiPerson };

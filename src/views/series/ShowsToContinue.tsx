@@ -7,7 +7,7 @@ import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
 import { errorToast, successToast } from "../../helpers/toasts";
 
-export default function ShowsToContinueTable() {
+export default function ShowsToContinue() {
     const [shows, setShows] = useState<ShowContinue[]>([]);
     const [isLoad, setIsLoad] = useState(true);
     const [showModal, setShowModal] = useState(false);

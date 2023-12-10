@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 import searchService from "../../services/searchService";
 import { Button, Container, Stack, Tab, Tabs, Image, Card, Col, Row, Modal } from "react-bootstrap";
@@ -14,6 +14,7 @@ import TabEventKey from "../../models/internal/TabEventKey";
 import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
 import { TabProps } from "../../models/internal/TabProps";
 import { ApiPerson } from "../../models/external/ApiPerson";
+import TextCard from "../../components/external/TextCard";
 
 export default function DiscoverDetails() {
     const navigate = useNavigate();
@@ -89,11 +90,10 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
     const [person, setPerson] = useState<ApiPerson | null>(null);
     const [showModal, setShowModal] = useState(false);
-    const [personId, setPersonId] = useState(0);
 
     useEffect(() => {
         getCharacters();
-    }, [tabKey, showModal]);
+    }, [tabKey]);
 
     const getCharacters = async () => {
         if (tabKey !== TabEventKey.ApiCharacters || characters.length > 0) return
@@ -105,14 +105,13 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
             errorToast(await resp.json());
     }
 
-    const callModal = (id: number) => {
-        setPersonId(id);
+    const callModal = async (id: number) => {
+        await getCharactersShowsAndMovies(id);
         setShowModal(true);
     }
 
-    const getCharactersShowsAndMovies = async () => {
-        if (!showModal) return
-        const resp = await searchService.getPersonById(personId);
+    const getCharactersShowsAndMovies = async (id: number) => {
+        const resp = await searchService.getPersonById(id);
 
         if (resp.status === 200)
             setPerson(await resp.json());
@@ -123,19 +122,16 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
     return (
         <>
             <Modal show={showModal} fullscreen={true} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Modal body content</Modal.Body>
+                {person ? <ModalContent person={person} /> : <Loading />}
             </Modal>
 
             {characters.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">
                 {characters.map(character => (
                     <Col key={character.id} >
-                        <Card className="mt-2" onClick={() => callModal(character.id)}>
+                        <Card className="mt-2" onClick={() => callModal(character.id)} style={{ cursor: "pointer" }}>
                             <Card.Body>
                                 {character.picture && <Card.Img variant="top" src={character.picture} />}
-                                <Card.Title>{character.actor}</Card.Title>
+                                <Card.Title><u>{character.actor}</u></Card.Title>
                                 <Card.Subtitle>{character.name}</Card.Subtitle>
                             </Card.Body>
                         </Card>
@@ -145,3 +141,58 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
         </>
     );
 }
+
+interface Props {
+
+    person: ApiPerson;
+}
+
+function ModalContent({ person }: Props) {
+    return (
+        <>
+            <Modal.Header closeButton>
+                <Modal.Title>{person.name}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {person.nationality && <TextCard title="Nationalité" text={person.nationality} />}
+                {person.birthday && <TextCard title="Naissance" text={person.birthday} />}
+                {person.deathday && <TextCard title="Décès" text={person.deathday} />}
+                {person.description && <TextCard text={person.description} />}
+
+                {person.shows.length > 0 && <b className="text-center">Séries</b>}
+
+                <Row xs={2} md={3} lg={4}>
+                    {person.shows.map(show => (
+                        <Col key={show.id}>
+                            <Link to={`/discover/${show.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                                <Card className="mt-3">
+                                    <Card.Body>
+                                        {show.poster && <Card.Img variant="top" src={show.poster} />}
+                                        <Card.Title>{show.title} ({show.creation})</Card.Title>
+                                        <Card.Subtitle>Rôle : {show.name}</Card.Subtitle>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </Col>
+                    ))}
+                </Row>
+
+                {person.movies.length > 0 && <b className="text-center mt-4">Films</b>}
+
+                <Row xs={2} md={3} lg={4}>
+                    {person.movies.map(movie => (
+                        <Col key={movie.id}>
+                            <Card className="mt-3">
+                                <Card.Body>
+                                    {movie.poster && <Card.Img variant="top" src={movie.poster} />}
+                                    <Card.Title>{movie.title} ({movie.productionYear})</Card.Title>
+                                    <Card.Subtitle>Rôle : {movie.name}</Card.Subtitle>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Modal.Body>
+        </>
+    )
+}   

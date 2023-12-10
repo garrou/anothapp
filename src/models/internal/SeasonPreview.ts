@@ -4,7 +4,7 @@ interface SeasonPreview {
 
     episode: number;
 
-    image: string|null;
+    image?: string;
 }
 
 export type { SeasonPreview };

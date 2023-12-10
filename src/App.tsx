@@ -10,9 +10,9 @@ import NotFound from "./views/NotFound";
 import ViewingMonth from "./views/series/ViewingMonth";
 import Register from "./views/auth/Register";
 import Login from "./views/auth/Login";
-import ShowsToContinueTable from "./views/series/ShowsToContinueTable";
-import NotStartedShowsRow from "./views/series/NotStartedShowsRow";
-import ShowsToResumeTable from "./views/series/ShowsToResumeTable";
+import ShowsToContinue from "./views/series/ShowsToContinue";
+import NotStartedShows from "./views/series/NotStartedShows";
+import ShowsToResume from "./views/series/ShowsToResume";
 import { ToastContainer } from "react-toastify";
 import Next from "./views/activities/Next";
 import Stats from "./views/user/Stats";
@@ -39,9 +39,9 @@ function Root() {
         <Route path="/series" element={<Series />} />
         <Route path="/series/:id" element={<SeriesDetails />} />
         <Route path="/series/:id/seasons/:num" element={<SeasonDetails />} />
-        <Route path="/continue" element={<ShowsToContinueTable />} />
-        <Route path="/not-started" element={<NotStartedShowsRow />} />
-        <Route path="/resume" element={<ShowsToResumeTable />} />
+        <Route path="/continue" element={<ShowsToContinue />} />
+        <Route path="/not-started" element={<NotStartedShows />} />
+        <Route path="/resume" element={<ShowsToResume />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/discover/:id" element={<DiscoverDetails />} />
         <Route path="/last-months" element={<ViewingMonth />} />

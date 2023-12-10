@@ -6,7 +6,7 @@ interface ViewedSeasonMonth {
 
     number: number;
 
-    image: string|null;
+    image?: string;
 
     poster: string;
 }
