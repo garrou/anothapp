@@ -67,18 +67,6 @@ export default function SeriesDetails() {
             errorToast(await resp.json());
     }
 
-    const progressBar = () => {
-        const progress = Math.ceil(seasons.length / apiSeasons.length * 100);
-        return (
-            <Card>
-                <Card.Body>
-                    <Card.Title>Avancement</Card.Title>
-                    <ProgressBar animated variant="success" now={progress} label={`${progress}%`} />
-                </Card.Body>
-            </Card>
-        )
-    }
-
     const onDelete = async () => {
         const resp = await showService.deleteShow(Number(id));
 
@@ -123,9 +111,7 @@ export default function SeriesDetails() {
 
                 <ViewingTimeShowCard showId={show.id} refresh={refresh} />
 
-                {seasons && apiSeasons && <div className="mt-2">
-                    {progressBar()}
-                </div>}
+                {seasons && apiSeasons && <WrapProgressBar nbSeason={seasons.length} nbApiSeason={apiSeasons.length} />}
 
                 <Tabs
                     id="series-details-tab"
@@ -162,6 +148,25 @@ export default function SeriesDetails() {
         </Container>
     );
 };
+
+interface Props {
+
+    nbSeason: number;
+
+    nbApiSeason: number;
+}
+
+function WrapProgressBar({ nbSeason, nbApiSeason }: Props) {
+    const progress = Math.ceil(nbSeason / nbApiSeason * 100);
+    return (
+        <Card>
+            <Card.Body>
+                <Card.Title>Avancement</Card.Title>
+                <ProgressBar animated variant="success" now={progress} label={`${progress}%`} />
+            </Card.Body>
+        </Card>
+    )
+}
 
 function ApiImagesRow({ showId, tabKey }: TabProps) {
     const [images, setImages] = useState<string[]>([]);
