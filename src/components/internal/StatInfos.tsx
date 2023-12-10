@@ -9,7 +9,7 @@ export default function StatInfos() {
         <>
             <Row>
                 <Col><ViewingTimeMonthCard /></Col>
-                <Col><BestMonthViewingTime /></Col>
+                <Col><TotalViewingTimeCard /></Col>
             </Row>
             <Row>
                 <Col><NbShowsCard /></Col>
@@ -17,7 +17,7 @@ export default function StatInfos() {
             </Row>
             <Row>
                 <Col><NbEpisodesCard /></Col>
-                <Col><TotalViewingTimeCard /></Col>
+                <Col><BestMonthViewingTime /></Col>
             </Row>
         </>
     );
