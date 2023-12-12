@@ -67,15 +67,6 @@ const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
     });
 }
 
-const deleteSeason = async (id: number): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/seasons/${id}`, {
-        headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
-        },
-        method: 'DELETE'
-    });
-}
-
 const getViewedTimeByShowId = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/time`, {
         headers: {
@@ -137,7 +128,6 @@ export default {
     addSeason, 
     addShow, 
     deleteShow, 
-    deleteSeason, 
     getNotStartedShows,
     getSeasonInfo, 
     getSeasonsByShow, 

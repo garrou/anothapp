@@ -123,7 +123,7 @@ export default function SeriesDetails() {
                         <Row xs={2} md={3} lg={4} className="mt-4">
                             {seasons && seasons.map(s => (
                                 <Col key={s.number}>
-                                    <SeasonCard preview={s} showId={Number(id)} />
+                                    <SeasonCard preview={s} showId={s.showId} />
                                 </Col>
                             ))}
                         </Row>

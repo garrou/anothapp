@@ -28,8 +28,14 @@ export default function KindsChart() {
             errorToast(await resp.json());
     }
 
-    const handleClick = (data: Stat) => {
-        setSelected(data.label);
+    const handleClick = (data: any, payload: any) => {
+        if (typeof payload === "object") {
+            setSelected(payload.payload.label);
+        } else if (typeof data === "object") {    
+            setSelected(data.label);
+        } else {
+            return errorToast({ message: "Erreur durant l'affichage "});
+        }
         setShowModal(true);
     }
 
@@ -57,7 +63,7 @@ export default function KindsChart() {
                 id="kinds-chart"
                 color="#329ea8"
                 title="10 genres les plus regardés"
-                data={kinds.reverse()}
+                data={kinds}
                 legend="Genres"
                 range={50}
                 max={200}

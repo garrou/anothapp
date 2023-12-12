@@ -39,8 +39,8 @@ export default function Stats() {
             {displayChart && <>
                 <ShowsTimeRankingChart />
                 <TimeYearsChart />
-                <SeasonsYearsChart />
                 <EpisodesYearChart />
+                <SeasonsYearsChart />
                 <SeasonsMonthChart />
                 <KindsChart />
             </>}

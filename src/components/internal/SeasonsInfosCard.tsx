@@ -7,6 +7,7 @@ import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import ModalConfirm from "./ModalConfirm";
+import seasonService from "../../services/seasonService";
 
 interface Props {
 
@@ -45,7 +46,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
     }
 
     const deleteSeason = async () => {
-        const resp = await showService.deleteSeason(seasonToDelete);
+        const resp = await seasonService.deleteSeason(seasonToDelete);
 
         if (resp.status === 204) {
             infos.splice(infos.findIndex((info) => info.id === seasonToDelete), 1);

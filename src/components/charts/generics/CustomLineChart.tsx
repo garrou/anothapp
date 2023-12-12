@@ -10,7 +10,7 @@ export default function CustomLineChart(props: Chart) {
                 <YAxis ticks={Array.from({ length: props.data.length }, (_, i) => i * props.range)} />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="value" stroke={props.color} name={props.legend} onClick={props.click} />
+                <Line type="monotone" dataKey="value" stroke={props.color} name={props.legend} activeDot={{ onClick: props.click }} />
             </LineChart>
         </ResponsiveContainer>
     )

@@ -22,7 +22,7 @@ interface Chart {
 
     max: number
 
-    click: (data: any) => void
+    click: (event: any, payload: any) => void 
 }
 
 interface ChartInfo {
@@ -42,4 +42,9 @@ const isChartInfo = (value: unknown) => {
         && typeof object.color === "string";
 }
 
-export { type Chart, type ChartInfo, ChartType, isChartInfo };
+export { 
+    type Chart, 
+    type ChartInfo,
+    ChartType, 
+    isChartInfo 
+};

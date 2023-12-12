@@ -1,5 +1,7 @@
 interface SeasonPreview {
 
+    showId: number;
+
     number: number;
 
     episode: number;
