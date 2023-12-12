@@ -8,16 +8,28 @@ export default function StatInfos() {
     return (
         <>
             <Row>
-                <Col><ViewingTimeMonthCard /></Col>
-                <Col><TotalViewingTimeCard /></Col>
+                <Col xs={12} md={6}>
+                    <ViewingTimeMonthCard />
+                </Col>
+                <Col xs={12} md={6}>
+                    <TotalViewingTimeCard />
+                </Col>
             </Row>
             <Row>
-                <Col><NbShowsCard /></Col>
-                <Col><NbSeasonsCard /></Col>
+                <Col xs={12} md={6}>
+                    <NbShowsCard />
+                </Col>
+                <Col xs={12} md={6}>
+                    <NbSeasonsCard />
+                </Col>
             </Row>
             <Row>
-                <Col><NbEpisodesCard /></Col>
-                <Col><BestMonthViewingTime /></Col>
+                <Col xs={12} md={6}>
+                    <NbEpisodesCard />
+                </Col>
+                <Col xs={12} md={6}>
+                    <BestMonthViewingTime />
+                </Col>
             </Row>
         </>
     );
