@@ -10,7 +10,7 @@ const deleteSeason = async (id: number): Promise<Response> => {
     });
 }
 
-const getSeasonsByAddedYear = async (year: number) => {
+const getSeasonsByAddedYear = async (year: string) => {
     return fetch(`${process.env.REACT_APP_SERVER}/seasons?year=${year}`, {
         headers: {
             'Authorization': `Bearer ${storageService.getJwt()}`

@@ -25,6 +25,13 @@ interface Chart {
     click: (event: any, payload: any) => void 
 }
 
+interface ChartSelection {
+
+    title: string;
+
+    label: string;
+}
+
 interface ChartInfo {
 
     type: ChartType
@@ -45,6 +52,7 @@ const isChartInfo = (value: unknown) => {
 export { 
     type Chart, 
     type ChartInfo,
+    type ChartSelection,
     ChartType, 
     isChartInfo 
 };

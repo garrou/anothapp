@@ -8,11 +8,12 @@ import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import seasonService from "../../services/seasonService";
 import { Modal, Row, Col } from "react-bootstrap";
 import SeasonCard from "../internal/SeasonCard";
+import { ChartSelection } from "../../models/internal/Chart";
 
 export default function SeasonsYearsChart() {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [selected, setSelected] = useState<number>();
+    const [selected, setSelected] = useState<ChartSelection>();
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
 
     useEffect(() => {
@@ -30,9 +31,15 @@ export default function SeasonsYearsChart() {
 
     const handleClick = (data: any, payload: any) => {
         if (typeof payload === "object") {
-            setSelected(payload.payload.label);
+            setSelected({ 
+                title: `${payload.payload.label} : ${payload.payload.value}`,
+                label: payload.payload.label
+            });
         } else if (typeof data === "object") {    
-            setSelected(data.label);
+            setSelected({ 
+                title: `${data.label} : ${data.value}`,
+                label: data.label
+            });
         } else {
             return errorToast({ message: "Erreur durant l'affichage "});
         }
@@ -45,9 +52,8 @@ export default function SeasonsYearsChart() {
     }
 
     const getSeasonsByYear = async () => {
-        console.log(selected)
         if (!selected) return errorToast({ message: "Aucune année selectionnée" });
-        const resp = await seasonService.getSeasonsByAddedYear(selected);
+        const resp = await seasonService.getSeasonsByAddedYear(selected.label);
 
         if (resp.status === 200)
             setSeasons(await resp.json());
@@ -58,7 +64,7 @@ export default function SeasonsYearsChart() {
     return (
         <>
             <Modal show={showModal} dialogClassName="modal-90w" onHide={handleHide} onEnter={getSeasonsByYear}>
-                {selected && <ModalContent title={selected.toString()} seasons={seasons} />}
+                {selected && <ModalContent title={selected.label} seasons={seasons} />}
             </Modal>
 
             {seasonsByYears.length > 0 ? <CustomChartWrapper

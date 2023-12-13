@@ -8,12 +8,13 @@ import { Col, Modal, Row } from "react-bootstrap";
 import showService from "../../services/showService";
 import ShowCard from "../internal/ShowCard";
 import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ChartSelection } from "../../models/internal/Chart";
 
 export default function KindsChart() {
     const [kinds, setKinds] = useState<Stat[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [shows, setShows] = useState<ShowPreview[]>([]);
-    const [selected, setSelected] = useState<string>();
+    const [selected, setSelected] = useState<ChartSelection>();
 
     useEffect(() => {
         getKinds();
@@ -30,9 +31,15 @@ export default function KindsChart() {
 
     const handleClick = (data: any, payload: any) => {
         if (typeof payload === "object") {
-            setSelected(payload.payload.label);
+            setSelected({ 
+                title: `${payload.payload.label} : ${payload.payload.value}`,
+                label: payload.payload.label
+            });
         } else if (typeof data === "object") {    
-            setSelected(data.label);
+            setSelected({ 
+                title: `${data.label} : ${data.value}`,
+                label: data.label
+            });
         } else {
             return errorToast({ message: "Erreur durant l'affichage "});
         }
@@ -45,7 +52,8 @@ export default function KindsChart() {
     }
 
     const getShowsByKind = async () => {
-        const resp = await showService.getShows(0, "", selected);
+        if (!selected) return errorToast({ message: "Aucun genre selectionné" });
+        const resp = await showService.getShows(0, "", selected.label);
 
         if (resp.status === 200)
             setShows(await resp.json());
@@ -56,7 +64,7 @@ export default function KindsChart() {
     return (
         <>
             <Modal show={showModal} dialogClassName="modal-90w" onHide={handleHide} onEnter={getShowsByKind}>
-                {selected && <ModalContent title={selected} shows={shows} />}
+                {selected && <ModalContent title={selected.title} shows={shows} />}
             </Modal>
 
             {kinds.length > 0 ? <CustomChartWrapper
