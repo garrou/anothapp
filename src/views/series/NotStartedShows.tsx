@@ -32,7 +32,7 @@ export default function NotStartedShows() {
 
             {isLoad && <Loading />}
 
-            {notStartedShows.length === 0 && <p className="text-center mt-3">Aucune série à voir</p>}
+            {notStartedShows.length === 0 && <p className="text-center mt-3">Aucune série dans la liste</p>}
 
             <Row xs={2} md={3} lg={4}>
                 {notStartedShows.map(s => (

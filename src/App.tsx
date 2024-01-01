@@ -16,6 +16,7 @@ import ShowsToResume from "./views/series/ShowsToResume";
 import { ToastContainer } from "react-toastify";
 import Next from "./views/activities/Next";
 import Stats from "./views/user/Stats";
+import Favorites from "./views/series/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ function Root() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/discover/:id" element={<DiscoverDetails />} />
         <Route path="/last-months" element={<ViewingMonth />} />
+        <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/next" element={<Next />} />
 

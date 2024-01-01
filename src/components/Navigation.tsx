@@ -32,9 +32,10 @@ export default function Navigation() {
                     <NavDropdown title="Séries" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/series" active={url === "/series"}>Mes séries</NavDropdown.Item>
                         <NavDropdown.Item href="/discover" active={url === "/discover"}>Ajouter</NavDropdown.Item>
-                        <NavDropdown.Item href="/not-started" active={url === "/not-started"}>À voir</NavDropdown.Item>
-                        <NavDropdown.Item href="/continue" active={url === "/continue"}>À suivre</NavDropdown.Item>
-                        <NavDropdown.Item href="/last-months" active={url === "/last-months"}>Vues ces derniers mois</NavDropdown.Item>
+                        <NavDropdown.Item href="/not-started" active={url === "/not-started"}>Ma liste</NavDropdown.Item>
+                        <NavDropdown.Item href="/continue" active={url === "/continue"}>Continuer</NavDropdown.Item>
+                        <NavDropdown.Item href="/last-months" active={url === "/last-months"}>Historique</NavDropdown.Item>
+                        <NavDropdown.Item href="/favorites" active={url === "/favorites"}>Favorites</NavDropdown.Item>
                         {/* <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item> */}
                     </NavDropdown>
                     <NavDropdown title="Activités" id="activities-dropdown">
