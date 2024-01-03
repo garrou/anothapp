@@ -12,7 +12,7 @@ const discoverShows = (title: string): Promise<Response> => {
     });
 }
 
-const getShowById = (id: string): Promise<Response> => {
+const getShowById = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}`, {
         headers: {
             'Authorization': `Bearer ${storageService.getJwt()}`

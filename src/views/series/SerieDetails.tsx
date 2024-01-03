@@ -18,6 +18,7 @@ import profileService from "../../services/profileService";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import TabEventKey from "../../models/internal/TabEventKey";
 import { TabProps } from "../../models/internal/TabProps";
+import favoriteService from "../../services/favoriteService";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
@@ -25,25 +26,36 @@ export default function SeriesDetails() {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [refresh, setRefresh] = useState(0);
+    const [loaded, setLoaded] = useState(false);
     const [displayDetails, setDisplayDetails] = useState(false);
     const [key, setKey] = useState(TabEventKey.Seasons);
+    const [isFavorite, setIsFavorite] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         getShow();
         getSeasons();
         getApiSeasons();
-    }, [refresh]);
+        getFavorite();
+    }, [loaded]);
 
-    const notify = () => setRefresh(refresh + 1);
+    const notify = () => setLoaded(true);
 
     const getShow = async () => {
-        if (refresh > 0) return
-        const resp = await searchService.getShowById(id!);
+        if (loaded) return
+        const resp = await searchService.getShowById(Number(id));
 
         if (resp.status === 200)
             setShow(await resp.json());
+        else
+            errorToast(await resp.json());
+    }
+
+    const getFavorite = async () => {
+        const resp = await favoriteService.getFavorite(Number(id));
+
+        if (resp.status === 200) 
+            setIsFavorite(await resp.json());
         else
             errorToast(await resp.json());
     }
@@ -58,7 +70,7 @@ export default function SeriesDetails() {
     }
 
     const getApiSeasons = async () => {
-        if (refresh > 0) return
+        if (loaded) return
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200)
@@ -74,6 +86,28 @@ export default function SeriesDetails() {
             navigate("/series", { replace: true });
         else
             errorToast(await resp.json());
+    }
+
+    const onAddFavorite = async () => {
+        const resp = await favoriteService.addFavorite(Number(id));
+
+        if (resp.status === 201) {
+            successToast("Mise dans les favorites");
+            setIsFavorite(true);
+        } else {
+            errorToast(await resp.json());
+        }
+    }
+
+    const onDeleteFavorite = async () => {
+        const resp = await favoriteService.deleteFavorite(Number(id));
+
+        if (resp.status === 204) {
+            successToast("Supprimée des favorites");
+            setIsFavorite(false);
+        } else {
+            errorToast(await resp.json());
+        }
     }
 
     return (
@@ -96,6 +130,13 @@ export default function SeriesDetails() {
                     <Button variant="outline-danger" onClick={() => setShowModal(true)}>
                         <i className="bi-trash"></i>
                     </Button>
+                    {isFavorite ?
+                        <Button variant="warning" onClick={onDeleteFavorite}>
+                            <i className="bi bi-star"></i>
+                        </Button> :
+                        <Button variant="outline-warning" onClick={onAddFavorite}>
+                            <i className="bi bi-star"></i>
+                        </Button>}
                 </Stack>
 
                 <Form.Switch
@@ -109,7 +150,7 @@ export default function SeriesDetails() {
 
                 {displayDetails && <ApiShowInfos show={show} />}
 
-                <ViewingTimeShowCard showId={show.id} refresh={refresh} />
+                <ViewingTimeShowCard showId={show.id} loaded={loaded} />
 
                 {seasons && apiSeasons && <WrapProgressBar nbSeason={seasons.length} nbApiSeason={apiSeasons.length} />}
 

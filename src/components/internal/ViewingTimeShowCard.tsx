@@ -8,15 +8,15 @@ interface Props {
     
     showId: number;
 
-    refresh: number;
+    loaded: boolean;
 }
 
-export default function ViewingTimeShowCard({ showId, refresh }: Props) {
+export default function ViewingTimeShowCard({ showId, loaded }: Props) {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
         getViewingTime();
-    }, [refresh]);
+    }, [loaded]);
 
     const getViewingTime = async () => {
         const resp = await showService.getViewedTimeByShowId(showId);
@@ -29,7 +29,7 @@ export default function ViewingTimeShowCard({ showId, refresh }: Props) {
 
     return (
         <>
-            <Card className="mt-2">
+            <Card className="my-2">
                 <Card.Body>
                     <Card.Title>Temps de visionnage</Card.Title>
                     <Card.Text>{minsToStringHoursDays(time)}</Card.Text>

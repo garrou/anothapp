@@ -15,11 +15,10 @@ export default function Series() {
     const [newShows, setNewShows] = useState<ApiShowDetails[]>([]);
     const [isLoad, setIsLoad] = useState(true);
     const [search, setSearch] = useState("");
-    const [limit, setLimit] = useState<number>(20);
 
     useEffect(() => {
         getShows();
-    }, [search, limit]);
+    }, [search]);
 
     const resetShows = () => {
         setShows([]);
@@ -29,7 +28,7 @@ export default function Series() {
 
     const getShows = async () => {
         resetShows();
-        const resp = await showService.getShows(limit, search);
+        const resp = await showService.getShows(search);
 
         if (resp.status === 200) {
             const data = await resp.json();
@@ -85,14 +84,6 @@ export default function Series() {
                     </Col>
                 ))}
             </Row>
-
-            {shows.length > 0 && !search &&
-                <div className="text-center mt-2">
-                    <Button variant="outline-dark" onClick={() => setLimit(limit + 10)}>
-                        Voir plus
-                    </Button>
-                </div>
-            }
         </Container>
     );
 };

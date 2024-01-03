@@ -8,6 +8,39 @@ const getFavorites = async (): Promise<Response> => {
     });
 }
 
+const getFavorite = async (showId: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/favorites/${showId}`, {
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`
+        }
+    });
+}
+
+const addFavorite = async (showId: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/favorites`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${storageService.getJwt()}`
+        },
+        body: JSON.stringify({
+            "showId": showId 
+        })
+    }); 
+}
+
+const deleteFavorite = async (showId: number): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/favorites/${showId}`, {
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`
+        },
+        method: 'DELETE',
+    });
+}
+
 export default {
+    addFavorite,
+    deleteFavorite,
+    getFavorite,
     getFavorites
 }

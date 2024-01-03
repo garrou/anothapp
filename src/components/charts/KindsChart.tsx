@@ -53,7 +53,7 @@ export default function KindsChart() {
 
     const getShowsByKind = async () => {
         if (!selected) return errorToast({ message: "Aucun genre selectionné" });
-        const resp = await showService.getShows(0, "", selected.label);
+        const resp = await showService.getShows("", selected.label);
 
         if (resp.status === 200)
             setShows(await resp.json());

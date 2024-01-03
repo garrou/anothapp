@@ -34,7 +34,7 @@ export default function DiscoverDetails() {
 
     const getShow = async () => {
         if (!id) return navigate(`/discover`);
-        const resp = await searchService.getShowById(id);
+        const resp = await searchService.getShowById(Number(id));
 
         if (resp.status === 200)
             setShow(await resp.json());
