@@ -1,7 +1,6 @@
 import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import { useEffect, useState } from "react";
-import Loading from "../../components/Loading";
 import friendService from "../../services/friendService";
 import { errorToast, infoToast } from "../../helpers/toasts";
 import userService from "../../services/userService";

@@ -3,7 +3,6 @@ import { Stat } from "./Stat"
 enum ChartType {
     Line = "line",
     Bar = "bar",
-    Pie = "pie",
 }
 
 interface Chart {

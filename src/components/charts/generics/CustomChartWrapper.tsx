@@ -32,8 +32,8 @@ export default function CustomChartWrapper(props: Chart) {
                 return <CustomLineChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
             case ChartType.Bar:
                 return <CustomBarChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
-            case ChartType.Pie:
-                return <CustomPieChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
+            // case ChartType.Pie:
+            //     return <CustomPieChart id={props.id} color={color} title={props.title} data={props.data} legend={props.legend} range={range} max={props.max} click={props.click} />
         }
     }
 
@@ -59,13 +59,13 @@ export default function CustomChartWrapper(props: Chart) {
                                     ))
                                 }
                                 <Form.Range value={range} onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
-                                {type !== ChartType.Pie && <Form.Control
+                                {/* {type !== ChartType.Pie && <Form.Control
                                     type="color"
                                     id={`${props.id}-color  `}
                                     value={color}
                                     title="Choose your color"
                                     onChange={(e) => setColor(e.target.value)}
-                                />}
+                                />} */}
                             </Form>
                         </Accordion.Body>
                     </Accordion.Item>
