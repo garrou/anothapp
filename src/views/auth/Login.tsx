@@ -1,7 +1,7 @@
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { errorToast } from "../../helpers/toasts";
-import profileService from "../../services/profileService";
+import userService from "../../services/userService";
 import storageService from "../../services/storageService";
 import { useEffect } from "react";
 
@@ -13,7 +13,7 @@ export default function Login() {
     }, []);
 
     const checkIfLogged = async () => {
-        const resp = await profileService.checkUser();
+        const resp = await userService.checkUser();
 
         if (resp.status === 200) navigate("/series", { replace: true });
     }
@@ -23,7 +23,7 @@ export default function Login() {
         
         const email: string = e.target.loginEmail.value;
         const password: string = e.target.loginPassword.value;
-        const resp = await profileService.login(email, password);
+        const resp = await userService.login(email, password);
 
         if (resp.status === 200) {
             storageService.storeJwt((await resp.json()).token);

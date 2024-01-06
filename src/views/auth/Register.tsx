@@ -1,7 +1,7 @@
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { errorToast } from "../../helpers/toasts";
-import profileService from "../../services/profileService";
+import userService from "../../services/userService";
 import { useEffect } from "react";
 
 export default function Register() {
@@ -12,7 +12,7 @@ export default function Register() {
     }, []);
 
     const checkIfLogged = async () => {
-        const resp = await profileService.checkUser();
+        const resp = await userService.checkUser();
 
         if (resp.status === 200) navigate("/series", { replace: true });
     }
@@ -23,7 +23,7 @@ export default function Register() {
         const email: string = e.target.registerEmail.value;
         const password: string = e.target.registerPassword.value;
         const confirm: string = e.target.registerConfirm.value;
-        const resp = await profileService.register(email, password, confirm);
+        const resp = await userService.register(email, password, confirm);
 
         if (resp.status === 201)
             navigate("/login");

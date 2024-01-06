@@ -199,10 +199,11 @@ interface Props {
 
 function WrapProgressBar({ nbSeason, nbApiSeason }: Props) {
     const progress = Math.ceil(nbSeason / nbApiSeason * 100);
+    
     return (
         <Card>
             <Card.Body>
-                <Card.Title>Avancement</Card.Title>
+                <Card.Title>Avancement ({nbSeason} / {nbApiSeason})</Card.Title>
                 <ProgressBar animated variant="success" now={progress} label={`${progress}%`} />
             </Card.Body>
         </Card>

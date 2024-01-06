@@ -14,7 +14,7 @@ import ShowsToContinue from "./views/series/ShowsToContinue";
 import NotStartedShows from "./views/series/NotStartedShows";
 import ShowsToResume from "./views/series/ShowsToResume";
 import { ToastContainer } from "react-toastify";
-import Next from "./views/activities/Next";
+import Friends from "./views/activities/Friends";
 import Stats from "./views/user/Stats";
 import Favorites from "./views/series/Favorites";
 
@@ -31,7 +31,7 @@ function App() {
 function Root() {
   return (
     <>
-      <ToastContainer limit={3} />
+      <ToastContainer limit={3} autoClose={1000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -48,7 +48,7 @@ function Root() {
         <Route path="/last-months" element={<ViewingMonth />} />
         <Route path="/favorites" element={<Favorites />} />
 
-        <Route path="/next" element={<Next />} />
+        <Route path="/friends" element={<Friends />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/stats" element={<Stats />} />

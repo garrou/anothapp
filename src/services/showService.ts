@@ -14,8 +14,8 @@ const addShow = async (show: ApiShowDetails): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
         method: 'POST',
         headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             "id": show.id,
@@ -30,8 +30,8 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${show.id}/seasons`, {
         method: 'POST',
         headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             "number": season.number,

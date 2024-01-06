@@ -2,7 +2,7 @@ import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import storageService from "../services/storageService";
 import { useEffect } from "react";
-import profileService from "../services/profileService";
+import userService from "../services/userService";
 
 export default function Navigation() {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Navigation() {
     });
 
     const checkIfLogged = async () => {
-        const resp = await profileService.checkUser();
+        const resp = await userService.checkUser();
 
         if (resp.status !== 200)
             navigate("/login", { replace: true });
@@ -39,7 +39,7 @@ export default function Navigation() {
                         {/* <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item> */}
                     </NavDropdown>
                     <NavDropdown title="Activités" id="activities-dropdown">
-                        <NavDropdown.Item href="/next" active={url === "/next"}>Prochainement</NavDropdown.Item>
+                        <NavDropdown.Item href="/friends" active={url === "/friends"}>Amis</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Profil" id="profile-dropdown">
                         <NavDropdown.Item href="/stats" active={url === "/stats"}>Statistiques</NavDropdown.Item>

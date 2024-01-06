@@ -20,8 +20,8 @@ const addFavorite = async (showId: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/favorites`, {
         method: 'POST',
         headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${storageService.getJwt()}`
         },
         body: JSON.stringify({
             "showId": showId 
