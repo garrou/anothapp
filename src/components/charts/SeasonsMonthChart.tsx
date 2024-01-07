@@ -4,8 +4,9 @@ import statService from "../../services/statService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function SeasonsMonthChart() {
+export default function SeasonsMonthChart(props: FriendProps) {
     const [seasonsByMonths, setSeasonsByMonths] = useState<Stat[]>([]);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function SeasonsMonthChart() {
     }, []);
 
     const getNbSeasonsByMonths = async () => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "months");
+        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "months", props.userId);
 
         if (resp.status === 200)
             setSeasonsByMonths(await resp.json());

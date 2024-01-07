@@ -9,8 +9,9 @@ import seasonService from "../../services/seasonService";
 import { Modal, Row, Col } from "react-bootstrap";
 import SeasonCard from "../internal/SeasonCard";
 import { ChartSelection } from "../../models/internal/Chart";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function SeasonsYearsChart() {
+export default function SeasonsYearsChart(props: FriendProps) {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [selected, setSelected] = useState<ChartSelection>();
@@ -21,7 +22,7 @@ export default function SeasonsYearsChart() {
     }, []);
 
     const getNbSeasonsByYears = async () => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "years");
+        const resp = await statService.getGroupedCountByTypeByPeriod("seasons", "years", props.userId);
 
         if (resp.status === 200)
             setSeasonsByYears(await resp.json());

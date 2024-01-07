@@ -4,8 +4,9 @@ import statService from "../../services/statService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function TimeYearsChart() {
+export default function TimeYearsChart(props: FriendProps) {
     const [timeByYears, setTimeByYears] = useState<Stat[]>([]);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function TimeYearsChart() {
     }, []);
 
     const getTimeByYears = async () => {
-        const resp = await statService.getTimeByType("years");
+        const resp = await statService.getTimeByType("years", props.userId);
 
         if (resp.status === 200)
             setTimeByYears(await resp.json());

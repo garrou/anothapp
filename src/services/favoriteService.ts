@@ -1,7 +1,9 @@
+import { buildIdUrl } from "../helpers/format";
 import storageService from "./storageService";
 
-const getFavorites = async (): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/favorites`, {
+const getFavorites = async (userId?: string): Promise<Response> => {
+    const url = buildIdUrl(`${process.env.REACT_APP_SERVER}/favorites`, userId, "?")
+    return fetch(url, {
         headers: {
             'Authorization': `Bearer ${storageService.getJwt()}`
         }
@@ -24,9 +26,9 @@ const addFavorite = async (showId: number): Promise<Response> => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            "showId": showId 
+            "showId": showId
         })
-    }); 
+    });
 }
 
 const deleteFavorite = async (showId: number): Promise<Response> => {

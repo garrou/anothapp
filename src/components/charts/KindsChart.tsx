@@ -9,8 +9,9 @@ import showService from "../../services/showService";
 import ShowCard from "../internal/ShowCard";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 import { ChartSelection } from "../../models/internal/Chart";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function KindsChart() {
+export default function KindsChart(props: FriendProps) {
     const [kinds, setKinds] = useState<Stat[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [shows, setShows] = useState<ShowPreview[]>([]);
@@ -21,7 +22,7 @@ export default function KindsChart() {
     }, []);
 
     const getKinds = async (): Promise<void> => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("kinds");
+        const resp = await statService.getGroupedCountByTypeByPeriod("kinds", props.userId);
 
         if (resp.status === 200)
             setKinds(await resp.json());

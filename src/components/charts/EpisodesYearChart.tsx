@@ -4,8 +4,9 @@ import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function EpisodesYearChart() {
+export default function EpisodesYearChart(props: FriendProps) {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function EpisodesYearChart() {
     }, []);
 
     const getEpisodesByYears = async (): Promise<void> => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("episodes", "years");
+        const resp = await statService.getGroupedCountByTypeByPeriod("episodes", "years", props.userId);
 
         if (resp.status === 200)
             setEpisodesByYears(await resp.json());

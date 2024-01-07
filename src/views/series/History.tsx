@@ -5,8 +5,9 @@ import Navigation from "../../components/Navigation";
 import { ViewedSeasonMonth } from "../../models/internal/ViewedSeasonMonth";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function ViewingMonth() {
+export default function History(props: FriendProps) {
     const [seasons, setSeasons] = useState<ViewedSeasonMonth[]>([]);
     const [isLoad, setIsLoad] = useState(false);
     const [month, setMonth] = useState<number>(0);
@@ -17,7 +18,7 @@ export default function ViewingMonth() {
 
     const getViewedMonthAgo = async () => {
         setIsLoad(true);
-        const resp = await showService.getViewedMonthAgo(month);
+        const resp = await showService.getViewedMonthAgo(month, props.userId);
 
         if (resp.status === 200) {
             setSeasons(await resp.json());
@@ -29,7 +30,7 @@ export default function ViewingMonth() {
 
     return (
         <Container className="mb-3">
-            <Navigation />
+            {!props.userId && <Navigation />}
 
             {isLoad && <Loading />}
 

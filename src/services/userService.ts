@@ -43,9 +43,35 @@ const getUser = async (email: string) => {
     });
 }
 
+const setProfilePicture = async (image: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/users/profile/image`, {
+        method: 'PATCH',
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            'image': image
+        })
+    });
+}
+
+const getProfile = async (userId?: string): Promise<Response> => {
+    const url = userId
+        ? `${process.env.REACT_APP_SERVER}/users/${userId}/profile`
+        : `${process.env.REACT_APP_SERVER}/users/profile`;
+    return fetch(url, { 
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`
+        }
+    });
+}
+
 export default {
     checkUser,
     getUser,
+    getProfile,
     login, 
     register,
+    setProfilePicture
 }

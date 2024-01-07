@@ -14,15 +14,15 @@ import { SeasonPreview } from "../../models/internal/SeasonPreview";
 import SeasonCard from "../../components/internal/SeasonCard";
 import ApiSeasonCard from "../../components/external/ApiSeasonCard";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
-import profileService from "../../services/profileService";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import TabEventKey from "../../models/internal/TabEventKey";
 import { TabProps } from "../../models/internal/TabProps";
 import favoriteService from "../../services/favoriteService";
+import userService from "../../services/userService";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();
-    const [show, setShow] = useState<ApiShowDetails | null>(null);
+    const [show, setShow] = useState<ApiShowDetails>();
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [showModal, setShowModal] = useState(false);
@@ -36,7 +36,7 @@ export default function SeriesDetails() {
         getShow();
         getSeasons();
         getApiSeasons();
-        getFavorite();
+        checkIfFavorite();
     }, [loaded]);
 
     const notify = () => setLoaded(true);
@@ -51,9 +51,9 @@ export default function SeriesDetails() {
             errorToast(await resp.json());
     }
 
-    const getFavorite = async () => {
+    const checkIfFavorite = async () => {
         const resp = await favoriteService.getFavorite(Number(id));
-
+        
         if (resp.status === 200) 
             setIsFavorite(await resp.json());
         else
@@ -228,7 +228,7 @@ function ApiImagesRow({ showId, tabKey }: TabProps) {
     }
 
     const setProfilePicture = async (image: string) => {
-        const resp = await profileService.setProfilePicture(image);
+        const resp = await userService.setProfilePicture(image);
 
         if (resp.status === 200)
             successToast("Image de profil modifiée");

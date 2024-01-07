@@ -4,8 +4,9 @@ import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import { Stat } from "../../models/internal/Stat";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function ShowsTimeRankingChart() {
+export default function ShowsTimeRankingChart(props: FriendProps) {
     const [shows, setShows] = useState<Stat[]>([]);
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function ShowsTimeRankingChart() {
     }, []);
 
     const getRanking = async () => {
-        const resp = await statService.getTimeByType("rank");
+        const resp = await statService.getTimeByType("rank", props.userId);
 
         if (resp.status === 200)
             setShows(await resp.json());

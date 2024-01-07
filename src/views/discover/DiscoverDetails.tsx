@@ -88,7 +88,7 @@ export default function DiscoverDetails() {
 
 function ApiCharactersRow({ showId, tabKey }: TabProps) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
-    const [person, setPerson] = useState<ApiPerson | null>(null);
+    const [person, setPerson] = useState<ApiPerson>();
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {

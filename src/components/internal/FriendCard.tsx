@@ -5,6 +5,7 @@ import { errorToast, successToast } from "../../helpers/toasts";
 import FriendType from "../../models/internal/FriendType";
 import { useState } from "react";
 import ModalConfirm from "./ModalConfirm";
+import { Link } from "react-router-dom";
 
 interface Props {
     user: User;
@@ -75,9 +76,9 @@ export default function FriendCard({ user, type, notify }: Props) {
                     <i className="bi-person-fill-check"></i>
                 </Button>}
 
-                {type === FriendType.Friend && <Button variant="outline-info">
-                    <i className="bi-person-fill-gear"></i>
-                </Button>}
+                {type === FriendType.Friend && <Link to={`/friends/${user.id}`} className="btn btn-outline-dark">
+                    Voir le profil
+                </Link>}
 
                 {[FriendType.Receive, FriendType.Send, FriendType.Friend].includes(type) &&
                     <Button className="mx-1" variant="outline-danger" onClick={() => setShowModal(true)}>

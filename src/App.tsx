@@ -7,7 +7,7 @@ import DiscoverDetails from "./views/discover/DiscoverDetails";
 import SeriesDetails from "./views/series/SerieDetails";
 import SeasonDetails from "./views/series/SeasonDetails";
 import NotFound from "./views/NotFound";
-import ViewingMonth from "./views/series/ViewingMonth";
+import History from "./views/series/History";
 import Register from "./views/auth/Register";
 import Login from "./views/auth/Login";
 import ShowsToContinue from "./views/series/ShowsToContinue";
@@ -46,7 +46,7 @@ function Root() {
         <Route path="/resume" element={<ShowsToResume />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/discover/:id" element={<DiscoverDetails />} />
-        <Route path="/last-months" element={<ViewingMonth />} />
+        <Route path="/history" element={<History />} />
         <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/friends" element={<Friends />} />

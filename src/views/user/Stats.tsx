@@ -9,8 +9,9 @@ import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import TimeYearsChart from "../../components/charts/TimeYearsChart";
 import StatInfos from "../../components/internal/StatInfos";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function Stats() {
+export default function Stats(props: FriendProps) {
     const [displayChart, setDisplayChart] = useState(true);
     const [isFirst, setIsFirst] = useState(true);
 
@@ -24,9 +25,9 @@ export default function Stats() {
     
     return (
         <Container className="mb-3">
-            <Navigation />
+            {!props.userId && <Navigation />}
 
-            <StatInfos />
+            <StatInfos userId={props.userId} />
             
             <Form.Switch
                 className="mt-3"
@@ -37,12 +38,12 @@ export default function Stats() {
             />
 
             {displayChart && <>
-                <ShowsTimeRankingChart />
-                <TimeYearsChart />
-                <EpisodesYearChart />
-                <SeasonsYearsChart />
-                <SeasonsMonthChart />
-                <KindsChart />
+                <ShowsTimeRankingChart userId={props.userId} />
+                <TimeYearsChart userId={props.userId} />
+                <EpisodesYearChart userId={props.userId} />
+                <SeasonsYearsChart userId={props.userId} />
+                <SeasonsMonthChart userId={props.userId} />
+                <KindsChart userId={props.userId} />
             </>}
         </Container>
     )

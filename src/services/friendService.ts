@@ -43,10 +43,28 @@ const deleteFriend = async (userId: string): Promise<Response> => {
     });
 }
 
+const getFriendProfile = async (userId: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}/profile`, { 
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
+        },
+    });
+}
+
+const checkAreFriends = async (userId: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}/accepted`, { 
+        headers: {
+            'Authorization': `Bearer ${storageService.getJwt()}`,
+        },
+    });
+}
+
 
 export default {
+    acceptFriendRequest,
+    checkAreFriends,
     deleteFriend,
     getFriends,
-    acceptFriendRequest,
+    getFriendProfile,
     sendFriendRequest
 }

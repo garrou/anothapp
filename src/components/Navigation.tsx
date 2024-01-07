@@ -34,7 +34,7 @@ export default function Navigation() {
                         <NavDropdown.Item href="/discover" active={url === "/discover"}>Ajouter</NavDropdown.Item>
                         <NavDropdown.Item href="/not-started" active={url === "/not-started"}>Ma liste</NavDropdown.Item>
                         <NavDropdown.Item href="/continue" active={url === "/continue"}>Continuer</NavDropdown.Item>
-                        <NavDropdown.Item href="/last-months" active={url === "/last-months"}>Historique</NavDropdown.Item>
+                        <NavDropdown.Item href="/history" active={url === "/history"}>Historique</NavDropdown.Item>
                         <NavDropdown.Item href="/favorites" active={url === "/favorites"}>Favorites</NavDropdown.Item>
                         {/* <NavDropdown.Item href="/resume">Reprendre</NavDropdown.Item> */}
                     </NavDropdown>

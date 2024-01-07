@@ -6,8 +6,9 @@ import { ShowPreview } from "../../models/internal/ShowPreview";
 import { errorToast } from "../../helpers/toasts";
 import ShowCard from "../../components/internal/ShowCard";
 import Loading from "../../components/Loading";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function Favorites() {
+export default function Favorites({ userId }: FriendProps) {
     const [isLoad, setIsLoad] = useState(false);
     const [shows, setShows] = useState<ShowPreview[]>([]);
 
@@ -16,7 +17,7 @@ export default function Favorites() {
     }, []);
 
     const getFavorites = async () => {
-        const resp = await favoriteService.getFavorites();
+        const resp = await favoriteService.getFavorites(userId);
 
         if (resp.status === 200) {
             setShows(await resp.json());
@@ -28,11 +29,16 @@ export default function Favorites() {
 
     return (
         <Container>
-            <Navigation />
+            {!userId && <Navigation />}
 
             {isLoad && <Loading />}
 
-            {shows.length === 0 && <p className="text-center mt-3">Aucune série favorite</p>}
+            {shows.length === 0 
+                ? <p className="text-center mt-3">Aucune série favorite</p>
+                : <p className="text-center mt-3">
+                    {shows.length} série{shows.length > 1 && 's'} favorite{shows.length > 1 && 's'}
+                </p>
+            }
 
             <Row xs={2} md={3} lg={4}>
                 {shows.length > 0 && shows.map(s => (

@@ -1,20 +1,21 @@
-import { Card, Container } from "react-bootstrap";
+    import { Card, Container, Image } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import { useEffect, useState } from "react";
-import Loading from "../../components/Loading";
 import { errorToast } from "../../helpers/toasts";
 import { User } from "../../models/internal/User";
-import profileService from "../../services/profileService";
+import userService from "../../services/userService";
+import Loading from "../../components/Loading";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function Profile() {
-    const [user, setUser] = useState<User | null>(null);
+export default function Profile(props: FriendProps) {
+    const [user, setUser] = useState<User>();
 
     useEffect(() => {
         getUserProfile();
     }, []);
 
     const getUserProfile = async () => {
-        const resp = await profileService.getProfile();
+        const resp = await userService.getProfile(props.userId);
 
         if (resp.status === 200)
             setUser(await resp.json());
@@ -24,8 +25,8 @@ export default function Profile() {
 
     return (
         <Container className="mb-3">
-            <Navigation />
-
+            {!props.userId && <Navigation />}
+            
             {user ? <Card className="mt-2">
                 {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
                 <Card.Body>

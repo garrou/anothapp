@@ -3,39 +3,40 @@ import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import { Row, Col, Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
+import { FriendProps } from "../../models/internal/FriendProps";
 
-export default function StatInfos() {
+export default function StatInfos(props: FriendProps) {
     return (
         <>
             <Row>
                 <Col xs={12} md={6}>
-                    <ViewingTimeMonthCard />
+                    <ViewingTimeMonthCard userId={props.userId} />
                 </Col>
                 <Col xs={12} md={6}>
-                    <TotalViewingTimeCard />
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} md={6}>
-                    <NbShowsCard />
-                </Col>
-                <Col xs={12} md={6}>
-                    <NbSeasonsCard />
+                    <TotalViewingTimeCard userId={props.userId} />
                 </Col>
             </Row>
             <Row>
                 <Col xs={12} md={6}>
-                    <NbEpisodesCard />
+                    <NbShowsCard userId={props.userId} />
                 </Col>
                 <Col xs={12} md={6}>
-                    <BestMonthViewingTime />
+                    <NbSeasonsCard userId={props.userId} />
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12} md={6}>
+                    <NbEpisodesCard userId={props.userId} />
+                </Col>
+                <Col xs={12} md={6}>
+                    <BestMonthViewingTime userId={props.userId} />
                 </Col>
             </Row>
         </>
     );
 }
 
-function ViewingTimeMonthCard() {
+function ViewingTimeMonthCard(props: FriendProps) {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
@@ -43,7 +44,7 @@ function ViewingTimeMonthCard() {
     }, []);
 
     const getViewingTimeCurrentMonth = async () => {
-        const resp = await statService.getTimeByType("month");
+        const resp = await statService.getTimeByType("month", props.userId);
 
         if (resp.status === 200)
             setTime(await resp.json());
@@ -65,7 +66,7 @@ function ViewingTimeMonthCard() {
     );
 }
 
-function TotalViewingTimeCard() {
+function TotalViewingTimeCard(props: FriendProps) {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
@@ -73,7 +74,7 @@ function TotalViewingTimeCard() {
     }, []);
 
     const getTotalTime = async () => {
-        const resp = await statService.getTimeByType("total");
+        const resp = await statService.getTimeByType("total", props.userId);
 
         if (resp.status === 200)
             setTime(await resp.json());
@@ -95,7 +96,7 @@ function TotalViewingTimeCard() {
     );
 }
 
-function NbShowsCard() {
+function NbShowsCard(props: FriendProps) {
     const [num, setNum] = useState(0);
 
     useEffect(() => {
@@ -103,7 +104,7 @@ function NbShowsCard() {
     }, []);
 
     const getNbShows = async () => {
-        const resp = await statService.getCountByType("shows");
+        const resp = await statService.getCountByType("shows", props.userId);
 
         if (resp.status === 200)
             setNum(await resp.json());
@@ -120,7 +121,7 @@ function NbShowsCard() {
     );
 }
 
-function NbEpisodesCard() {
+function NbEpisodesCard(props: FriendProps) {
     const [num, setNum] = useState(0);
 
     useEffect(() => {
@@ -128,7 +129,7 @@ function NbEpisodesCard() {
     }, []);
 
     const getNbEpisodes = async () => {
-        const resp = await statService.getCountByType("episodes");
+        const resp = await statService.getCountByType("episodes", props.userId);
 
         if (resp.status === 200)
             setNum(await resp.json());
@@ -145,7 +146,7 @@ function NbEpisodesCard() {
     );
 }
 
-function NbSeasonsCard() {
+function NbSeasonsCard(props: FriendProps) {
     const [num, setNum] = useState(0);
 
     useEffect(() => {
@@ -153,7 +154,7 @@ function NbSeasonsCard() {
     }, []);
 
     const getNbShows = async () => {
-        const resp = await statService.getCountByType("seasons");
+        const resp = await statService.getCountByType("seasons", props.userId);
 
         if (resp.status === 200)
             setNum(await resp.json());
@@ -171,21 +172,21 @@ function NbSeasonsCard() {
 }
 
 
-function BestMonthViewingTime() {
+function BestMonthViewingTime(props: FriendProps) {
 
     interface MonthRecord {
         date: string,
 
         time: number
     }
-    const [record, setRecord] = useState<MonthRecord | null>(null);
+    const [record, setRecord] = useState<MonthRecord>();
 
     useEffect(() => {
         getMonthRecord();
     }, []);
 
     const getMonthRecord = async () => {
-        const resp = await statService.getTimeByType("best-month");
+        const resp = await statService.getTimeByType("best-month", props.userId);
 
         if (resp.status === 200)
             setRecord(await resp.json());
