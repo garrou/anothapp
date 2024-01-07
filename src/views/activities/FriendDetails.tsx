@@ -11,19 +11,19 @@ import History from "../series/History";
 export default function FriendDetails() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [areFriends, setAreFriends] = useState();
+    const [areFriends, setAreFriends] = useState<boolean>();
 
     useEffect(() => {
         checkAreFriends();
     }, []);
 
     const checkAreFriends = async () => {
-        if (!id) navigate("/friends");
         const resp = await friendService.checkAreFriends(id!);
 
         if (resp.status === 200) {
-            setAreFriends(await resp.json());
-            if (areFriends === false) navigate("/friends", { replace: true });
+            const ok: boolean = await resp.json();
+            if (!ok) navigate("/friends", { replace: true });
+            setAreFriends(ok);
         } else {
             navigate("/friends", { replace: true });
         }
