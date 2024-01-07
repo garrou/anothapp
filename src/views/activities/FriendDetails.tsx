@@ -6,7 +6,6 @@ import Favorites from "../series/Favorites";
 import Stats from "../user/Stats";
 import { useEffect, useState } from "react";
 import friendService from "../../services/friendService";
-import { errorToast } from "../../helpers/toasts";
 import History from "../series/History";
 
 export default function FriendDetails() {
@@ -24,10 +23,10 @@ export default function FriendDetails() {
 
         if (resp.status === 200) {
             setAreFriends(await resp.json());
+            if (!areFriends) navigate("/friends", { replace: true });
         } else {
-            errorToast(await resp.json());
+            navigate("/friends", { replace: true });
         }
-        if (!areFriends) navigate("/friends", { replace: true });
     }
 
     return (
