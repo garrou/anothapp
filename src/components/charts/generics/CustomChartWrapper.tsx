@@ -58,13 +58,14 @@ export default function CustomChartWrapper(props: Chart) {
                                     ))
                                 }
                                 <Form.Range value={range} onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
-                                {/* {type !== ChartType.Pie && <Form.Control
+                                {/* {type !== ChartType.Pie && */}
+                                <Form.Control
                                     type="color"
                                     id={`${props.id}-color  `}
                                     value={color}
                                     title="Choose your color"
                                     onChange={(e) => setColor(e.target.value)}
-                                />} */}
+                                />
                             </Form>
                         </Accordion.Body>
                     </Accordion.Item>
