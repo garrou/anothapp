@@ -90,6 +90,7 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
     const [person, setPerson] = useState<ApiPerson>();
     const [showModal, setShowModal] = useState(false);
+    const [isLoad, setIsLoad] = useState(true);
 
     useEffect(() => {
         getCharacters();
@@ -99,10 +100,12 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
         if (tabKey !== TabEventKey.ApiCharacters || characters.length > 0) return
         const resp = await searchService.getCharactersByShowId(showId);
 
-        if (resp.status === 200)
+        if (resp.status === 200) {
             setCharacters(await resp.json());
-        else
+            setIsLoad(false);
+        } else {
             errorToast(await resp.json());
+        }
     }
 
     const callModal = async (id: number) => {
@@ -125,7 +128,7 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
                 {person ? <ModalContent person={person} /> : <Loading />}
             </Modal>
 
-            {characters.length > 0 ? <Row xs={2} md={3} lg={4} className="mt-4">
+            {isLoad ? <Loading /> : <Row xs={2} md={3} lg={4} className="mt-4">
                 {characters.map(character => (
                     <Col key={character.id} >
                         <Card className="mt-2" onClick={() => callModal(character.id)} style={{ cursor: "pointer" }}>
@@ -137,7 +140,7 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
                         </Card>
                     </Col>
                 ))}
-            </Row> : <Loading />}
+            </Row>}
         </>
     );
 }
