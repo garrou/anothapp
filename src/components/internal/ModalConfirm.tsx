@@ -18,8 +18,8 @@ interface Props {
 export default function ModalConfirm({
     show, 
     color = "danger", 
-    title = "Supprimer la série",
-    body = "Voulez supprimer cette série ?",
+    title,
+    body,
     handleClose, 
     handleConfirm
 }: Props) {

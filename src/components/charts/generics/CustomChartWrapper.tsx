@@ -9,18 +9,20 @@ export default function CustomChartWrapper(props: Chart) {
     const [type, setType] = useState(ChartType.Bar);
     const [range, setRange] = useState(props.range);
     const [color, setColor] = useState(props.color);
+    const [isFirst, setIsFirst] = useState(true);
 
     useEffect(() => {
-        const storedInfo = storageService.getChartInfo(props.id);
-        if (storedInfo) {
-            setType(storedInfo.type);
-            setRange(storedInfo.range);
-            setColor(storedInfo.color);
+        if (isFirst) {
+            const storedInfo = storageService.getChartInfo(props.id);
+            if (storedInfo) {
+                setType(storedInfo.type);
+                setRange(storedInfo.range);
+                setColor(storedInfo.color);
+            }
+            setIsFirst(false);
+        } else {
+            storageService.storeChartInfo(props.id, { type, range, color });
         }
-    }, []);
-
-    useEffect(() => {
-        storageService.storeChartInfo(props.id, { type, range, color });
     }, [type, range, color]);
 
     const displayChart = () => {

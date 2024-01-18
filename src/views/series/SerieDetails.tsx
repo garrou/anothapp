@@ -117,6 +117,8 @@ export default function SeriesDetails() {
 
             <ModalConfirm
                 show={showModal}
+                title = "Supprimer la série"
+                body = "Voulez supprimer cette série ?"        
                 handleClose={() => setShowModal(false)}
                 handleConfirm={onDelete}
             />

@@ -19,16 +19,17 @@ export default function Stats(props: FriendProps) {
         if (isFirst) {
             setDisplayChart(storageService.getDisplayChart());
             setIsFirst(false);
+        } else {
+            storageService.storeDisplayChart(displayChart);
         }
-        storageService.storeDisplayChart(displayChart);
     }, [displayChart]);
-    
+
     return (
         <Container className="mb-3">
             {!props.userId && <Navigation />}
 
             <StatInfos userId={props.userId} />
-            
+
             <Form.Switch
                 className="mt-3"
                 id="chart-switch"
