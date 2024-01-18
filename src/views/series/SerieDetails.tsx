@@ -93,7 +93,7 @@ export default function SeriesDetails() {
         const resp = await favoriteService.addFavorite(Number(id));
 
         if (resp.status === 201) {
-            successToast("Mise dans les favorites");
+            successToast(`${show?.title} ajoutée dans les favorites`);
             setIsFavorite(true);
         } else {
             errorToast(await resp.json());
@@ -104,7 +104,7 @@ export default function SeriesDetails() {
         const resp = await favoriteService.deleteFavorite(Number(id));
 
         if (resp.status === 204) {
-            successToast("Supprimée des favorites");
+            successToast(`${show?.title} supprimée des favorites`);
             setIsFavorite(false);
         } else {
             errorToast(await resp.json());

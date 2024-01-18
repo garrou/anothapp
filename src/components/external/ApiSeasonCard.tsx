@@ -19,7 +19,7 @@ export default function ApiSeasonCard({ preview, show, notify }: Props) {
         const resp = await showService.addSeason(show, preview);
 
         if (resp.status === 201) {
-            successToast("Saison ajoutée");
+            successToast(`Saison ${preview.number} ajoutée`);
             notify();
         } else {
             errorToast(await resp.json());

@@ -51,7 +51,7 @@ export default function SeasonsInfosCard({ showId, num }: Props) {
         if (resp.status === 204) {
             infos.splice(infos.findIndex((info) => info.id === seasonToDelete), 1);
             checkIfAnySeason(infos);
-            successToast("Saison supprimée");
+            successToast(`Saison ${num} supprimée`);
         } else {
             errorToast(await resp.json());
         }

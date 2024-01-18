@@ -36,13 +36,13 @@ export default function Friends() {
 
 function MyFriends(type: FriendType) {
     const [users, setUsers] = useState<User[]>([]);
-    const [loaded, setLoaded] = useState(false);
+    const [reload, setReload] = useState(0);
 
     useEffect(() => {
         getFriends();
-    }, [loaded]);
+    }, [reload]);
 
-    const notify = () => setLoaded(!notify);
+    const notify = () => setReload(reload+1);
 
     const onSubmit = async (e: any) => {
         e.preventDefault();

@@ -22,7 +22,7 @@ export default function FriendCard({ user, type, notify }: Props) {
         const resp = await friendService.sendFriendRequest(user.id);
 
         if (resp.status === 201) {
-            successToast("Demande envoyée");
+            successToast(`Demande envoyée à ${user.email}`);
             notify();
         } else {
             errorToast(await resp.json());
@@ -33,7 +33,7 @@ export default function FriendCard({ user, type, notify }: Props) {
         const resp = await friendService.deleteFriend(user.id);
 
         if (resp.status === 204) {
-            successToast("Ami(e) supprimé(e)");
+            successToast(`Amitié avec ${user.email} supprimée`);
             setShowModal(false);
             notify();
         } else {
@@ -45,7 +45,7 @@ export default function FriendCard({ user, type, notify }: Props) {
         const resp = await friendService.acceptFriendRequest(user.id);
 
         if (resp.status === 200) {
-            successToast("Demande acceptée");
+            successToast(`Demande de ${user.email} acceptée`);
             notify();
         } else {
             errorToast(await resp.json());

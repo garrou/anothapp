@@ -33,7 +33,6 @@ export default function DiscoverDetails() {
     }, []);
 
     const getShow = async () => {
-        if (!id) return navigate(`/discover`);
         const resp = await searchService.getShowById(Number(id));
 
         if (resp.status === 200)
