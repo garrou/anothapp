@@ -9,20 +9,18 @@ export default function CustomChartWrapper(props: Chart) {
     const [type, setType] = useState(ChartType.Bar);
     const [range, setRange] = useState(props.range);
     const [color, setColor] = useState(props.color);
-    const [isFirst, setIsFirst] = useState(true);
 
     useEffect(() => {
-        if (isFirst) {
-            const storedInfo = storageService.getChartInfo(props.id);
-            if (storedInfo) {
-                setType(storedInfo.type);
-                setRange(storedInfo.range);
-                setColor(storedInfo.color);
-            }
-            setIsFirst(false);
-        } else {
-            storageService.storeChartInfo(props.id, { type, range, color });
+        const storedInfo = storageService.getChartInfo(props.id);
+        if (storedInfo) {
+            setType(storedInfo.type);
+            setRange(storedInfo.range);
+            setColor(storedInfo.color);
         }
+    }, []);
+
+    useEffect(() => {
+        storageService.storeChartInfo(props.id, { type, range, color });
     }, [type, range, color]);
 
     const displayChart = () => {
@@ -59,6 +57,7 @@ export default function CustomChartWrapper(props: Chart) {
                                 }
                                 <Form.Range value={range} onChange={(e) => setRange(parseInt(e.target.value))} max={props.max} />
                                 {/* {type !== ChartType.Pie && */}
+
                                 <Form.Control
                                     type="color"
                                     id={`${props.id}-color  `}
@@ -66,6 +65,7 @@ export default function CustomChartWrapper(props: Chart) {
                                     title="Choose your color"
                                     onChange={(e) => setColor(e.target.value)}
                                 />
+
                             </Form>
                         </Accordion.Body>
                     </Accordion.Item>

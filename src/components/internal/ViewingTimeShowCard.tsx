@@ -8,15 +8,15 @@ interface Props {
     
     showId: number;
 
-    loaded: boolean;
+    reload: number;
 }
 
-export default function ViewingTimeShowCard({ showId, loaded }: Props) {
+export default function ViewingTimeShowCard({ showId, reload }: Props) {
     const [time, setTime] = useState<number>(0);
 
     useEffect(() => {
         getViewingTime();
-    }, [loaded]);
+    }, [reload]);
 
     const getViewingTime = async () => {
         const resp = await showService.getViewedTimeByShowId(showId);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Form, Image, ProgressBar, Row, Stack, Tab, Tabs } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Image, Nav, ProgressBar, Row, Stack, Tab, Tabs } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
@@ -26,7 +26,7 @@ export default function SeriesDetails() {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [loaded, setLoaded] = useState(false);
+    const [reload, setReload] = useState(0);
     const [displayDetails, setDisplayDetails] = useState(false);
     const [key, setKey] = useState(TabEventKey.Seasons);
     const [isFavorite, setIsFavorite] = useState(false);
@@ -34,15 +34,17 @@ export default function SeriesDetails() {
 
     useEffect(() => {
         getShow();
-        getSeasons();
         getApiSeasons();
         checkIfFavorite();
-    }, [loaded]);
+    }, []);
 
-    const notify = () => setLoaded(true);
+    useEffect(() => {
+        getSeasons();
+    }, [reload]);
+
+    const notify = () => setReload(reload+1);
 
     const getShow = async () => {
-        if (loaded) return
         const resp = await searchService.getShowById(Number(id));
 
         if (resp.status === 200)
@@ -70,7 +72,6 @@ export default function SeriesDetails() {
     }
 
     const getApiSeasons = async () => {
-        if (loaded) return
         const resp = await searchService.getSeasonsByShowId(Number(id));
 
         if (resp.status === 200)
@@ -150,7 +151,7 @@ export default function SeriesDetails() {
 
                 {displayDetails && <ApiShowInfos show={show} />}
 
-                <ViewingTimeShowCard showId={show.id} loaded={loaded} />
+                <ViewingTimeShowCard showId={show.id} reload={reload} />
 
                 {seasons && apiSeasons && <WrapProgressBar nbSeason={seasons.length} nbApiSeason={apiSeasons.length} />}
 
@@ -204,7 +205,7 @@ function WrapProgressBar({ nbSeason, nbApiSeason }: Props) {
         <Card>
             <Card.Body>
                 <Card.Title>Avancement ({nbSeason} / {nbApiSeason})</Card.Title>
-                <ProgressBar animated variant="success" now={progress} label={`${progress}%`} />
+                <ProgressBar animated variant="success" now={progress} label={`${progress}%`} visuallyHidden />
             </Card.Body>
         </Card>
     )
