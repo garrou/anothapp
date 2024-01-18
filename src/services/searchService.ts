@@ -7,7 +7,7 @@ const getHomeImages = () => {
 const discoverShows = (title: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows?title=${title}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -15,7 +15,7 @@ const discoverShows = (title: string): Promise<Response> => {
 const getShowById = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -23,7 +23,7 @@ const getShowById = (id: number): Promise<Response> => {
 const getSeasonsByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -31,7 +31,7 @@ const getSeasonsByShowId = (id: number): Promise<Response> => {
 const getCharactersByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/characters`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -39,7 +39,7 @@ const getCharactersByShowId = (id: number): Promise<Response> => {
 const getSimilarByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/similars`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -47,7 +47,7 @@ const getSimilarByShowId = (id: number): Promise<Response> => {
 const getEpisodesByShowIdBySeasonNum = (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/seasons/${num}/episodes`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -55,7 +55,7 @@ const getEpisodesByShowIdBySeasonNum = (id: number, num: number): Promise<Respon
 const getKinds = (): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/kinds`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -63,7 +63,7 @@ const getKinds = (): Promise<Response> => {
 const getShowsByKind = (kind: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/kinds/${kind}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 } 
@@ -71,7 +71,7 @@ const getShowsByKind = (kind: string): Promise<Response> => {
 const getImagesByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/images`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -79,7 +79,7 @@ const getImagesByShowId = (id: number): Promise<Response> => {
 const getPersonById = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/persons/${id}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }

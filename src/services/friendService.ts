@@ -3,7 +3,7 @@ import storageService from "./storageService";
 const getFriends = async (status: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends?status=${status}`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -11,8 +11,8 @@ const getFriends = async (status: string): Promise<Response> => {
 const acceptFriendRequest = async (userId: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
-            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${storageService.getJwt()}`,
+            "Content-Type": "application/json",
         },
         method: "PATCH",
         body: JSON.stringify({
@@ -24,8 +24,8 @@ const acceptFriendRequest = async (userId: string): Promise<Response> => {
 const sendFriendRequest = async (userId: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
-            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${storageService.getJwt()}`,
+            "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify({
@@ -37,7 +37,7 @@ const sendFriendRequest = async (userId: string): Promise<Response> => {
 const deleteFriend = async (userId: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
+            "Authorization": `Bearer ${storageService.getJwt()}`,
         },
         method: "DELETE"
     });
@@ -46,7 +46,7 @@ const deleteFriend = async (userId: string): Promise<Response> => {
 const getFriendProfile = async (userId: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}/profile`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
+            "Authorization": `Bearer ${storageService.getJwt()}`,
         },
     });
 }
@@ -54,7 +54,7 @@ const getFriendProfile = async (userId: string): Promise<Response> => {
 const checkAreFriends = async (userId: string): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/friends/${userId}/accepted`, { 
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
+            "Authorization": `Bearer ${storageService.getJwt()}`,
         },
     });
 }

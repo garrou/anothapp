@@ -6,17 +6,17 @@ import { buildIdUrl } from "../helpers/format";
 const getShows = async (title: string = "", kind: string = ""): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows?title=${title}&kind=${kind}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
 
 const addShow = async (show: ApiShowDetails): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
-            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${storageService.getJwt()}`,
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             "id": show.id,
@@ -29,10 +29,10 @@ const addShow = async (show: ApiShowDetails): Promise<Response> => {
 
 const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${show.id}/seasons`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
-            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${storageService.getJwt()}`,
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             "number": season.number,
@@ -46,16 +46,16 @@ const addSeason = async (show: ApiShowDetails, season: SeasonPreview): Promise<R
 const deleteShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         },
-        method: 'DELETE',
+        method: "DELETE",
     });
 }
 
 const getSeasonsByShow = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -63,7 +63,7 @@ const getSeasonsByShow = async (id: number): Promise<Response> => {
 const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -71,7 +71,7 @@ const getSeasonInfo = async (id: number, num: number): Promise<Response> => {
 const getViewedTimeByShowId = async (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/time`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -79,7 +79,7 @@ const getViewedTimeByShowId = async (id: number): Promise<Response> => {
 const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/seasons/${num}/time`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -88,7 +88,7 @@ const getViewedMonthAgo = async (month: number, userId?: string) => {
     const url = buildIdUrl(`${process.env.REACT_APP_SERVER}/shows/viewed?month=${month}`, userId)
     return fetch(url, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -96,7 +96,7 @@ const getViewedMonthAgo = async (month: number, userId?: string) => {
 const getNotStartedShows = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/not-started`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -104,7 +104,7 @@ const getNotStartedShows = async () => {
 const getShowsToContinue = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/continue`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -112,7 +112,7 @@ const getShowsToContinue = async () => {
 const getShowsToResume = async () => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/resume`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -120,9 +120,9 @@ const getShowsToResume = async () => {
 const updateShowsToContinue = async (id: number) => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows/${id}/watching`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         },
-        method: 'PATCH'
+        method: "PATCH"
     });
 }
 

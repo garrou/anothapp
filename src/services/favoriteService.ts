@@ -5,7 +5,7 @@ const getFavorites = async (userId?: string): Promise<Response> => {
     const url = buildIdUrl(`${process.env.REACT_APP_SERVER}/favorites`, userId, "?")
     return fetch(url, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
@@ -13,17 +13,17 @@ const getFavorites = async (userId?: string): Promise<Response> => {
 const getFavorite = async (showId: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/favorites/${showId}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         }
     });
 }
 
 const addFavorite = async (showId: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/favorites`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`,
-            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${storageService.getJwt()}`,
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             "showId": showId
@@ -34,9 +34,9 @@ const addFavorite = async (showId: number): Promise<Response> => {
 const deleteFavorite = async (showId: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/favorites/${showId}`, {
         headers: {
-            'Authorization': `Bearer ${storageService.getJwt()}`
+            "Authorization": `Bearer ${storageService.getJwt()}`
         },
-        method: 'DELETE',
+        method: "DELETE",
     });
 }
 

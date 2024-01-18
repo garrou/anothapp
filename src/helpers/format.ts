@@ -4,7 +4,7 @@ const MINS_IN_HOUR = 60;
 
 const MINS_IN_DAY = 1440;
 
-const formatDate = (date: Date): string => moment(date).format('DD/MM/YYYY');
+const formatDate = (date: Date): string => moment(date).format("DD/MM/YYYY");
 
 const minsToStringDays = (mins: number): string => {
     const days = Math.floor(mins / MINS_IN_DAY);

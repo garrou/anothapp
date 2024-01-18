@@ -1,4 +1,4 @@
-import { Button, Card, Modal } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { User } from "../../models/internal/User";
 import friendService from "../../services/friendService";
 import { errorToast, successToast } from "../../helpers/toasts";

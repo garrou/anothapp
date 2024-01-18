@@ -36,7 +36,7 @@ export default function Favorites({ userId }: FriendProps) {
             {shows.length === 0 
                 ? <p className="text-center mt-3">Aucune série favorite</p>
                 : <p className="text-center mt-3">
-                    {shows.length} série{shows.length > 1 && 's'} favorite{shows.length > 1 && 's'}
+                    {shows.length} série{shows.length > 1 && "s"} favorite{shows.length > 1 && "s"}
                 </p>
             }
 

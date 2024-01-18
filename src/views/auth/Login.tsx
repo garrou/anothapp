@@ -49,7 +49,7 @@ export default function Login() {
                         </Form.Group>
                         <Button variant="outline-dark" type="submit">Se connecter</Button>
                     </Form>
-                    <Link to={'/register'}>Créer un compte</Link>
+                    <Link to={"/register"}>Créer un compte</Link>
                 </Card.Body>
             </Card>
         </Container>

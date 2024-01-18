@@ -11,7 +11,7 @@ interface Props {
 
 export default function SeasonCard({ preview, showId }: Props) {
     return (
-        <Link to={`/series/${showId}/seasons/${preview.number}`} style={{textDecoration: 'none', color: 'black'}}>
+        <Link to={`/series/${showId}/seasons/${preview.number}`} style={{textDecoration: "none", color: "black"}}>
             <Card className="mt-2">
 
                 {preview.image && <Card.Img variant="top" src={preview.image} />}

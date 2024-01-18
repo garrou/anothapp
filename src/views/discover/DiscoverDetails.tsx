@@ -166,7 +166,7 @@ function ModalContent({ person }: Props) {
                 <Row xs={2} md={3} lg={4}>
                     {person.shows.map(show => (
                         <Col key={show.id}>
-                            <Link to={`/discover/${show.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                            <Link to={`/discover/${show.id}`} style={{ textDecoration: "none", color: "black" }}>
                                 <Card className="mt-3">
                                     <Card.Body>
                                         {show.poster && <Card.Img variant="top" src={show.poster} />}

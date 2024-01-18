@@ -14,7 +14,6 @@ import { FriendProps } from "../../models/internal/FriendProps";
 export default function KindsChart(props: FriendProps) {
     const [kinds, setKinds] = useState<Stat[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [shows, setShows] = useState<ShowPreview[]>([]);
     const [selected, setSelected] = useState<ChartSelection>();
 
     useEffect(() => {
@@ -32,41 +31,24 @@ export default function KindsChart(props: FriendProps) {
 
     const handleClick = (data: any, payload: any) => {
         if (typeof payload === "object") {
-            setSelected({ 
+            setSelected({
                 title: `${payload.payload.label} : ${payload.payload.value}`,
                 label: payload.payload.label
             });
-        } else if (typeof data === "object") {    
-            setSelected({ 
+        } else if (typeof data === "object") {
+            setSelected({
                 title: `${data.label} : ${data.value}`,
                 label: data.label
             });
         } else {
-            return errorToast({ message: "Erreur durant l'affichage "});
+            return errorToast({ message: "Erreur durant l'affichage" });
         }
         setShowModal(true);
     }
 
-    const handleHide = () => {
-        setShows([]);
-        setShowModal(false);
-    }
-
-    const getShowsByKind = async () => {
-        if (!selected) return errorToast({ message: "Aucun genre selectionné" });
-        const resp = await showService.getShows("", selected.label);
-
-        if (resp.status === 200)
-            setShows(await resp.json());
-        else
-            errorToast(await resp.json());
-    }
-
     return (
         <>
-            <Modal show={showModal} dialogClassName="modal-90w" onHide={handleHide} onEnter={getShowsByKind}>
-                {selected && <ModalContent title={selected.title} shows={shows} />}
-            </Modal>
+            {selected && <DetailsModal selected={selected} show={showModal} close={() => setShowModal(false)} />}
 
             {kinds.length > 0 ? <CustomChartWrapper
                 id="kinds-chart"
@@ -85,16 +67,30 @@ export default function KindsChart(props: FriendProps) {
 
 interface Props {
 
-    title: string;
+    selected: ChartSelection;
 
-    shows: ShowPreview[];
+    show: boolean;
+
+    close: () => void;
 }
 
-function ModalContent({ title, shows }: Props) {
+function DetailsModal({ selected, show, close }: Props) {
+    const [shows, setShows] = useState<ShowPreview[]>([]);
+
+    const getShowsByKind = async () => {
+        if (!selected) return errorToast({ message: "Aucun genre selectionné" });
+        const resp = await showService.getShows("", selected.label);
+
+        if (resp.status === 200)
+            setShows(await resp.json());
+        else
+            errorToast(await resp.json());
+    }
+
     return (
-        <>
+        <Modal show={show} dialogClassName="modal-90w" onHide={close} onEnter={getShowsByKind}>
             <Modal.Header closeButton>
-                <Modal.Title>{title}</Modal.Title>
+                <Modal.Title>{selected.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Row xs={2} md={3} lg={4}>
@@ -105,6 +101,6 @@ function ModalContent({ title, shows }: Props) {
                     ))}
                 </Row>
             </Modal.Body>
-        </>
+        </Modal>
     )
 }   

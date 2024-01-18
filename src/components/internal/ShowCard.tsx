@@ -10,7 +10,7 @@ export default function ShowCard({ preview }: Props) {
 
     return (
         <Card className="mt-2">
-            <Link to={`/series/${preview.id}`} style={{textDecoration: 'none', color: 'black'}}>
+            <Link to={`/series/${preview.id}`} style={{textDecoration: "none", color: "black"}}>
                 <Card.Img variant="top" src={preview.poster} />
                 <Card.Body>
                     <Card.Title>{preview.title}</Card.Title>

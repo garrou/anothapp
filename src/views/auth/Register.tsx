@@ -51,7 +51,7 @@ export default function Register() {
                         </Form.Group>
                         <Button variant="outline-dark" type="submit">Créer un compte</Button>
                     </Form>
-                    <Link to={'/login'}>Se connecter</Link>
+                    <Link to={"/login"}>Se connecter</Link>
                 </Card.Body>
             </Card>
         </Container>

@@ -23,7 +23,7 @@ export default function ApiShowCard({ show }: Props) {
     };
 
     return (
-        <Link to={`/discover/${show.id}`} state={{serie: show}} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/discover/${show.id}`} state={{serie: show}} style={{ textDecoration: "none", color: "black" }}>
             <Card className="mt-2">
                 {image && <Card.Img variant="top" src={image} />}
                 <Card.Body>
