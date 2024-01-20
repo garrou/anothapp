@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
-import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
 import { SeasonPreview } from "../../models/internal/SeasonPreview";
@@ -59,7 +58,7 @@ export default function SeasonsYearsChart(props: FriendProps) {
                 range={25}
                 max={100}
                 click={handleClick}
-            /> : <Loading />}
+            /> : <p className="text-center mt-3">Aucune statistique</p>}
         </>
     );
 }
@@ -77,7 +76,6 @@ function DetailsModal({ show, selected, close }: Props) {
     const [seasons, setSeasons] = useState<SeasonPreview[]>([]);
 
     const getSeasonsByYear = async () => {
-        if (!selected) return errorToast({ message: "Aucune année selectionnée" });
         const resp = await seasonService.getSeasonsByAddedYear(selected.label);
 
         if (resp.status === 200)

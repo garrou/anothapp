@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
-import Loading from "../Loading";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
 import { Col, Modal, Row } from "react-bootstrap";
 import showService from "../../services/showService";
@@ -59,7 +58,7 @@ export default function KindsChart(props: FriendProps) {
                 range={50}
                 max={200}
                 click={handleClick}
-            /> : <Loading />}
+            /> : <p className="text-center mt-3">Aucune statistique</p>}
         </>
     );
 }
@@ -78,7 +77,6 @@ function DetailsModal({ selected, show, close }: Props) {
     const [shows, setShows] = useState<ShowPreview[]>([]);
 
     const getShowsByKind = async () => {
-        if (!selected) return errorToast({ message: "Aucun genre selectionné" });
         const resp = await showService.getShows("", selected.label);
 
         if (resp.status === 200)

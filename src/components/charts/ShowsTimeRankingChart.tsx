@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import statService from "../../services/statService";
-import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import { Stat } from "../../models/internal/Stat";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
@@ -37,7 +36,7 @@ export default function ShowsTimeRankingChart(props: FriendProps) {
                 range={50}
                 max={100}
                 click={handleClick}
-            /> : <Loading />}
+            /> : <p className="text-center mt-3">Aucune statistique</p>}
         </>
     );
 }

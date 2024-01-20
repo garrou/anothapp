@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
-import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
 import { FriendProps } from "../../models/internal/FriendProps";
@@ -37,7 +36,7 @@ export default function SeasonsMonthChart(props: FriendProps) {
                 range={25}
                 max={100}
                 click={handleClick}
-            /> : <Loading />}
+            /> : <p className="text-center mt-3">Aucune statistique</p>}
         </>
     );
 }
