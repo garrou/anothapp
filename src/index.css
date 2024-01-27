@@ -1,5 +1,5 @@
 .form-control:focus {
-    border-color: #000;
+    border-color: #212529;
     box-shadow: none;
 }
 
@@ -9,17 +9,17 @@
 }
 
 .accordion-button:has(.collapsed) {
-    background-color: #FFF;
-    color: #FFF;
+    background-color: white;
+    color: white;
 }
 
 .accordion-button:not(.collapsed) {
     background-color: #212529;
-    color: #FFF;
+    color: white;
 }
 
 .accordion-button:focus {
-    color: #FFF;
+    color: white;
     background-color: #212529;
     box-shadow: none;
 }
@@ -35,11 +35,9 @@
     box-shadow: none;
 }
 
+.dropdown-item:focus,
+.dropdown-item:active,
 .dropdown-item.active {
-    background-color: #212529;
-}
-
-.dropdown-item:focus {
     background-color: #212529;
 }
 

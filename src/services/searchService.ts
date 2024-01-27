@@ -12,6 +12,14 @@ const discoverShows = (title: string): Promise<Response> => {
     });
 }
 
+const getShowsByKind = (kind: string): Promise<Response> => {
+    return fetch(`${process.env.REACT_APP_SERVER}/search/shows?kind=${kind}`, {
+        headers: {
+            "Authorization": `Bearer ${storageService.getJwt()}`
+        }
+    });
+} 
+
 const getShowById = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}`, {
         headers: {
@@ -59,14 +67,6 @@ const getKinds = (): Promise<Response> => {
         }
     });
 }
-
-const getShowsByKind = (kind: string): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/search/kinds/${kind}`, {
-        headers: {
-            "Authorization": `Bearer ${storageService.getJwt()}`
-        }
-    });
-} 
 
 const getImagesByShowId = (id: number): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/search/shows/${id}/images`, {
