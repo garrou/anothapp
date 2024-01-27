@@ -159,9 +159,6 @@ function ImageModal(props: Props) {
                                 <i className="bi-search"></i>
                             </Button>
                         </Col>
-                        <Col>
-                            <p>{shows.length} série{shows.length > 1 ? "s" : ""}</p>
-                        </Col>
                     </Row>
                 </Form>
 
