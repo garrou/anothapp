@@ -25,7 +25,7 @@ export default function Discover() {
                     <ApiDiscoverTitleRow />
                 </Tab>
                 <Tab eventKey={TabEventKey.ApiSearchKind} title="Par genres">
-                    <ApiDiscoverKindsRow tabKey={key} />
+                    {key === TabEventKey.ApiSearchKind && <ApiDiscoverKindsRow />}
                 </Tab>
             </Tabs>
         </Container>
@@ -83,12 +83,7 @@ function ApiDiscoverTitleRow() {
     );
 }
 
-
-interface Props {
-    tabKey: TabEventKey;
-}
-
-function ApiDiscoverKindsRow({ tabKey }: Props) {
+function ApiDiscoverKindsRow() {
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiShowDetails[]>([]);
     const [kind, setKind] = useState<string>("Comedy");
@@ -96,10 +91,10 @@ function ApiDiscoverKindsRow({ tabKey }: Props) {
     useEffect(() => {
         getKinds();
         getShowsByKind();
-    }, [kind, tabKey]);
+    }, [kind]);
 
     const getKinds = async () => {
-        if (kinds.length > 0 || tabKey !== TabEventKey.ApiSearchKind) return
+        if (kinds.length > 0) return
         const resp = await searchService.getKinds();
 
         if (resp.status === 200)
@@ -109,7 +104,6 @@ function ApiDiscoverKindsRow({ tabKey }: Props) {
     }
 
     const getShowsByKind = async () => {
-        if (tabKey !== TabEventKey.ApiSearchKind) return
         setShows([]);
         const resp = await searchService.getShowsByKind(kind);
 

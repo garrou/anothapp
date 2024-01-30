@@ -12,7 +12,6 @@ import { getImageUrl } from "../../models/external/ApiShowImage";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import TabEventKey from "../../models/internal/TabEventKey";
 import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
-import { TabProps } from "../../models/internal/TabProps";
 import { ApiPerson } from "../../models/external/ApiPerson";
 import TextCard from "../../components/external/TextCard";
 
@@ -74,10 +73,10 @@ export default function DiscoverDetails() {
                         <ApiShowInfos show={show} />
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiCharacters} title="Acteurs">
-                        <ApiCharactersRow showId={show.id} tabKey={key} />
+                        {key === TabEventKey.ApiCharacters && <ApiCharactersRow showId={show.id} />}
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiSimilars} title="Similaires">
-                        <ApiSimilarShowTable showId={show.id} tabKey={key} />
+                        {key === TabEventKey.ApiSimilars && <ApiSimilarShowTable showId={show.id} />}
                     </Tab>
                 </Tabs>
             </> : <Loading />}
@@ -85,7 +84,7 @@ export default function DiscoverDetails() {
     );
 };
 
-function ApiCharactersRow({ showId, tabKey }: TabProps) {
+function ApiCharactersRow({ showId }: { showId: number}) {
     const [characters, setCharacters] = useState<ApiCharacterPreview[]>([]);
     const [person, setPerson] = useState<ApiPerson>();
     const [showModal, setShowModal] = useState(false);
@@ -93,10 +92,10 @@ function ApiCharactersRow({ showId, tabKey }: TabProps) {
 
     useEffect(() => {
         getCharacters();
-    }, [tabKey]);
+    }, []);
 
     const getCharacters = async () => {
-        if (tabKey !== TabEventKey.ApiCharacters || characters.length > 0) return
+        if (characters.length > 0) return
         const resp = await searchService.getCharactersByShowId(showId);
 
         if (resp.status === 200) {

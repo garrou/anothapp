@@ -2,11 +2,7 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ShowPreview } from "../../models/internal/ShowPreview";
 
-interface Props {
-    preview: ShowPreview;
-};
-
-export default function ShowCard({ preview }: Props) {
+export default function ShowCard({ preview }: { preview: ShowPreview }) {
 
     return (
         <Card className="mt-2">

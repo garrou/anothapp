@@ -10,7 +10,7 @@ export default function Navigation() {
 
     useEffect(() => {
         checkIfLogged();
-    });
+    }, []);
 
     const checkIfLogged = async () => {
         const resp = await userService.checkUser();

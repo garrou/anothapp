@@ -5,11 +5,7 @@ import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
 import { ApiShowDetails } from "../../models/external/ApiShowDetails";
 
-interface Props {
-    show: ApiShowDetails;
-};
-
-export default function ApiShowCard({ show }: Props) {
+export default function ApiShowCard({ show }: { show: ApiShowDetails }) {
     const navigate = useNavigate();
     const image = getImageUrl(show.images);
 

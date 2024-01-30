@@ -16,7 +16,6 @@ import ApiSeasonCard from "../../components/external/ApiSeasonCard";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
 import TabEventKey from "../../models/internal/TabEventKey";
-import { TabProps } from "../../models/internal/TabProps";
 import favoriteService from "../../services/favoriteService";
 import userService from "../../services/userService";
 
@@ -182,10 +181,10 @@ export default function SeriesDetails() {
                         </Row>
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiImages} title="Images">
-                        <ApiImagesRow showId={show.id} tabKey={key} />
+                        {key === TabEventKey.ApiImages && <ApiImagesRow showId={show.id} />}
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiSimilars} title="Similaires">
-                        <ApiSimilarShowTable showId={show.id} tabKey={key} />
+                        {key === TabEventKey.ApiSimilars && <ApiSimilarShowTable showId={show.id}  />}
                     </Tab>
                 </Tabs>
             </> : <Loading />}
@@ -213,15 +212,14 @@ function WrapProgressBar({ nbSeason, nbApiSeason }: Props) {
     )
 }
 
-function ApiImagesRow({ showId, tabKey }: TabProps) {
+function ApiImagesRow({ showId }: { showId: number }) {
     const [images, setImages] = useState<string[]>([]);
 
     useEffect(() => {
         getImagesByShowId(showId);
-    }, [tabKey]);
+    }, []);
 
     const getImagesByShowId = async (id: number) => {
-        if (tabKey !== TabEventKey.ApiImages || images.length > 0) return
         const resp = await searchService.getImagesByShowId(id);
 
         if (resp.status === 200)

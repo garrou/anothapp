@@ -3,18 +3,16 @@ import { Table } from "react-bootstrap";
 import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
 import searchService from "../../services/searchService";
 import { errorToast } from "../../helpers/toasts";
-import TabEventKey from "../../models/internal/TabEventKey";
-import { TabProps } from "../../models/internal/TabProps";
 
-export default function ApiSimilarShowTable({ showId, tabKey }: TabProps) {
+export default function ApiSimilarShowTable({ showId }: { showId: number }) {
     const [shows, setShows] = useState<ApiSimilarShow[]>([]);
 
     useEffect(() => {
         getSimilarsShows();
-    }, [tabKey]);
+    }, []);
 
     const getSimilarsShows = async () => {
-        if (tabKey !== TabEventKey.ApiSimilars || shows.length > 0) return
+        if (shows.length > 0) return
         const resp = await searchService.getSimilarByShowId(showId);
 
         if (resp.status === 200)
