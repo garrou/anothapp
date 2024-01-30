@@ -42,15 +42,15 @@ export default function Profile(props: FriendProps) {
                 <Col className="mt-2">
                     <Card>
                         {user.picture && <Card.Img src={user.picture} variant="top" alt="Photo de profil" />}
-                        <Card.Body>
+                        {!props.userId && <Card.Body>
                             <Button variant="outline-dark" onClick={() => setShowImageModal(true)}>
                                 <i className="bi-image"></i>
                                 &nbsp;Image
                             </Button>
-                        </Card.Body>
+                        </Card.Body>}
                     </Card>
                 </Col>
-                <Col className="mt-2">
+                {!props.userId && <Col className="mt-2">
                     <Card>
                         <Card.Body>
                             <Card.Title>{user.email}</Card.Title>
@@ -66,7 +66,7 @@ export default function Profile(props: FriendProps) {
                             </div>
                         </Card.Body>
                     </Card>
-                </Col>
+                </Col>}
             </Row> : <Loading />}
         </Container>
     );
