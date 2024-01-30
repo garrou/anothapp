@@ -17,7 +17,6 @@ import { ToastContainer } from "react-toastify";
 import Friends from "./views/activities/Friends";
 import Stats from "./views/user/Stats";
 import Favorites from "./views/series/Favorites";
-import FriendDetails from "./views/activities/FriendDetails";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +49,6 @@ function Root() {
         <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/friends" element={<Friends />} />
-        <Route path="/friends/:id" element={<FriendDetails />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/stats" element={<Stats />} />

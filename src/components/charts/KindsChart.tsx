@@ -20,7 +20,7 @@ export default function KindsChart(props: FriendProps) {
     }, []);
 
     const getKinds = async (): Promise<void> => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("kinds", props.userId);
+        const resp = await statService.getGroupedCountByTypeByPeriod("kinds", "", props.userId);
 
         if (resp.status === 200)
             setKinds(await resp.json());

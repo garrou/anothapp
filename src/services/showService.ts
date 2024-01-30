@@ -1,7 +1,7 @@
 import { SeasonPreview } from "../models/internal/SeasonPreview";
 import { ApiShowDetails } from "../models/external/ApiShowDetails";
 import storageService from "./storageService";
-import { buildIdUrl } from "../helpers/format";
+import { buildUrl } from "../helpers/format";
 
 const getShows = async (title: string = "", kind: string = ""): Promise<Response> => {
     return fetch(`${process.env.REACT_APP_SERVER}/shows?title=${title}&kind=${kind}`, {
@@ -85,7 +85,7 @@ const getViewedTimeByShowIdBySeason = async (id: number, num: number): Promise<R
 }
 
 const getViewedMonthAgo = async (month: number, userId?: string) => {
-    const url = buildIdUrl(`${process.env.REACT_APP_SERVER}/shows/viewed?month=${month}`, userId)
+    const url = buildUrl(`${process.env.REACT_APP_SERVER}/shows/viewed?month=${month}`, "id", userId)
     return fetch(url, {
         headers: {
             "Authorization": `Bearer ${storageService.getJwt()}`

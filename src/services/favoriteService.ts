@@ -1,8 +1,8 @@
-import { buildIdUrl } from "../helpers/format";
+import { buildUrl } from "../helpers/format";
 import storageService from "./storageService";
 
 const getFavorites = async (userId?: string): Promise<Response> => {
-    const url = buildIdUrl(`${process.env.REACT_APP_SERVER}/favorites`, userId, "?")
+    const url = buildUrl(`${process.env.REACT_APP_SERVER}/favorites`, "id", userId, "?");
     return fetch(url, {
         headers: {
             "Authorization": `Bearer ${storageService.getJwt()}`
