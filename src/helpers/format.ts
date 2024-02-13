@@ -23,9 +23,7 @@ const minsToStringHoursDays = (mins: number): string => {
     return days !== "" ? `${hours} • ${days}` : hours;
 }
 
-const buildUrl = (url: string, query: string, param: string | undefined, separator: string = "&"): string => {
-    return url.concat(param ? `${separator}${query}=${param}` : "")
-}
+const buildUrl = (url: string, query: string, param: string | undefined, separator: string = "&"): string => url.concat(param ? `${separator}${query}=${param}` : "");
 
 export { 
     buildUrl,
