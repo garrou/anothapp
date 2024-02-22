@@ -31,7 +31,7 @@ export default function ApiEpisodesCards({ showId, num }: Props) {
     return (
         <>
             {episodes.length > 0 ? <>
-                <h3 className="mt-3">Episodes</h3>
+                <h3 className="mt-3">{episodes.length} épisodes</h3>
                 {episodes.map(episode => (
                     <Card className="mt-2" key={episode.id}>
                         <Card.Body>
