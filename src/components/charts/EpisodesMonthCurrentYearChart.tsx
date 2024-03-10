@@ -34,7 +34,7 @@ export default function EpisodesMonthCurrentYearChart(props: FriendProps) {
                 data={episodesByMonths}
                 legend="Episodes"
                 range={25}
-                max={100}
+                max={1000}
                 click={handleClick}
             /> : <p className="text-center mt-3">Aucune statistique</p>}
         </>
