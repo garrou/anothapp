@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ApiEpisodePreview } from "../../models/external/ApiEpisodePreview";
+import { ApiEpisodePreview } from "../../models/external/ApiEpisode";
 import searchService from "../../services/searchService";
 import Loading from "../Loading";
 import { errorToast } from "../../helpers/toasts";

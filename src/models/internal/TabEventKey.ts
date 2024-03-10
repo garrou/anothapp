@@ -1,4 +1,4 @@
-enum TabEventKey {
+export const enum TabEventKey {
     
     Seasons = "seasons",
 
@@ -16,5 +16,3 @@ enum TabEventKey {
 
     ApiSearchKind = "api-kind"
 }
-
-export default TabEventKey;

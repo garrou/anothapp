@@ -6,7 +6,7 @@ import { errorToast, infoToast } from "../../helpers/toasts";
 import userService from "../../services/userService";
 import { User } from "../../models/internal/User";
 import FriendCard from "../../components/internal/FriendCard";
-import FriendType from "../../models/internal/FriendType";
+import { FriendType } from "../../models/internal/Friend";
 
 export default function Friends() {
     return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShow";
 import searchService from "../../services/searchService";
 import { Button, Container, Stack, Tab, Tabs, Image, Card, Col, Row, Modal } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
@@ -8,10 +8,10 @@ import Loading from "../../components/Loading";
 import { errorToast } from "../../helpers/toasts";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import showService from "../../services/showService";
-import { getImageUrl } from "../../models/external/ApiShowImage";
+import { getImageUrl } from "../../models/external/ApiShow";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
-import TabEventKey from "../../models/internal/TabEventKey";
-import { ApiCharacterPreview } from "../../models/external/ApiCharacterPreview";
+import { TabEventKey } from "../../models/internal/TabEventKey";
+import { ApiCharacterPreview } from "../../models/external/ApiCharacter";
 import { ApiPerson } from "../../models/external/ApiPerson";
 import TextCard from "../../components/external/TextCard";
 

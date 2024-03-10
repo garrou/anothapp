@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
+import { Stat } from "../../models/internal/Chart";
 
 export default function EpisodesYearChart(props: FriendProps) {
     const [episodesByYear, setEpisodesByYears] = useState<Stat[]>([]);

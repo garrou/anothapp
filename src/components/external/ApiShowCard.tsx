@@ -1,9 +1,9 @@
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { getImageUrl } from "../../models/external/ApiShowImage";
+import { getImageUrl } from "../../models/external/ApiShow";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShow";
 
 export default function ApiShowCard({ show }: { show: ApiShowDetails }) {
     const navigate = useNavigate();

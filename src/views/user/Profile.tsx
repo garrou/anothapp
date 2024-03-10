@@ -5,9 +5,9 @@ import { errorToast, successToast } from "../../helpers/toasts";
 import { User } from "../../models/internal/User";
 import userService from "../../services/userService";
 import Loading from "../../components/Loading";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
 import showService from "../../services/showService";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 import searchService from "../../services/searchService";
 
 export default function Profile(props: FriendProps) {

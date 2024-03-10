@@ -2,7 +2,7 @@ import { Button, Card, Modal, Tab, Tabs } from "react-bootstrap";
 import { User } from "../../models/internal/User";
 import friendService from "../../services/friendService";
 import { errorToast, successToast } from "../../helpers/toasts";
-import FriendType from "../../models/internal/FriendType";
+import { FriendType } from "../../models/internal/Friend";
 import { useState } from "react";
 import ModalConfirm from "./ModalConfirm";
 import Favorites from "../../views/series/Favorites";

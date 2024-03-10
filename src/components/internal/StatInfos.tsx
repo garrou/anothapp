@@ -3,7 +3,7 @@ import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import { Row, Col, Card } from "react-bootstrap";
 import { minsToStringDays, minsToStringHours } from "../../helpers/format";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
 
 export default function StatInfos(props: FriendProps) {
     return (

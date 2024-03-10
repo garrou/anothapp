@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 
 export default function ShowCard({ preview }: { preview: ShowPreview }) {
 

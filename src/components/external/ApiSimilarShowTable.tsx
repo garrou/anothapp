@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { ApiSimilarShow } from "../../models/external/ApiSimilarShow";
+import { ApiSimilarShow } from "../../models/external/ApiShow";
 import searchService from "../../services/searchService";
 import { errorToast } from "../../helpers/toasts";
 

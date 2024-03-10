@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Loading from "../components/Loading";
 import searchService from "../services/searchService";
 import { errorToast } from "../helpers/toasts";
-import { ApiShowPreview } from "../models/external/ApiShowPreview";
+import { ApiShowPreview } from "../models/external/ApiShow";
 
 export default function Home() {
     const [shows, setShows] = useState<ApiShowPreview[]>([]);

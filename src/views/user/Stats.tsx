@@ -9,7 +9,9 @@ import SeasonsYearsChart from "../../components/charts/SeasonsYearsChart";
 import ShowsTimeRankingChart from "../../components/charts/ShowsTimeRankingChart";
 import TimeYearsChart from "../../components/charts/TimeYearsChart";
 import StatInfos from "../../components/internal/StatInfos";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
+import EpisodesMonthCurrentYearChart from "../../components/charts/EpisodesMonthCurrentYearChart";
+import SeasonsMonthCurrentYearChart from "../../components/charts/SeasonsMonthCurrentYearChart copy";
 
 export default function Stats(props: FriendProps) {
     const [displayChart, setDisplayChart] = useState(true);
@@ -39,11 +41,13 @@ export default function Stats(props: FriendProps) {
             />
 
             {displayChart && <>
-                <ShowsTimeRankingChart userId={props.userId} />
+                <SeasonsMonthCurrentYearChart userId={props.userId} />
+                <EpisodesMonthCurrentYearChart userId={props.userId} />
                 <TimeYearsChart userId={props.userId} />
                 <EpisodesYearChart userId={props.userId} />
                 <SeasonsYearsChart userId={props.userId} />
                 <SeasonsMonthChart userId={props.userId} />
+                <ShowsTimeRankingChart userId={props.userId} />
                 <KindsChart userId={props.userId} />
             </>}
         </Container>

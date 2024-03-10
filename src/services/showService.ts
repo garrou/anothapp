@@ -1,5 +1,5 @@
-import { SeasonPreview } from "../models/internal/SeasonPreview";
-import { ApiShowDetails } from "../models/external/ApiShowDetails";
+import { SeasonPreview } from "../models/internal/Season";
+import { ApiShowDetails } from "../models/external/ApiShow";
 import storageService from "./storageService";
 import { buildUrl } from "../helpers/format";
 

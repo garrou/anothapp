@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
-import { SeasonPreview } from "../../models/internal/SeasonPreview";
+import { ApiShowDetails } from "../../models/external/ApiShow";
+import { SeasonPreview } from "../../models/internal/Season";
 import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
 

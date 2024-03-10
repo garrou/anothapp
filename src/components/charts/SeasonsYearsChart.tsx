@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
-import { SeasonPreview } from "../../models/internal/SeasonPreview";
+import { SeasonPreview } from "../../models/internal/Season";
 import seasonService from "../../services/seasonService";
 import { Modal, Row, Col } from "react-bootstrap";
 import SeasonCard from "../internal/SeasonCard";
-import { ChartSelection } from "../../models/internal/Chart";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { ChartSelection, Stat } from "../../models/internal/Chart";
+import { FriendProps } from "../../models/internal/Friend";
 
 export default function SeasonsYearsChart(props: FriendProps) {
     const [seasonsByYears, setSeasonsByYears] = useState<Stat[]>([]);

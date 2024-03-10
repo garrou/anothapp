@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import ShowCard from "../../components/internal/ShowCard";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShow";
 
 export default function Series() {
 

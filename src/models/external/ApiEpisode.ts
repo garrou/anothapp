@@ -1,4 +1,4 @@
-interface ApiEpisodePreview {
+export interface ApiEpisodePreview {
 
     id: number;
 
@@ -12,5 +12,3 @@ interface ApiEpisodePreview {
 
     date: string;
 }
-
-export type { ApiEpisodePreview };

@@ -1,4 +1,4 @@
-interface ApiPerson {
+export interface ApiPerson {
 
     id: number;
 
@@ -48,5 +48,3 @@ interface ApiPersonMovie {
 
     poster?: string;
 }
-
-export type { ApiPerson };

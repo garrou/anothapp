@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image, Table } from "react-bootstrap";
-import { ShowContinue } from "../../models/internal/ShowContinue";
 import showService from "../../services/showService";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";
 import { errorToast, successToast } from "../../helpers/toasts";
+import { ShowContinue } from "../../models/internal/Show";
 
 export default function ShowsToContinue() {
     const [shows, setShows] = useState<ShowContinue[]>([]);

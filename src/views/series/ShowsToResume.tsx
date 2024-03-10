@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image, Table } from "react-bootstrap";
 import showService from "../../services/showService";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ModalConfirm from "../../components/internal/ModalConfirm";

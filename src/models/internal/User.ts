@@ -1,4 +1,4 @@
-interface User {
+export interface User {
 
     id: string;
     
@@ -6,5 +6,3 @@ interface User {
 
     picture: string;
 };
-
-export type { User };

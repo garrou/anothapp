@@ -2,11 +2,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
 import { useEffect, useState } from "react";
 import favoriteService from "../../services/favoriteService";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 import { errorToast } from "../../helpers/toasts";
 import ShowCard from "../../components/internal/ShowCard";
 import Loading from "../../components/Loading";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
 
 export default function Favorites({ userId }: FriendProps) {
     const [isLoad, setIsLoad] = useState(false);

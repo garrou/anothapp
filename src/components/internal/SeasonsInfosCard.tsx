@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../helpers/format";
-import { SeasonInfo } from "../../models/internal/SeasonInfo";
 import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
 import Loading from "../Loading";
 import ModalConfirm from "./ModalConfirm";
 import seasonService from "../../services/seasonService";
+import { SeasonInfo } from "../../models/internal/Season";
 
 interface Props {
 

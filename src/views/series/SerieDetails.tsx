@@ -4,20 +4,20 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
 import ViewingTimeShowCard from "../../components/internal/ViewingTimeShowCard";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShow";
 import searchService from "../../services/searchService";
 import showService from "../../services/showService";
 import { errorToast, successToast } from "../../helpers/toasts";
-import { getImageUrl } from "../../models/external/ApiShowImage";
+import { getImageUrl } from "../../models/external/ApiShow";
 import ModalConfirm from "../../components/internal/ModalConfirm";
-import { SeasonPreview } from "../../models/internal/SeasonPreview";
+import { SeasonPreview } from "../../models/internal/Season";
 import SeasonCard from "../../components/internal/SeasonCard";
 import ApiSeasonCard from "../../components/external/ApiSeasonCard";
 import ApiShowInfos from "../../components/external/ApiShowInfos";
 import ApiSimilarShowTable from "../../components/external/ApiSimilarShowTable";
-import TabEventKey from "../../models/internal/TabEventKey";
 import favoriteService from "../../services/favoriteService";
 import userService from "../../services/userService";
+import { TabEventKey } from "../../models/internal/TabEventKey";
 
 export default function SeriesDetails() {
     const { id } = useParams<string>();

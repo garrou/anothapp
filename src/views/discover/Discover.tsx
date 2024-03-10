@@ -1,13 +1,13 @@
 import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap";
 import Navigation from "../../components/Navigation";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails";
+import { ApiShowDetails } from "../../models/external/ApiShow";
 import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import ApiShowCard from "../../components/external/ApiShowCard";
 import { errorToast } from "../../helpers/toasts";
 import searchService from "../../services/searchService";
-import { ApiShowKind } from "../../models/external/ApiShowKind";
-import TabEventKey from "../../models/internal/TabEventKey";
+import { ApiShowKind } from "../../models/external/ApiShow";
+import { TabEventKey } from "../../models/internal/TabEventKey";
 
 export default function Discover() {
     const [key, setKey] = useState(TabEventKey.ApiSearchTitle);

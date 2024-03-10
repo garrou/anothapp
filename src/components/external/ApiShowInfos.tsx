@@ -1,5 +1,5 @@
 import { Alert } from "react-bootstrap";
-import { ApiShowDetails } from "../../models/external/ApiShowDetails"
+import { ApiShowDetails } from "../../models/external/ApiShow"
 import TextCard from "./TextCard";
 import { minsToStringHours } from "../../helpers/format";
 

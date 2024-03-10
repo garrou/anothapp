@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { ShowPreview } from "../../models/internal/ShowPreview";
+import { ShowPreview } from "../../models/internal/Show";
 import showService from "../../services/showService";
 import Loading from "../../components/Loading";
 import ShowCard from "../../components/internal/ShowCard";

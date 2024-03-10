@@ -1,4 +1,9 @@
-enum FriendType {
+export interface FriendProps {
+ 
+    userId?: string
+}
+
+export const enum FriendType {
     
     Search = "search",
 
@@ -8,5 +13,3 @@ enum FriendType {
 
     Receive = "receive",
 }
-
-export default FriendType;

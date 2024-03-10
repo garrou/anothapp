@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Container, Form, Image, Table } from "react-bootstrap";
 import Loading from "../../components/Loading";
 import Navigation from "../../components/Navigation";
-import { ViewedSeasonMonth } from "../../models/internal/ViewedSeasonMonth";
 import showService from "../../services/showService";
 import { errorToast } from "../../helpers/toasts";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
+import { ViewedSeasonMonth } from "../../models/internal/Season";
 
 export default function History(props: FriendProps) {
     const [seasons, setSeasons] = useState<ViewedSeasonMonth[]>([]);

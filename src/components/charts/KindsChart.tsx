@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Stat } from "../../models/internal/Stat";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
 import { Col, Modal, Row } from "react-bootstrap";
 import showService from "../../services/showService";
 import ShowCard from "../internal/ShowCard";
-import { ShowPreview } from "../../models/internal/ShowPreview";
-import { ChartSelection } from "../../models/internal/Chart";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { ShowPreview } from "../../models/internal/Show";
+import { ChartSelection, Stat } from "../../models/internal/Chart";
+import { FriendProps } from "../../models/internal/Friend";
 
 export default function KindsChart(props: FriendProps) {
     const [kinds, setKinds] = useState<Stat[]>([]);
@@ -20,7 +19,7 @@ export default function KindsChart(props: FriendProps) {
     }, []);
 
     const getKinds = async (): Promise<void> => {
-        const resp = await statService.getGroupedCountByTypeByPeriod("kinds", "", props.userId);
+        const resp = await statService.getGroupedCountByTypeByPeriod("kinds", null, props.userId);
 
         if (resp.status === 200)
             setKinds(await resp.json());

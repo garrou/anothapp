@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import statService from "../../services/statService";
 import { errorToast } from "../../helpers/toasts";
-import { Stat } from "../../models/internal/Stat";
+import { Stat } from "../../models/internal/Chart";
 import CustomChartWrapper from "./generics/CustomChartWrapper";
-import { FriendProps } from "../../models/internal/FriendProps";
+import { FriendProps } from "../../models/internal/Friend";
 
 export default function ShowsTimeRankingChart(props: FriendProps) {
     const [shows, setShows] = useState<Stat[]>([]);
