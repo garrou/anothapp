@@ -30,7 +30,7 @@ export default function SeasonsMonthCurrentYearChart(props: FriendProps) {
             {seasonsByMonths.length > 0 ? <CustomChartWrapper
                 id="seasons-months-chart-current-year"
                 color="#ae34eb"
-                title="Saisons par mois cette l'année"
+                title="Saisons par mois cette année"
                 data={seasonsByMonths}
                 legend="Saisons"
                 range={25}

@@ -30,7 +30,7 @@ export default function EpisodesMonthCurrentYearChart(props: FriendProps) {
             {episodesByMonths.length > 0 ? <CustomChartWrapper
                 id="episodes-months-chart-current-year"
                 color="#ae34eb"
-                title="Episodes par mois cette l'année"
+                title="Episodes par mois cette année"
                 data={episodesByMonths}
                 legend="Episodes"
                 range={25}
