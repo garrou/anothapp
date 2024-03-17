@@ -181,10 +181,10 @@ export default function SeriesDetails() {
                         </Row>
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiImages} title="Images">
-                        {key === TabEventKey.ApiImages && <ApiImagesRow showId={show.id} />}
+                        <ApiImagesRow showId={show.id} />
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiSimilars} title="Similaires">
-                        {key === TabEventKey.ApiSimilars && <ApiSimilarShowTable showId={show.id}  />}
+                        <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
             </> : <Loading />}

@@ -1,3 +1,4 @@
+import { buildUrl } from "../helpers/format";
 import storageService from "./storageService";
 
 const getHomeImages = () => {
@@ -5,7 +6,8 @@ const getHomeImages = () => {
 }
 
 const discoverShows = (title: string): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/search/shows?title=${title}`, {
+    const url = buildUrl(`${process.env.REACT_APP_SERVER}/search/shows`, "title", title, "?")
+    return fetch(url, {
         headers: {
             "Authorization": `Bearer ${storageService.getJwt()}`
         }

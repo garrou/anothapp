@@ -73,10 +73,10 @@ export default function DiscoverDetails() {
                         <ApiShowInfos show={show} />
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiCharacters} title="Acteurs">
-                        {key === TabEventKey.ApiCharacters && <ApiCharactersRow showId={show.id} />}
+                        <ApiCharactersRow showId={show.id} />
                     </Tab>
                     <Tab eventKey={TabEventKey.ApiSimilars} title="Similaires">
-                        {key === TabEventKey.ApiSimilars && <ApiSimilarShowTable showId={show.id} />}
+                        <ApiSimilarShowTable showId={show.id} />
                     </Tab>
                 </Tabs>
             </> : <Loading />}

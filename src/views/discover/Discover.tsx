@@ -25,7 +25,7 @@ export default function Discover() {
                     <ApiDiscoverTitleRow />
                 </Tab>
                 <Tab eventKey={TabEventKey.ApiSearchKind} title="Par genres">
-                    {key === TabEventKey.ApiSearchKind && <ApiDiscoverKindsRow />}
+                    <ApiDiscoverKindsRow />
                 </Tab>
             </Tabs>
         </Container>
@@ -61,7 +61,7 @@ function ApiDiscoverTitleRow() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="titleSearch">
-                            <Form.Control type="text" placeholder="Titre de la série" required />
+                            <Form.Control type="text" placeholder="Titre de la série" />
                         </Form.Group>
                     </Col>
                     <Col>
@@ -86,10 +86,13 @@ function ApiDiscoverTitleRow() {
 function ApiDiscoverKindsRow() {
     const [kinds, setKinds] = useState<ApiShowKind[]>([]);
     const [shows, setShows] = useState<ApiShowDetails[]>([]);
-    const [kind, setKind] = useState<string>("Comedy");
+    const [kind, setKind] = useState<string>("Action");
 
     useEffect(() => {
         getKinds();
+    }, []);
+
+    useEffect(() => {
         getShowsByKind();
     }, [kind]);
 
