@@ -12,7 +12,6 @@ export default function ApiSimilarShowTable({ showId }: { showId: number }) {
     }, []);
 
     const getSimilarsShows = async () => {
-        if (shows.length > 0) return
         const resp = await searchService.getSimilarByShowId(showId);
 
         if (resp.status === 200)

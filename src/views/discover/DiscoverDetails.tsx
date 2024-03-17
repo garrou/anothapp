@@ -95,7 +95,6 @@ function ApiCharactersRow({ showId }: { showId: number}) {
     }, []);
 
     const getCharacters = async () => {
-        if (characters.length > 0) return
         const resp = await searchService.getCharactersByShowId(showId);
 
         if (resp.status === 200) {

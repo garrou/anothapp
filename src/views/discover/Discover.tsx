@@ -97,7 +97,6 @@ function ApiDiscoverKindsRow() {
     }, [kind]);
 
     const getKinds = async () => {
-        if (kinds.length > 0) return
         const resp = await searchService.getKinds();
 
         if (resp.status === 200)
