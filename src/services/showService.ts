@@ -4,7 +4,8 @@ import storageService from "./storageService";
 import { buildUrl } from "../helpers/format";
 
 const getShows = async (title: string = "", kind: string = ""): Promise<Response> => {
-    return fetch(`${process.env.REACT_APP_SERVER}/shows?title=${title}&kind=${kind}`, {
+    const url = buildUrl(buildUrl(`${process.env.REACT_APP_SERVER}/shows`, "title", title, "?"), "kind", kind)
+    return fetch(url, {
         headers: {
             "Authorization": `Bearer ${storageService.getJwt()}`
         }
