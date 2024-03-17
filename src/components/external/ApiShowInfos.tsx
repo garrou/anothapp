@@ -17,11 +17,11 @@ export default function ApiShowInfos({ show }: Props) {
                 {show.status === "Ended" ? "Terminée" : "En cours"}
             </Alert>
 
-            <TextCard title="Durée" text={minsToStringHours(show.episodes * show.duration)} />
-            <TextCard title="Création" text={show.creation} />
-            <TextCard title="Note" text={`${show.note.toFixed(2)} / 5`} />
-            <TextCard title="Synopsis" text={show.description} />
-            <TextCard title="Genres" text={show.kinds.join(" • ")} />
+            {show.episodes && show.duration && <TextCard title="Durée" text={minsToStringHours(show.episodes * show.duration)} />}
+            {show.creation && <TextCard title="Création" text={show.creation} />}
+            {show.note && <TextCard title="Note" text={`${show.note.toFixed(2)} / 5`} />}
+            {show.description && <TextCard title="Synopsis" text={show.description} />}
+            {show.kinds && <TextCard title="Genres" text={show.kinds.join(" • ")} />}
         </>
     )
 }
