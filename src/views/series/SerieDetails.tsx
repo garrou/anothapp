@@ -26,7 +26,6 @@ export default function SeriesDetails() {
     const [apiSeasons, setApiSeasons] = useState<SeasonPreview[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [reload, setReload] = useState(0);
-    const [displayDetails, setDisplayDetails] = useState(false);
     const [key, setKey] = useState(TabEventKey.Seasons);
     const [isFavorite, setIsFavorite] = useState(false);
     const navigate = useNavigate();
@@ -140,17 +139,6 @@ export default function SeriesDetails() {
                             <i className="bi bi-star"></i>
                         </Button>}
                 </Stack>
-
-                <Form.Switch
-                    className="mb-2"
-                    type="switch"
-                    id="detail-switch"
-                    label="Voir le détail"
-                    checked={displayDetails}
-                    onChange={(e) => setDisplayDetails(e.target.checked)}
-                />
-
-                {displayDetails && <ApiShowInfos show={show} />}
 
                 <ViewingTimeShowCard showId={show.id} reload={reload} />
 
